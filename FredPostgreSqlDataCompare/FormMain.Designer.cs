@@ -60,8 +60,8 @@
       this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
       this.àproposdeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tabControlMain = new System.Windows.Forms.TabControl();
-      this.tabPageMain = new System.Windows.Forms.TabPage();
-      this.tabPage2 = new System.Windows.Forms.TabPage();
+      this.tabPageDataSources = new System.Windows.Forms.TabPage();
+      this.tabPageTables = new System.Windows.Forms.TabPage();
       this.buttonCopyPassword = new System.Windows.Forms.Button();
       this.buttonCompareCompareNowCancel = new System.Windows.Forms.Button();
       this.buttonCompareCompareNow = new System.Windows.Forms.Button();
@@ -102,7 +102,7 @@
       this.comboBoxSourceDatabaseSource = new System.Windows.Forms.ComboBox();
       this.menuStrip1.SuspendLayout();
       this.tabControlMain.SuspendLayout();
-      this.tabPageMain.SuspendLayout();
+      this.tabPageDataSources.SuspendLayout();
       this.SuspendLayout();
       // 
       // menuStrip1
@@ -343,8 +343,8 @@
       // 
       // tabControlMain
       // 
-      this.tabControlMain.Controls.Add(this.tabPageMain);
-      this.tabControlMain.Controls.Add(this.tabPage2);
+      this.tabControlMain.Controls.Add(this.tabPageDataSources);
+      this.tabControlMain.Controls.Add(this.tabPageTables);
       this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tabControlMain.Location = new System.Drawing.Point(0, 24);
       this.tabControlMain.Name = "tabControlMain";
@@ -352,63 +352,63 @@
       this.tabControlMain.Size = new System.Drawing.Size(973, 675);
       this.tabControlMain.TabIndex = 1;
       // 
-      // tabPageMain
+      // tabPageDataSources
       // 
-      this.tabPageMain.Controls.Add(this.buttonCopyPassword);
-      this.tabPageMain.Controls.Add(this.buttonCompareCompareNowCancel);
-      this.tabPageMain.Controls.Add(this.buttonCompareCompareNow);
-      this.tabPageMain.Controls.Add(this.buttonCompareToLeftArrow);
-      this.tabPageMain.Controls.Add(this.buttonCompareToRightAndLeftArrow);
-      this.tabPageMain.Controls.Add(this.buttonCompareToRightArrow);
-      this.tabPageMain.Controls.Add(this.buttonCompareSaveAs);
-      this.tabPageMain.Controls.Add(this.buttonCompareSave);
-      this.tabPageMain.Controls.Add(this.buttonTargetCreate);
-      this.tabPageMain.Controls.Add(this.buttonTargetRefresh);
-      this.tabPageMain.Controls.Add(this.labelTargetDatabase);
-      this.tabPageMain.Controls.Add(this.comboBoxTargetDatabase);
-      this.tabPageMain.Controls.Add(this.checkBoxTargetRememberCredentials);
-      this.tabPageMain.Controls.Add(this.textBoxTargetPassword);
-      this.tabPageMain.Controls.Add(this.textBoxTargetName);
-      this.tabPageMain.Controls.Add(this.labelTargetPassword);
-      this.tabPageMain.Controls.Add(this.labelTargetUserName);
-      this.tabPageMain.Controls.Add(this.comboBoxTargetAuthentication);
-      this.tabPageMain.Controls.Add(this.labelTargetAuthentication);
-      this.tabPageMain.Controls.Add(this.labelTargetServer);
-      this.tabPageMain.Controls.Add(this.comboBoxServerTarget);
-      this.tabPageMain.Controls.Add(this.labelTargetOperation);
-      this.tabPageMain.Controls.Add(this.comboBoxTargetDatabaseTarget);
-      this.tabPageMain.Controls.Add(this.buttonSourceCreate);
-      this.tabPageMain.Controls.Add(this.buttonSourceRefresh);
-      this.tabPageMain.Controls.Add(this.labelSourceDatabase);
-      this.tabPageMain.Controls.Add(this.comboBoxSourceDatabase);
-      this.tabPageMain.Controls.Add(this.checkBoxSourceRememberCredentials);
-      this.tabPageMain.Controls.Add(this.textBoxSourcePassword);
-      this.tabPageMain.Controls.Add(this.textBoxSourceName);
-      this.tabPageMain.Controls.Add(this.labelSourcePassword);
-      this.tabPageMain.Controls.Add(this.labelSourceUserName);
-      this.tabPageMain.Controls.Add(this.comboBoxSourceAuthentication);
-      this.tabPageMain.Controls.Add(this.labelSourceAuthentication);
-      this.tabPageMain.Controls.Add(this.labelSourceServer);
-      this.tabPageMain.Controls.Add(this.comboBoxServerSource);
-      this.tabPageMain.Controls.Add(this.labelSourceOperation);
-      this.tabPageMain.Controls.Add(this.comboBoxSourceDatabaseSource);
-      this.tabPageMain.Location = new System.Drawing.Point(4, 22);
-      this.tabPageMain.Name = "tabPageMain";
-      this.tabPageMain.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPageMain.Size = new System.Drawing.Size(965, 649);
-      this.tabPageMain.TabIndex = 0;
-      this.tabPageMain.Text = "Sources";
-      this.tabPageMain.UseVisualStyleBackColor = true;
+      this.tabPageDataSources.Controls.Add(this.buttonCopyPassword);
+      this.tabPageDataSources.Controls.Add(this.buttonCompareCompareNowCancel);
+      this.tabPageDataSources.Controls.Add(this.buttonCompareCompareNow);
+      this.tabPageDataSources.Controls.Add(this.buttonCompareToLeftArrow);
+      this.tabPageDataSources.Controls.Add(this.buttonCompareToRightAndLeftArrow);
+      this.tabPageDataSources.Controls.Add(this.buttonCompareToRightArrow);
+      this.tabPageDataSources.Controls.Add(this.buttonCompareSaveAs);
+      this.tabPageDataSources.Controls.Add(this.buttonCompareSave);
+      this.tabPageDataSources.Controls.Add(this.buttonTargetCreate);
+      this.tabPageDataSources.Controls.Add(this.buttonTargetRefresh);
+      this.tabPageDataSources.Controls.Add(this.labelTargetDatabase);
+      this.tabPageDataSources.Controls.Add(this.comboBoxTargetDatabase);
+      this.tabPageDataSources.Controls.Add(this.checkBoxTargetRememberCredentials);
+      this.tabPageDataSources.Controls.Add(this.textBoxTargetPassword);
+      this.tabPageDataSources.Controls.Add(this.textBoxTargetName);
+      this.tabPageDataSources.Controls.Add(this.labelTargetPassword);
+      this.tabPageDataSources.Controls.Add(this.labelTargetUserName);
+      this.tabPageDataSources.Controls.Add(this.comboBoxTargetAuthentication);
+      this.tabPageDataSources.Controls.Add(this.labelTargetAuthentication);
+      this.tabPageDataSources.Controls.Add(this.labelTargetServer);
+      this.tabPageDataSources.Controls.Add(this.comboBoxServerTarget);
+      this.tabPageDataSources.Controls.Add(this.labelTargetOperation);
+      this.tabPageDataSources.Controls.Add(this.comboBoxTargetDatabaseTarget);
+      this.tabPageDataSources.Controls.Add(this.buttonSourceCreate);
+      this.tabPageDataSources.Controls.Add(this.buttonSourceRefresh);
+      this.tabPageDataSources.Controls.Add(this.labelSourceDatabase);
+      this.tabPageDataSources.Controls.Add(this.comboBoxSourceDatabase);
+      this.tabPageDataSources.Controls.Add(this.checkBoxSourceRememberCredentials);
+      this.tabPageDataSources.Controls.Add(this.textBoxSourcePassword);
+      this.tabPageDataSources.Controls.Add(this.textBoxSourceName);
+      this.tabPageDataSources.Controls.Add(this.labelSourcePassword);
+      this.tabPageDataSources.Controls.Add(this.labelSourceUserName);
+      this.tabPageDataSources.Controls.Add(this.comboBoxSourceAuthentication);
+      this.tabPageDataSources.Controls.Add(this.labelSourceAuthentication);
+      this.tabPageDataSources.Controls.Add(this.labelSourceServer);
+      this.tabPageDataSources.Controls.Add(this.comboBoxServerSource);
+      this.tabPageDataSources.Controls.Add(this.labelSourceOperation);
+      this.tabPageDataSources.Controls.Add(this.comboBoxSourceDatabaseSource);
+      this.tabPageDataSources.Location = new System.Drawing.Point(4, 22);
+      this.tabPageDataSources.Name = "tabPageDataSources";
+      this.tabPageDataSources.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPageDataSources.Size = new System.Drawing.Size(965, 649);
+      this.tabPageDataSources.TabIndex = 0;
+      this.tabPageDataSources.Text = "Data Sources";
+      this.tabPageDataSources.UseVisualStyleBackColor = true;
       // 
-      // tabPage2
+      // tabPageTables
       // 
-      this.tabPage2.Location = new System.Drawing.Point(4, 22);
-      this.tabPage2.Name = "tabPage2";
-      this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage2.Size = new System.Drawing.Size(192, 74);
-      this.tabPage2.TabIndex = 1;
-      this.tabPage2.Text = "tabPage2";
-      this.tabPage2.UseVisualStyleBackColor = true;
+      this.tabPageTables.Location = new System.Drawing.Point(4, 22);
+      this.tabPageTables.Name = "tabPageTables";
+      this.tabPageTables.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPageTables.Size = new System.Drawing.Size(965, 649);
+      this.tabPageTables.TabIndex = 1;
+      this.tabPageTables.Text = "Tables";
+      this.tabPageTables.UseVisualStyleBackColor = true;
       // 
       // buttonCopyPassword
       // 
@@ -807,8 +807,8 @@
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
       this.tabControlMain.ResumeLayout(false);
-      this.tabPageMain.ResumeLayout(false);
-      this.tabPageMain.PerformLayout();
+      this.tabPageDataSources.ResumeLayout(false);
+      this.tabPageDataSources.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -847,8 +847,8 @@
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     private System.Windows.Forms.ToolStripMenuItem àproposdeToolStripMenuItem;
     private System.Windows.Forms.TabControl tabControlMain;
-    private System.Windows.Forms.TabPage tabPageMain;
-    private System.Windows.Forms.TabPage tabPage2;
+    private System.Windows.Forms.TabPage tabPageDataSources;
+    private System.Windows.Forms.TabPage tabPageTables;
     private System.Windows.Forms.Button buttonCopyPassword;
     private System.Windows.Forms.Button buttonCompareCompareNowCancel;
     private System.Windows.Forms.Button buttonCompareCompareNow;
