@@ -26,5 +26,10 @@ namespace FredPostgreSqlDataCompare
     {
       Application.Exit();
     }
+
+    private void TabPageDataSources_Click(object sender, EventArgs e)
+    {
+
+    }
   }
 }

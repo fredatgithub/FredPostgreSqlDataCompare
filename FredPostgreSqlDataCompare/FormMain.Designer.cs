@@ -61,7 +61,6 @@
       this.àproposdeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tabControlMain = new System.Windows.Forms.TabControl();
       this.tabPageDataSources = new System.Windows.Forms.TabPage();
-      this.tabPageTables = new System.Windows.Forms.TabPage();
       this.buttonCopyPassword = new System.Windows.Forms.Button();
       this.buttonCompareCompareNowCancel = new System.Windows.Forms.Button();
       this.buttonCompareCompareNow = new System.Windows.Forms.Button();
@@ -100,6 +99,7 @@
       this.comboBoxServerSource = new System.Windows.Forms.ComboBox();
       this.labelSourceOperation = new System.Windows.Forms.Label();
       this.comboBoxSourceDatabaseSource = new System.Windows.Forms.ComboBox();
+      this.tabPageTables = new System.Windows.Forms.TabPage();
       this.menuStrip1.SuspendLayout();
       this.tabControlMain.SuspendLayout();
       this.tabPageDataSources.SuspendLayout();
@@ -399,16 +399,7 @@
       this.tabPageDataSources.TabIndex = 0;
       this.tabPageDataSources.Text = "Data Sources";
       this.tabPageDataSources.UseVisualStyleBackColor = true;
-      // 
-      // tabPageTables
-      // 
-      this.tabPageTables.Location = new System.Drawing.Point(4, 22);
-      this.tabPageTables.Name = "tabPageTables";
-      this.tabPageTables.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPageTables.Size = new System.Drawing.Size(965, 649);
-      this.tabPageTables.TabIndex = 1;
-      this.tabPageTables.Text = "Tables";
-      this.tabPageTables.UseVisualStyleBackColor = true;
+      this.tabPageDataSources.Click += new System.EventHandler(this.TabPageDataSources_Click);
       // 
       // buttonCopyPassword
       // 
@@ -792,6 +783,16 @@
       this.comboBoxSourceDatabaseSource.Size = new System.Drawing.Size(221, 21);
       this.comboBoxSourceDatabaseSource.TabIndex = 39;
       this.comboBoxSourceDatabaseSource.Text = "Database";
+      // 
+      // tabPageTables
+      // 
+      this.tabPageTables.Location = new System.Drawing.Point(4, 22);
+      this.tabPageTables.Name = "tabPageTables";
+      this.tabPageTables.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPageTables.Size = new System.Drawing.Size(965, 649);
+      this.tabPageTables.TabIndex = 1;
+      this.tabPageTables.Text = "Tables";
+      this.tabPageTables.UseVisualStyleBackColor = true;
       // 
       // FormMain
       // 
