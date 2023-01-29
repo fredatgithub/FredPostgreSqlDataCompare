@@ -405,6 +405,7 @@
       this.tabPageDataSources.TabIndex = 0;
       this.tabPageDataSources.Text = "Data Sources";
       this.tabPageDataSources.UseVisualStyleBackColor = true;
+      this.tabPageDataSources.Click += new System.EventHandler(this.TabPageDataSources_Click);
       // 
       // buttonCopyServerName
       // 
@@ -827,6 +828,16 @@
       this.textBoxTargetPort.Size = new System.Drawing.Size(100, 20);
       this.textBoxTargetPort.TabIndex = 81;
       this.textBoxTargetPort.Text = "5432";
+      // 
+      // tabPageTables
+      // 
+      this.tabPageTables.Location = new System.Drawing.Point(4, 22);
+      this.tabPageTables.Name = "tabPageTables";
+      this.tabPageTables.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPageTables.Size = new System.Drawing.Size(965, 649);
+      this.tabPageTables.TabIndex = 1;
+      this.tabPageTables.Text = "Tables";
+      this.tabPageTables.UseVisualStyleBackColor = true;
       // 
       // FormMain
       // 
