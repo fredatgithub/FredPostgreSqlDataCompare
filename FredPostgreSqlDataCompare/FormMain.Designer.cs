@@ -405,7 +405,7 @@
       this.tabPageDataSources.TabIndex = 0;
       this.tabPageDataSources.Text = "Data Sources";
       this.tabPageDataSources.UseVisualStyleBackColor = true;
-      this.tabPageDataSources.Click += new System.EventHandler(this.TabPageDataSources_Click);
+      //this.tabPageDataSources.Click += new System.EventHandler(this.TabPageDataSources_Click);
       // 
       // buttonCopyServerName
       // 
