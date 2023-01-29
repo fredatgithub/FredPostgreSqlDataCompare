@@ -61,7 +61,7 @@
       this.àproposdeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tabControlMain = new System.Windows.Forms.TabControl();
       this.tabPageDataSources = new System.Windows.Forms.TabPage();
-      this.tabPageTables = new System.Windows.Forms.TabPage();
+      this.buttonCopyServerName = new System.Windows.Forms.Button();
       this.buttonCopyPassword = new System.Windows.Forms.Button();
       this.buttonCompareCompareNowCancel = new System.Windows.Forms.Button();
       this.buttonCompareCompareNow = new System.Windows.Forms.Button();
@@ -79,12 +79,11 @@
       this.textBoxTargetName = new System.Windows.Forms.TextBox();
       this.labelTargetPassword = new System.Windows.Forms.Label();
       this.labelTargetUserName = new System.Windows.Forms.Label();
-      this.comboBoxTargetAuthentication = new System.Windows.Forms.ComboBox();
-      this.labelTargetAuthentication = new System.Windows.Forms.Label();
+      this.comboBoxTargetSchema = new System.Windows.Forms.ComboBox();
+      this.labelTargetSchema = new System.Windows.Forms.Label();
       this.labelTargetServer = new System.Windows.Forms.Label();
       this.comboBoxServerTarget = new System.Windows.Forms.ComboBox();
       this.labelTargetOperation = new System.Windows.Forms.Label();
-      this.comboBoxTargetDatabaseTarget = new System.Windows.Forms.ComboBox();
       this.buttonSourceCreate = new System.Windows.Forms.Button();
       this.buttonSourceRefresh = new System.Windows.Forms.Button();
       this.labelSourceDatabase = new System.Windows.Forms.Label();
@@ -94,12 +93,16 @@
       this.textBoxSourceName = new System.Windows.Forms.TextBox();
       this.labelSourcePassword = new System.Windows.Forms.Label();
       this.labelSourceUserName = new System.Windows.Forms.Label();
-      this.comboBoxSourceAuthentication = new System.Windows.Forms.ComboBox();
-      this.labelSourceAuthentication = new System.Windows.Forms.Label();
+      this.comboBoxSourceSchema = new System.Windows.Forms.ComboBox();
+      this.labelSourceSchema = new System.Windows.Forms.Label();
       this.labelSourceServer = new System.Windows.Forms.Label();
       this.comboBoxServerSource = new System.Windows.Forms.ComboBox();
       this.labelSourceOperation = new System.Windows.Forms.Label();
-      this.comboBoxSourceDatabaseSource = new System.Windows.Forms.ComboBox();
+      this.tabPageTables = new System.Windows.Forms.TabPage();
+      this.labelSourcePort = new System.Windows.Forms.Label();
+      this.labelTargetPort = new System.Windows.Forms.Label();
+      this.textBoxSourcePort = new System.Windows.Forms.TextBox();
+      this.textBoxTargetPort = new System.Windows.Forms.TextBox();
       this.menuStrip1.SuspendLayout();
       this.tabControlMain.SuspendLayout();
       this.tabPageDataSources.SuspendLayout();
@@ -354,6 +357,11 @@
       // 
       // tabPageDataSources
       // 
+      this.tabPageDataSources.Controls.Add(this.textBoxTargetPort);
+      this.tabPageDataSources.Controls.Add(this.textBoxSourcePort);
+      this.tabPageDataSources.Controls.Add(this.labelTargetPort);
+      this.tabPageDataSources.Controls.Add(this.labelSourcePort);
+      this.tabPageDataSources.Controls.Add(this.buttonCopyServerName);
       this.tabPageDataSources.Controls.Add(this.buttonCopyPassword);
       this.tabPageDataSources.Controls.Add(this.buttonCompareCompareNowCancel);
       this.tabPageDataSources.Controls.Add(this.buttonCompareCompareNow);
@@ -371,12 +379,11 @@
       this.tabPageDataSources.Controls.Add(this.textBoxTargetName);
       this.tabPageDataSources.Controls.Add(this.labelTargetPassword);
       this.tabPageDataSources.Controls.Add(this.labelTargetUserName);
-      this.tabPageDataSources.Controls.Add(this.comboBoxTargetAuthentication);
-      this.tabPageDataSources.Controls.Add(this.labelTargetAuthentication);
+      this.tabPageDataSources.Controls.Add(this.comboBoxTargetSchema);
+      this.tabPageDataSources.Controls.Add(this.labelTargetSchema);
       this.tabPageDataSources.Controls.Add(this.labelTargetServer);
       this.tabPageDataSources.Controls.Add(this.comboBoxServerTarget);
       this.tabPageDataSources.Controls.Add(this.labelTargetOperation);
-      this.tabPageDataSources.Controls.Add(this.comboBoxTargetDatabaseTarget);
       this.tabPageDataSources.Controls.Add(this.buttonSourceCreate);
       this.tabPageDataSources.Controls.Add(this.buttonSourceRefresh);
       this.tabPageDataSources.Controls.Add(this.labelSourceDatabase);
@@ -386,12 +393,11 @@
       this.tabPageDataSources.Controls.Add(this.textBoxSourceName);
       this.tabPageDataSources.Controls.Add(this.labelSourcePassword);
       this.tabPageDataSources.Controls.Add(this.labelSourceUserName);
-      this.tabPageDataSources.Controls.Add(this.comboBoxSourceAuthentication);
-      this.tabPageDataSources.Controls.Add(this.labelSourceAuthentication);
+      this.tabPageDataSources.Controls.Add(this.comboBoxSourceSchema);
+      this.tabPageDataSources.Controls.Add(this.labelSourceSchema);
       this.tabPageDataSources.Controls.Add(this.labelSourceServer);
       this.tabPageDataSources.Controls.Add(this.comboBoxServerSource);
       this.tabPageDataSources.Controls.Add(this.labelSourceOperation);
-      this.tabPageDataSources.Controls.Add(this.comboBoxSourceDatabaseSource);
       this.tabPageDataSources.Location = new System.Drawing.Point(4, 22);
       this.tabPageDataSources.Name = "tabPageDataSources";
       this.tabPageDataSources.Padding = new System.Windows.Forms.Padding(3);
@@ -400,15 +406,16 @@
       this.tabPageDataSources.Text = "Data Sources";
       this.tabPageDataSources.UseVisualStyleBackColor = true;
       // 
-      // tabPageTables
+      // buttonCopyServerName
       // 
-      this.tabPageTables.Location = new System.Drawing.Point(4, 22);
-      this.tabPageTables.Name = "tabPageTables";
-      this.tabPageTables.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPageTables.Size = new System.Drawing.Size(965, 649);
-      this.tabPageTables.TabIndex = 1;
-      this.tabPageTables.Text = "Tables";
-      this.tabPageTables.UseVisualStyleBackColor = true;
+      this.buttonCopyServerName.Location = new System.Drawing.Point(359, 112);
+      this.buttonCopyServerName.Margin = new System.Windows.Forms.Padding(2);
+      this.buttonCopyServerName.Name = "buttonCopyServerName";
+      this.buttonCopyServerName.Size = new System.Drawing.Size(34, 22);
+      this.buttonCopyServerName.TabIndex = 77;
+      this.buttonCopyServerName.Text = "-->";
+      this.buttonCopyServerName.UseVisualStyleBackColor = true;
+      this.buttonCopyServerName.Click += new System.EventHandler(this.ButtonCopyServerName_Click);
       // 
       // buttonCopyPassword
       // 
@@ -422,7 +429,7 @@
       // 
       // buttonCompareCompareNowCancel
       // 
-      this.buttonCompareCompareNowCancel.Location = new System.Drawing.Point(642, 405);
+      this.buttonCompareCompareNowCancel.Location = new System.Drawing.Point(642, 451);
       this.buttonCompareCompareNowCancel.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareCompareNowCancel.Name = "buttonCompareCompareNowCancel";
       this.buttonCompareCompareNowCancel.Size = new System.Drawing.Size(110, 30);
@@ -435,7 +442,7 @@
       this.buttonCompareCompareNow.BackColor = System.Drawing.Color.RoyalBlue;
       this.buttonCompareCompareNow.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.buttonCompareCompareNow.ForeColor = System.Drawing.Color.White;
-      this.buttonCompareCompareNow.Location = new System.Drawing.Point(519, 405);
+      this.buttonCompareCompareNow.Location = new System.Drawing.Point(519, 451);
       this.buttonCompareCompareNow.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareCompareNow.Name = "buttonCompareCompareNow";
       this.buttonCompareCompareNow.Size = new System.Drawing.Size(110, 30);
@@ -445,7 +452,7 @@
       // 
       // buttonCompareToLeftArrow
       // 
-      this.buttonCompareToLeftArrow.Location = new System.Drawing.Point(422, 405);
+      this.buttonCompareToLeftArrow.Location = new System.Drawing.Point(422, 451);
       this.buttonCompareToLeftArrow.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareToLeftArrow.Name = "buttonCompareToLeftArrow";
       this.buttonCompareToLeftArrow.Size = new System.Drawing.Size(40, 30);
@@ -455,7 +462,7 @@
       // 
       // buttonCompareToRightAndLeftArrow
       // 
-      this.buttonCompareToRightAndLeftArrow.Location = new System.Drawing.Point(377, 405);
+      this.buttonCompareToRightAndLeftArrow.Location = new System.Drawing.Point(377, 451);
       this.buttonCompareToRightAndLeftArrow.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareToRightAndLeftArrow.Name = "buttonCompareToRightAndLeftArrow";
       this.buttonCompareToRightAndLeftArrow.Size = new System.Drawing.Size(34, 30);
@@ -465,7 +472,7 @@
       // 
       // buttonCompareToRightArrow
       // 
-      this.buttonCompareToRightArrow.Location = new System.Drawing.Point(325, 405);
+      this.buttonCompareToRightArrow.Location = new System.Drawing.Point(325, 451);
       this.buttonCompareToRightArrow.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareToRightArrow.Name = "buttonCompareToRightArrow";
       this.buttonCompareToRightArrow.Size = new System.Drawing.Size(44, 30);
@@ -475,7 +482,7 @@
       // 
       // buttonCompareSaveAs
       // 
-      this.buttonCompareSaveAs.Location = new System.Drawing.Point(121, 405);
+      this.buttonCompareSaveAs.Location = new System.Drawing.Point(121, 451);
       this.buttonCompareSaveAs.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareSaveAs.Name = "buttonCompareSaveAs";
       this.buttonCompareSaveAs.Size = new System.Drawing.Size(71, 30);
@@ -485,7 +492,7 @@
       // 
       // buttonCompareSave
       // 
-      this.buttonCompareSave.Location = new System.Drawing.Point(44, 405);
+      this.buttonCompareSave.Location = new System.Drawing.Point(44, 451);
       this.buttonCompareSave.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareSave.Name = "buttonCompareSave";
       this.buttonCompareSave.Size = new System.Drawing.Size(66, 30);
@@ -495,7 +502,7 @@
       // 
       // buttonTargetCreate
       // 
-      this.buttonTargetCreate.Location = new System.Drawing.Point(412, 327);
+      this.buttonTargetCreate.Location = new System.Drawing.Point(412, 373);
       this.buttonTargetCreate.Margin = new System.Windows.Forms.Padding(2);
       this.buttonTargetCreate.Name = "buttonTargetCreate";
       this.buttonTargetCreate.Size = new System.Drawing.Size(56, 19);
@@ -505,7 +512,7 @@
       // 
       // buttonTargetRefresh
       // 
-      this.buttonTargetRefresh.Location = new System.Drawing.Point(695, 296);
+      this.buttonTargetRefresh.Location = new System.Drawing.Point(695, 342);
       this.buttonTargetRefresh.Margin = new System.Windows.Forms.Padding(2);
       this.buttonTargetRefresh.Name = "buttonTargetRefresh";
       this.buttonTargetRefresh.Size = new System.Drawing.Size(56, 19);
@@ -517,7 +524,7 @@
       // 
       this.labelTargetDatabase.AutoSize = true;
       this.labelTargetDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelTargetDatabase.Location = new System.Drawing.Point(410, 268);
+      this.labelTargetDatabase.Location = new System.Drawing.Point(410, 314);
       this.labelTargetDatabase.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelTargetDatabase.Name = "labelTargetDatabase";
       this.labelTargetDatabase.Size = new System.Drawing.Size(61, 13);
@@ -527,7 +534,7 @@
       // comboBoxTargetDatabase
       // 
       this.comboBoxTargetDatabase.FormattingEnabled = true;
-      this.comboBoxTargetDatabase.Location = new System.Drawing.Point(412, 295);
+      this.comboBoxTargetDatabase.Location = new System.Drawing.Point(412, 341);
       this.comboBoxTargetDatabase.Margin = new System.Windows.Forms.Padding(2);
       this.comboBoxTargetDatabase.Name = "comboBoxTargetDatabase";
       this.comboBoxTargetDatabase.Size = new System.Drawing.Size(276, 21);
@@ -582,25 +589,25 @@
       this.labelTargetUserName.TabIndex = 60;
       this.labelTargetUserName.Text = "User Name";
       // 
-      // comboBoxTargetAuthentication
+      // comboBoxTargetSchema
       // 
-      this.comboBoxTargetAuthentication.FormattingEnabled = true;
-      this.comboBoxTargetAuthentication.Location = new System.Drawing.Point(488, 155);
-      this.comboBoxTargetAuthentication.Margin = new System.Windows.Forms.Padding(2);
-      this.comboBoxTargetAuthentication.Name = "comboBoxTargetAuthentication";
-      this.comboBoxTargetAuthentication.Size = new System.Drawing.Size(221, 21);
-      this.comboBoxTargetAuthentication.TabIndex = 59;
-      this.comboBoxTargetAuthentication.Text = "Authentication";
+      this.comboBoxTargetSchema.FormattingEnabled = true;
+      this.comboBoxTargetSchema.Location = new System.Drawing.Point(488, 273);
+      this.comboBoxTargetSchema.Margin = new System.Windows.Forms.Padding(2);
+      this.comboBoxTargetSchema.Name = "comboBoxTargetSchema";
+      this.comboBoxTargetSchema.Size = new System.Drawing.Size(221, 21);
+      this.comboBoxTargetSchema.TabIndex = 59;
+      this.comboBoxTargetSchema.Text = "Public";
       // 
-      // labelTargetAuthentication
+      // labelTargetSchema
       // 
-      this.labelTargetAuthentication.AutoSize = true;
-      this.labelTargetAuthentication.Location = new System.Drawing.Point(410, 155);
-      this.labelTargetAuthentication.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.labelTargetAuthentication.Name = "labelTargetAuthentication";
-      this.labelTargetAuthentication.Size = new System.Drawing.Size(75, 13);
-      this.labelTargetAuthentication.TabIndex = 58;
-      this.labelTargetAuthentication.Text = "Authentication";
+      this.labelTargetSchema.AutoSize = true;
+      this.labelTargetSchema.Location = new System.Drawing.Point(410, 273);
+      this.labelTargetSchema.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelTargetSchema.Name = "labelTargetSchema";
+      this.labelTargetSchema.Size = new System.Drawing.Size(46, 13);
+      this.labelTargetSchema.TabIndex = 58;
+      this.labelTargetSchema.Text = "Schema";
       // 
       // labelTargetServer
       // 
@@ -609,9 +616,9 @@
       this.labelTargetServer.Location = new System.Drawing.Point(408, 86);
       this.labelTargetServer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelTargetServer.Name = "labelTargetServer";
-      this.labelTargetServer.Size = new System.Drawing.Size(72, 13);
+      this.labelTargetServer.Size = new System.Drawing.Size(115, 13);
       this.labelTargetServer.TabIndex = 57;
-      this.labelTargetServer.Text = "SQL Server";
+      this.labelTargetServer.Text = "PostgreSQL Server";
       // 
       // comboBoxServerTarget
       // 
@@ -626,26 +633,17 @@
       // labelTargetOperation
       // 
       this.labelTargetOperation.AutoSize = true;
-      this.labelTargetOperation.Location = new System.Drawing.Point(408, 21);
+      this.labelTargetOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelTargetOperation.Location = new System.Drawing.Point(408, 34);
       this.labelTargetOperation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelTargetOperation.Name = "labelTargetOperation";
-      this.labelTargetOperation.Size = new System.Drawing.Size(38, 13);
+      this.labelTargetOperation.Size = new System.Drawing.Size(70, 24);
       this.labelTargetOperation.TabIndex = 55;
       this.labelTargetOperation.Text = "Target";
       // 
-      // comboBoxTargetDatabaseTarget
-      // 
-      this.comboBoxTargetDatabaseTarget.FormattingEnabled = true;
-      this.comboBoxTargetDatabaseTarget.Location = new System.Drawing.Point(409, 55);
-      this.comboBoxTargetDatabaseTarget.Margin = new System.Windows.Forms.Padding(2);
-      this.comboBoxTargetDatabaseTarget.Name = "comboBoxTargetDatabaseTarget";
-      this.comboBoxTargetDatabaseTarget.Size = new System.Drawing.Size(221, 21);
-      this.comboBoxTargetDatabaseTarget.TabIndex = 54;
-      this.comboBoxTargetDatabaseTarget.Text = "Database";
-      // 
       // buttonSourceCreate
       // 
-      this.buttonSourceCreate.Location = new System.Drawing.Point(45, 327);
+      this.buttonSourceCreate.Location = new System.Drawing.Point(45, 373);
       this.buttonSourceCreate.Margin = new System.Windows.Forms.Padding(2);
       this.buttonSourceCreate.Name = "buttonSourceCreate";
       this.buttonSourceCreate.Size = new System.Drawing.Size(56, 19);
@@ -655,7 +653,7 @@
       // 
       // buttonSourceRefresh
       // 
-      this.buttonSourceRefresh.Location = new System.Drawing.Point(328, 296);
+      this.buttonSourceRefresh.Location = new System.Drawing.Point(328, 342);
       this.buttonSourceRefresh.Margin = new System.Windows.Forms.Padding(2);
       this.buttonSourceRefresh.Name = "buttonSourceRefresh";
       this.buttonSourceRefresh.Size = new System.Drawing.Size(56, 19);
@@ -667,7 +665,7 @@
       // 
       this.labelSourceDatabase.AutoSize = true;
       this.labelSourceDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelSourceDatabase.Location = new System.Drawing.Point(43, 268);
+      this.labelSourceDatabase.Location = new System.Drawing.Point(43, 314);
       this.labelSourceDatabase.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelSourceDatabase.Name = "labelSourceDatabase";
       this.labelSourceDatabase.Size = new System.Drawing.Size(61, 13);
@@ -677,7 +675,7 @@
       // comboBoxSourceDatabase
       // 
       this.comboBoxSourceDatabase.FormattingEnabled = true;
-      this.comboBoxSourceDatabase.Location = new System.Drawing.Point(45, 295);
+      this.comboBoxSourceDatabase.Location = new System.Drawing.Point(45, 341);
       this.comboBoxSourceDatabase.Margin = new System.Windows.Forms.Padding(2);
       this.comboBoxSourceDatabase.Name = "comboBoxSourceDatabase";
       this.comboBoxSourceDatabase.Size = new System.Drawing.Size(276, 21);
@@ -732,25 +730,25 @@
       this.labelSourceUserName.TabIndex = 45;
       this.labelSourceUserName.Text = "User Name";
       // 
-      // comboBoxSourceAuthentication
+      // comboBoxSourceSchema
       // 
-      this.comboBoxSourceAuthentication.FormattingEnabled = true;
-      this.comboBoxSourceAuthentication.Location = new System.Drawing.Point(121, 155);
-      this.comboBoxSourceAuthentication.Margin = new System.Windows.Forms.Padding(2);
-      this.comboBoxSourceAuthentication.Name = "comboBoxSourceAuthentication";
-      this.comboBoxSourceAuthentication.Size = new System.Drawing.Size(221, 21);
-      this.comboBoxSourceAuthentication.TabIndex = 44;
-      this.comboBoxSourceAuthentication.Text = "Authentication";
+      this.comboBoxSourceSchema.FormattingEnabled = true;
+      this.comboBoxSourceSchema.Location = new System.Drawing.Point(121, 273);
+      this.comboBoxSourceSchema.Margin = new System.Windows.Forms.Padding(2);
+      this.comboBoxSourceSchema.Name = "comboBoxSourceSchema";
+      this.comboBoxSourceSchema.Size = new System.Drawing.Size(221, 21);
+      this.comboBoxSourceSchema.TabIndex = 44;
+      this.comboBoxSourceSchema.Text = "Public";
       // 
-      // labelSourceAuthentication
+      // labelSourceSchema
       // 
-      this.labelSourceAuthentication.AutoSize = true;
-      this.labelSourceAuthentication.Location = new System.Drawing.Point(43, 155);
-      this.labelSourceAuthentication.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.labelSourceAuthentication.Name = "labelSourceAuthentication";
-      this.labelSourceAuthentication.Size = new System.Drawing.Size(75, 13);
-      this.labelSourceAuthentication.TabIndex = 43;
-      this.labelSourceAuthentication.Text = "Authentication";
+      this.labelSourceSchema.AutoSize = true;
+      this.labelSourceSchema.Location = new System.Drawing.Point(43, 273);
+      this.labelSourceSchema.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelSourceSchema.Name = "labelSourceSchema";
+      this.labelSourceSchema.Size = new System.Drawing.Size(46, 13);
+      this.labelSourceSchema.TabIndex = 43;
+      this.labelSourceSchema.Text = "Schema";
       // 
       // labelSourceServer
       // 
@@ -759,9 +757,9 @@
       this.labelSourceServer.Location = new System.Drawing.Point(41, 86);
       this.labelSourceServer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelSourceServer.Name = "labelSourceServer";
-      this.labelSourceServer.Size = new System.Drawing.Size(72, 13);
+      this.labelSourceServer.Size = new System.Drawing.Size(115, 13);
       this.labelSourceServer.TabIndex = 42;
-      this.labelSourceServer.Text = "SQL Server";
+      this.labelSourceServer.Text = "PostgreSQL Server";
       // 
       // comboBoxServerSource
       // 
@@ -776,22 +774,59 @@
       // labelSourceOperation
       // 
       this.labelSourceOperation.AutoSize = true;
-      this.labelSourceOperation.Location = new System.Drawing.Point(41, 21);
+      this.labelSourceOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelSourceOperation.Location = new System.Drawing.Point(41, 34);
       this.labelSourceOperation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelSourceOperation.Name = "labelSourceOperation";
-      this.labelSourceOperation.Size = new System.Drawing.Size(41, 13);
+      this.labelSourceOperation.Size = new System.Drawing.Size(77, 24);
       this.labelSourceOperation.TabIndex = 40;
       this.labelSourceOperation.Text = "Source";
       // 
-      // comboBoxSourceDatabaseSource
+      // tabPageTables
       // 
-      this.comboBoxSourceDatabaseSource.FormattingEnabled = true;
-      this.comboBoxSourceDatabaseSource.Location = new System.Drawing.Point(42, 55);
-      this.comboBoxSourceDatabaseSource.Margin = new System.Windows.Forms.Padding(2);
-      this.comboBoxSourceDatabaseSource.Name = "comboBoxSourceDatabaseSource";
-      this.comboBoxSourceDatabaseSource.Size = new System.Drawing.Size(221, 21);
-      this.comboBoxSourceDatabaseSource.TabIndex = 39;
-      this.comboBoxSourceDatabaseSource.Text = "Database";
+      this.tabPageTables.Location = new System.Drawing.Point(4, 22);
+      this.tabPageTables.Name = "tabPageTables";
+      this.tabPageTables.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPageTables.Size = new System.Drawing.Size(965, 649);
+      this.tabPageTables.TabIndex = 1;
+      this.tabPageTables.Text = "Tables";
+      this.tabPageTables.UseVisualStyleBackColor = true;
+      // 
+      // labelSourcePort
+      // 
+      this.labelSourcePort.AutoSize = true;
+      this.labelSourcePort.Location = new System.Drawing.Point(43, 155);
+      this.labelSourcePort.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelSourcePort.Name = "labelSourcePort";
+      this.labelSourcePort.Size = new System.Drawing.Size(29, 13);
+      this.labelSourcePort.TabIndex = 78;
+      this.labelSourcePort.Text = "Port:";
+      // 
+      // labelTargetPort
+      // 
+      this.labelTargetPort.AutoSize = true;
+      this.labelTargetPort.Location = new System.Drawing.Point(410, 155);
+      this.labelTargetPort.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelTargetPort.Name = "labelTargetPort";
+      this.labelTargetPort.Size = new System.Drawing.Size(29, 13);
+      this.labelTargetPort.TabIndex = 79;
+      this.labelTargetPort.Text = "Port:";
+      // 
+      // textBoxSourcePort
+      // 
+      this.textBoxSourcePort.Location = new System.Drawing.Point(121, 153);
+      this.textBoxSourcePort.Name = "textBoxSourcePort";
+      this.textBoxSourcePort.Size = new System.Drawing.Size(100, 20);
+      this.textBoxSourcePort.TabIndex = 80;
+      this.textBoxSourcePort.Text = "5432";
+      // 
+      // textBoxTargetPort
+      // 
+      this.textBoxTargetPort.Location = new System.Drawing.Point(488, 152);
+      this.textBoxTargetPort.Name = "textBoxTargetPort";
+      this.textBoxTargetPort.Size = new System.Drawing.Size(100, 20);
+      this.textBoxTargetPort.TabIndex = 81;
+      this.textBoxTargetPort.Text = "5432";
       // 
       // FormMain
       // 
@@ -803,6 +838,7 @@
       this.MainMenuStrip = this.menuStrip1;
       this.Name = "FormMain";
       this.Text = "Fred PostgreSql Data Compare";
+      this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
       this.Load += new System.EventHandler(this.FormMain_Load);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
@@ -866,12 +902,11 @@
     private System.Windows.Forms.TextBox textBoxTargetName;
     private System.Windows.Forms.Label labelTargetPassword;
     private System.Windows.Forms.Label labelTargetUserName;
-    private System.Windows.Forms.ComboBox comboBoxTargetAuthentication;
-    private System.Windows.Forms.Label labelTargetAuthentication;
+    private System.Windows.Forms.ComboBox comboBoxTargetSchema;
+    private System.Windows.Forms.Label labelTargetSchema;
     private System.Windows.Forms.Label labelTargetServer;
     private System.Windows.Forms.ComboBox comboBoxServerTarget;
     private System.Windows.Forms.Label labelTargetOperation;
-    private System.Windows.Forms.ComboBox comboBoxTargetDatabaseTarget;
     private System.Windows.Forms.Button buttonSourceCreate;
     private System.Windows.Forms.Button buttonSourceRefresh;
     private System.Windows.Forms.Label labelSourceDatabase;
@@ -881,12 +916,16 @@
     private System.Windows.Forms.TextBox textBoxSourceName;
     private System.Windows.Forms.Label labelSourcePassword;
     private System.Windows.Forms.Label labelSourceUserName;
-    private System.Windows.Forms.ComboBox comboBoxSourceAuthentication;
-    private System.Windows.Forms.Label labelSourceAuthentication;
+    private System.Windows.Forms.ComboBox comboBoxSourceSchema;
+    private System.Windows.Forms.Label labelSourceSchema;
     private System.Windows.Forms.Label labelSourceServer;
     private System.Windows.Forms.ComboBox comboBoxServerSource;
     private System.Windows.Forms.Label labelSourceOperation;
-    private System.Windows.Forms.ComboBox comboBoxSourceDatabaseSource;
+    private System.Windows.Forms.Button buttonCopyServerName;
+    private System.Windows.Forms.TextBox textBoxTargetPort;
+    private System.Windows.Forms.TextBox textBoxSourcePort;
+    private System.Windows.Forms.Label labelTargetPort;
+    private System.Windows.Forms.Label labelSourcePort;
   }
 }
 
