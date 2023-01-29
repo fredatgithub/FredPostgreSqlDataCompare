@@ -61,9 +61,12 @@
       this.àproposdeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tabControlMain = new System.Windows.Forms.TabControl();
       this.tabPageDataSources = new System.Windows.Forms.TabPage();
+      this.textBoxTargetPort = new System.Windows.Forms.TextBox();
+      this.textBoxSourcePort = new System.Windows.Forms.TextBox();
+      this.labelTargetPort = new System.Windows.Forms.Label();
+      this.labelSourcePort = new System.Windows.Forms.Label();
       this.buttonCopyServerName = new System.Windows.Forms.Button();
       this.buttonCopyPassword = new System.Windows.Forms.Button();
-      this.buttonCompareCompareNowCancel = new System.Windows.Forms.Button();
       this.buttonCompareCompareNow = new System.Windows.Forms.Button();
       this.buttonCompareToLeftArrow = new System.Windows.Forms.Button();
       this.buttonCompareToRightAndLeftArrow = new System.Windows.Forms.Button();
@@ -99,10 +102,6 @@
       this.comboBoxServerSource = new System.Windows.Forms.ComboBox();
       this.labelSourceOperation = new System.Windows.Forms.Label();
       this.tabPageTables = new System.Windows.Forms.TabPage();
-      this.labelSourcePort = new System.Windows.Forms.Label();
-      this.labelTargetPort = new System.Windows.Forms.Label();
-      this.textBoxSourcePort = new System.Windows.Forms.TextBox();
-      this.textBoxTargetPort = new System.Windows.Forms.TextBox();
       this.menuStrip1.SuspendLayout();
       this.tabControlMain.SuspendLayout();
       this.tabPageDataSources.SuspendLayout();
@@ -363,7 +362,6 @@
       this.tabPageDataSources.Controls.Add(this.labelSourcePort);
       this.tabPageDataSources.Controls.Add(this.buttonCopyServerName);
       this.tabPageDataSources.Controls.Add(this.buttonCopyPassword);
-      this.tabPageDataSources.Controls.Add(this.buttonCompareCompareNowCancel);
       this.tabPageDataSources.Controls.Add(this.buttonCompareCompareNow);
       this.tabPageDataSources.Controls.Add(this.buttonCompareToLeftArrow);
       this.tabPageDataSources.Controls.Add(this.buttonCompareToRightAndLeftArrow);
@@ -405,7 +403,42 @@
       this.tabPageDataSources.TabIndex = 0;
       this.tabPageDataSources.Text = "Data Sources";
       this.tabPageDataSources.UseVisualStyleBackColor = true;
-      //this.tabPageDataSources.Click += new System.EventHandler(this.TabPageDataSources_Click);
+      // 
+      // textBoxTargetPort
+      // 
+      this.textBoxTargetPort.Location = new System.Drawing.Point(488, 152);
+      this.textBoxTargetPort.Name = "textBoxTargetPort";
+      this.textBoxTargetPort.Size = new System.Drawing.Size(100, 20);
+      this.textBoxTargetPort.TabIndex = 81;
+      this.textBoxTargetPort.Text = "5432";
+      // 
+      // textBoxSourcePort
+      // 
+      this.textBoxSourcePort.Location = new System.Drawing.Point(121, 153);
+      this.textBoxSourcePort.Name = "textBoxSourcePort";
+      this.textBoxSourcePort.Size = new System.Drawing.Size(100, 20);
+      this.textBoxSourcePort.TabIndex = 80;
+      this.textBoxSourcePort.Text = "5432";
+      // 
+      // labelTargetPort
+      // 
+      this.labelTargetPort.AutoSize = true;
+      this.labelTargetPort.Location = new System.Drawing.Point(410, 155);
+      this.labelTargetPort.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelTargetPort.Name = "labelTargetPort";
+      this.labelTargetPort.Size = new System.Drawing.Size(29, 13);
+      this.labelTargetPort.TabIndex = 79;
+      this.labelTargetPort.Text = "Port:";
+      // 
+      // labelSourcePort
+      // 
+      this.labelSourcePort.AutoSize = true;
+      this.labelSourcePort.Location = new System.Drawing.Point(43, 155);
+      this.labelSourcePort.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelSourcePort.Name = "labelSourcePort";
+      this.labelSourcePort.Size = new System.Drawing.Size(29, 13);
+      this.labelSourcePort.TabIndex = 78;
+      this.labelSourcePort.Text = "Port:";
       // 
       // buttonCopyServerName
       // 
@@ -427,16 +460,6 @@
       this.buttonCopyPassword.TabIndex = 76;
       this.buttonCopyPassword.Text = "-->";
       this.buttonCopyPassword.UseVisualStyleBackColor = true;
-      // 
-      // buttonCompareCompareNowCancel
-      // 
-      this.buttonCompareCompareNowCancel.Location = new System.Drawing.Point(642, 451);
-      this.buttonCompareCompareNowCancel.Margin = new System.Windows.Forms.Padding(2);
-      this.buttonCompareCompareNowCancel.Name = "buttonCompareCompareNowCancel";
-      this.buttonCompareCompareNowCancel.Size = new System.Drawing.Size(110, 30);
-      this.buttonCompareCompareNowCancel.TabIndex = 75;
-      this.buttonCompareCompareNowCancel.Text = "Cancel";
-      this.buttonCompareCompareNowCancel.UseVisualStyleBackColor = true;
       // 
       // buttonCompareCompareNow
       // 
@@ -793,52 +816,6 @@
       this.tabPageTables.Text = "Tables";
       this.tabPageTables.UseVisualStyleBackColor = true;
       // 
-      // labelSourcePort
-      // 
-      this.labelSourcePort.AutoSize = true;
-      this.labelSourcePort.Location = new System.Drawing.Point(43, 155);
-      this.labelSourcePort.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.labelSourcePort.Name = "labelSourcePort";
-      this.labelSourcePort.Size = new System.Drawing.Size(29, 13);
-      this.labelSourcePort.TabIndex = 78;
-      this.labelSourcePort.Text = "Port:";
-      // 
-      // labelTargetPort
-      // 
-      this.labelTargetPort.AutoSize = true;
-      this.labelTargetPort.Location = new System.Drawing.Point(410, 155);
-      this.labelTargetPort.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.labelTargetPort.Name = "labelTargetPort";
-      this.labelTargetPort.Size = new System.Drawing.Size(29, 13);
-      this.labelTargetPort.TabIndex = 79;
-      this.labelTargetPort.Text = "Port:";
-      // 
-      // textBoxSourcePort
-      // 
-      this.textBoxSourcePort.Location = new System.Drawing.Point(121, 153);
-      this.textBoxSourcePort.Name = "textBoxSourcePort";
-      this.textBoxSourcePort.Size = new System.Drawing.Size(100, 20);
-      this.textBoxSourcePort.TabIndex = 80;
-      this.textBoxSourcePort.Text = "5432";
-      // 
-      // textBoxTargetPort
-      // 
-      this.textBoxTargetPort.Location = new System.Drawing.Point(488, 152);
-      this.textBoxTargetPort.Name = "textBoxTargetPort";
-      this.textBoxTargetPort.Size = new System.Drawing.Size(100, 20);
-      this.textBoxTargetPort.TabIndex = 81;
-      this.textBoxTargetPort.Text = "5432";
-      // 
-      // tabPageTables
-      // 
-      this.tabPageTables.Location = new System.Drawing.Point(4, 22);
-      this.tabPageTables.Name = "tabPageTables";
-      this.tabPageTables.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPageTables.Size = new System.Drawing.Size(965, 649);
-      this.tabPageTables.TabIndex = 1;
-      this.tabPageTables.Text = "Tables";
-      this.tabPageTables.UseVisualStyleBackColor = true;
-      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -897,7 +874,6 @@
     private System.Windows.Forms.TabPage tabPageDataSources;
     private System.Windows.Forms.TabPage tabPageTables;
     private System.Windows.Forms.Button buttonCopyPassword;
-    private System.Windows.Forms.Button buttonCompareCompareNowCancel;
     private System.Windows.Forms.Button buttonCompareCompareNow;
     private System.Windows.Forms.Button buttonCompareToLeftArrow;
     private System.Windows.Forms.Button buttonCompareToRightAndLeftArrow;

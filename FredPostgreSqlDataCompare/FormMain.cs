@@ -93,7 +93,7 @@ namespace FredPostgreSqlDataCompare
       comboBoxServerSource.SelectedIndex = Settings.Default.comboBoxServerSource;
       comboBoxServerTarget.SelectedIndex = Settings.Default.comboBoxTargetSource;
       textBoxSourcePort.Text = Settings.Default.TextBoxSourcePort;
-      textBoxTargetName.Text = Settings.Default.TextBoxTargetPort;
+      textBoxTargetPort.Text = Settings.Default.TextBoxTargetPort;
       Settings.Default.Save();
     }
 
