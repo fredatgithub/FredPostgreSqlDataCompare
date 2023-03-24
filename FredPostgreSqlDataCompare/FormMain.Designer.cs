@@ -473,6 +473,7 @@
       this.buttonCompareCompareNow.TabIndex = 74;
       this.buttonCompareCompareNow.Text = "Compare now";
       this.buttonCompareCompareNow.UseVisualStyleBackColor = false;
+      this.buttonCompareCompareNow.Click += new System.EventHandler(this.ButtonCompareCompareNow_Click);
       // 
       // buttonCompareToLeftArrow
       // 
@@ -529,17 +530,17 @@
       this.buttonTargetCreate.Location = new System.Drawing.Point(412, 373);
       this.buttonTargetCreate.Margin = new System.Windows.Forms.Padding(2);
       this.buttonTargetCreate.Name = "buttonTargetCreate";
-      this.buttonTargetCreate.Size = new System.Drawing.Size(56, 19);
+      this.buttonTargetCreate.Size = new System.Drawing.Size(56, 25);
       this.buttonTargetCreate.TabIndex = 68;
       this.buttonTargetCreate.Text = "Create";
       this.buttonTargetCreate.UseVisualStyleBackColor = true;
       // 
       // buttonTargetRefresh
       // 
-      this.buttonTargetRefresh.Location = new System.Drawing.Point(695, 342);
+      this.buttonTargetRefresh.Location = new System.Drawing.Point(695, 339);
       this.buttonTargetRefresh.Margin = new System.Windows.Forms.Padding(2);
       this.buttonTargetRefresh.Name = "buttonTargetRefresh";
-      this.buttonTargetRefresh.Size = new System.Drawing.Size(56, 19);
+      this.buttonTargetRefresh.Size = new System.Drawing.Size(56, 25);
       this.buttonTargetRefresh.TabIndex = 67;
       this.buttonTargetRefresh.Text = "Refresh";
       this.buttonTargetRefresh.UseVisualStyleBackColor = true;
@@ -670,17 +671,17 @@
       this.buttonSourceCreate.Location = new System.Drawing.Point(45, 373);
       this.buttonSourceCreate.Margin = new System.Windows.Forms.Padding(2);
       this.buttonSourceCreate.Name = "buttonSourceCreate";
-      this.buttonSourceCreate.Size = new System.Drawing.Size(56, 19);
+      this.buttonSourceCreate.Size = new System.Drawing.Size(56, 25);
       this.buttonSourceCreate.TabIndex = 53;
       this.buttonSourceCreate.Text = "Create";
       this.buttonSourceCreate.UseVisualStyleBackColor = true;
       // 
       // buttonSourceRefresh
       // 
-      this.buttonSourceRefresh.Location = new System.Drawing.Point(328, 342);
+      this.buttonSourceRefresh.Location = new System.Drawing.Point(328, 340);
       this.buttonSourceRefresh.Margin = new System.Windows.Forms.Padding(2);
       this.buttonSourceRefresh.Name = "buttonSourceRefresh";
-      this.buttonSourceRefresh.Size = new System.Drawing.Size(56, 19);
+      this.buttonSourceRefresh.Size = new System.Drawing.Size(56, 25);
       this.buttonSourceRefresh.TabIndex = 52;
       this.buttonSourceRefresh.Text = "Refresh";
       this.buttonSourceRefresh.UseVisualStyleBackColor = true;

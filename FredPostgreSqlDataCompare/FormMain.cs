@@ -108,5 +108,10 @@ namespace FredPostgreSqlDataCompare
     {
       comboBoxServerTarget.SelectedIndex = comboBoxServerSource.SelectedIndex;
     }
+
+    private void ButtonCompareCompareNow_Click(object sender, EventArgs e)
+    {
+      //tabPageDataSources.SendToBack();
+    }
   }
 }
