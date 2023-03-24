@@ -1,15 +1,8 @@
 ﻿using FredPostgreSqlDataCompare.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Net;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FredPostgreSqlDataCompare
@@ -112,6 +105,11 @@ namespace FredPostgreSqlDataCompare
     private void ButtonCompareCompareNow_Click(object sender, EventArgs e)
     {
       //tabPageDataSources.SendToBack();
+    }
+
+    private void ButtonSourceRefresh_Click(object sender, EventArgs e)
+    {
+
     }
   }
 }

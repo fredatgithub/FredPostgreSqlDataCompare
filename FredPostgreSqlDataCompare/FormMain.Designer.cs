@@ -685,6 +685,7 @@
       this.buttonSourceRefresh.TabIndex = 52;
       this.buttonSourceRefresh.Text = "Refresh";
       this.buttonSourceRefresh.UseVisualStyleBackColor = true;
+      this.buttonSourceRefresh.Click += new System.EventHandler(this.ButtonSourceRefresh_Click);
       // 
       // labelSourceDatabase
       // 
