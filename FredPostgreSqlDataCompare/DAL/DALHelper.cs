@@ -10,7 +10,8 @@ namespace FredPostgreSqlDataCompare.DAL
   {
     public static string GetConnexionString(string databaseName = "master", string sqlServerName = ".")
     {
-      return $"Data Source={sqlServerName};Initial Catalog={databaseName};Integrated Security=True";
+      return "SELECT datname FROM pg_database WHERE datistemplate = false;";
+      //return $"Data Source={sqlServerName};Initial Catalog={databaseName};Integrated Security=True";
     }
 
     public static bool VerifyDatabaseConnexion(string sqlQuery, string databaseName, string sqlServerName)

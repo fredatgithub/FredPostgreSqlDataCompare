@@ -1,4 +1,6 @@
-﻿namespace FredPostgreSqlDataCompare.DAL
+﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
+namespace FredPostgreSqlDataCompare.DAL
 {
   public static class ConnectionSqlServer
   {
@@ -9,7 +11,16 @@
 
     public static string GetAllTableNamesRequest()
     {
-      return "SELECT sobjects.name FROM sysobjects sobjects WHERE sobjects.xtype = 'U'";
+      // table_schema,
+      return "SELECT table_name FROM information_schema.tables ORDER BY table_name;";
+      //return "SELECT sobjects.name FROM sysobjects sobjects WHERE sobjects.xtype = 'U'";
+    }
+
+    public static string GetAllTableNamesForASpecificSchemaRequest(string schemaName = "public")
+    {
+      // table_schema,
+      return $"SELECT table_name FROM information_schema.tables WHERE table_schema = {schemaName} ORDER BY table_name;";
+      //return "SELECT sobjects.name FROM sysobjects sobjects WHERE sobjects.xtype = 'U'";
     }
 
     public static string GetAllDefaultConstraintsRequest()
@@ -29,7 +40,9 @@
 
     public static string GetAllDatabaseNamesRequest()
     {
-      return "use master  select name from sys.databases where name NOT IN ('master', 'model', 'msdb', 'tempdb');";
+      // SELECT datname FROM pg_database WHERE datistemplate = false;
+      return $"SELECT datname FROM pg_database WHERE datistemplate = false;";
+      //return "use master  select name from sys.databases where name NOT IN ('master', 'model', 'msdb', 'tempdb');";
     }
 
     public static string GetAllStoredProcedureRequest()

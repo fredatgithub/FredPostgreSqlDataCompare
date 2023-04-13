@@ -117,7 +117,8 @@ namespace FredPostgreSqlDataCompare
         UserName = textBoxSourceName.Text,
         UserPassword = textBoxSourcePassword.Text,
         ServerName = comboBoxServerSource.SelectedItem.ToString(),
-        DatabaseName = "master"
+        Port = int.Parse(textBoxSourcePort.Text)
+        //DatabaseName = "master"
       };
 
       RecordParameters();
