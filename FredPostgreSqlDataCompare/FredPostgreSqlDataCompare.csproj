@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\ConnectionSqlServer.cs" />
     <Compile Include="DAL\DALHelper.cs" />
     <Compile Include="DAL\DatabaseAuthentication.cs" />
     <Compile Include="FormMain.cs">
