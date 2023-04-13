@@ -146,17 +146,17 @@ namespace FredPostgreSqlDataCompare
 
       Settings.Default.Save();
 
-      if (comboBoxSourceAuthentication.SelectedIndex != -1 && comboBoxSourceAuthentication.SelectedItem.ToString().ToLower().Replace(" ", "") == AuthenticationTypes.AuthenticationSQLServer.ToString().ToLower() && string.IsNullOrEmpty(textBoxSourcePassword.Text))
-      {
-        MessageBox.Show("The password cannot be empty if SQL authentication is choosen");
-        return;
-      }
+      //if (comboBoxSourceAuthentication.SelectedIndex != -1 && comboBoxSourceAuthentication.SelectedItem.ToString().ToLower().Replace(" ", "") == AuthenticationTypes.AuthenticationSQLServer.ToString().ToLower() && string.IsNullOrEmpty(textBoxSourcePassword.Text))
+      //{
+      //  MessageBox.Show("The password cannot be empty if SQL authentication is choosen");
+      //  return;
+      //}
 
-      if (comboBoxSourceAuthentication.SelectedIndex != -1 && comboBoxSourceAuthentication.SelectedItem.ToString().ToLower().Replace(" ", "") == AuthenticationTypes.AuthenticationSQLServer.ToString().ToLower() && string.IsNullOrEmpty(textBoxSourceName.Text))
-      {
-        MessageBox.Show("The user name cannot be empty if SQL authentication is choosen");
-        return;
-      }
+      //if (comboBoxSourceAuthentication.SelectedIndex != -1 && comboBoxSourceAuthentication.SelectedItem.ToString().ToLower().Replace(" ", "") == AuthenticationTypes.AuthenticationSQLServer.ToString().ToLower() && string.IsNullOrEmpty(textBoxSourceName.Text))
+      //{
+      //  MessageBox.Show("The user name cannot be empty if SQL authentication is choosen");
+      //  return;
+      //}
 
       // comboBoxServerSource
       if (comboBoxServerSource.SelectedIndex != -1)
@@ -171,16 +171,16 @@ namespace FredPostgreSqlDataCompare
       }
 
       //saving controls state
-      Settings.Default.ComboBoxSourceAuthenticationIndex = comboBoxSourceAuthentication.SelectedIndex;
-      Settings.Default.ComboBoxTargetAuthenticationIndex = comboBoxTargetAuthentication.SelectedIndex;
+      //Settings.Default.ComboBoxSourceAuthenticationIndex = comboBoxSourceAuthentication.SelectedIndex;
+      //Settings.Default.ComboBoxTargetAuthenticationIndex = comboBoxTargetAuthentication.SelectedIndex;
       Settings.Default.CheckBoxSourceRememberCredentials = checkBoxSourceRememberCredentials.Checked;
       Settings.Default.CheckBoxTargetRememberCredentials = checkBoxTargetRememberCredentials.Checked;
 
       Settings.Default.textBoxTargetName = textBoxTargetName.Text;
       Settings.Default.textBoxSourceName = textBoxSourceName.Text;
 
-      Settings.Default.comboBoxSourceDatabaseSource = comboBoxSourceDatabaseSource.SelectedIndex;
-      Settings.Default.comboBoxTargetDatabaseTarget = comboBoxTargetDatabaseTarget.SelectedIndex;
+      //Settings.Default.comboBoxSourceDatabaseSource = comboBoxSourceDatabaseSource.SelectedIndex;
+      //Settings.Default.comboBoxTargetDatabaseTarget = comboBoxTargetDatabaseTarget.SelectedIndex;
 
       //comboBoxTargetDatabase
       string oneString = string.Empty;

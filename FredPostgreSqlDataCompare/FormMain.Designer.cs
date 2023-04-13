@@ -527,7 +527,7 @@
       // 
       // buttonTargetCreate
       // 
-      this.buttonTargetCreate.Location = new System.Drawing.Point(412, 373);
+      this.buttonTargetCreate.Location = new System.Drawing.Point(410, 331);
       this.buttonTargetCreate.Margin = new System.Windows.Forms.Padding(2);
       this.buttonTargetCreate.Name = "buttonTargetCreate";
       this.buttonTargetCreate.Size = new System.Drawing.Size(56, 25);
@@ -537,7 +537,7 @@
       // 
       // buttonTargetRefresh
       // 
-      this.buttonTargetRefresh.Location = new System.Drawing.Point(695, 339);
+      this.buttonTargetRefresh.Location = new System.Drawing.Point(695, 290);
       this.buttonTargetRefresh.Margin = new System.Windows.Forms.Padding(2);
       this.buttonTargetRefresh.Name = "buttonTargetRefresh";
       this.buttonTargetRefresh.Size = new System.Drawing.Size(56, 25);
@@ -549,7 +549,7 @@
       // 
       this.labelTargetDatabase.AutoSize = true;
       this.labelTargetDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelTargetDatabase.Location = new System.Drawing.Point(410, 314);
+      this.labelTargetDatabase.Location = new System.Drawing.Point(410, 265);
       this.labelTargetDatabase.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelTargetDatabase.Name = "labelTargetDatabase";
       this.labelTargetDatabase.Size = new System.Drawing.Size(61, 13);
@@ -559,7 +559,7 @@
       // comboBoxTargetDatabase
       // 
       this.comboBoxTargetDatabase.FormattingEnabled = true;
-      this.comboBoxTargetDatabase.Location = new System.Drawing.Point(412, 341);
+      this.comboBoxTargetDatabase.Location = new System.Drawing.Point(412, 292);
       this.comboBoxTargetDatabase.Margin = new System.Windows.Forms.Padding(2);
       this.comboBoxTargetDatabase.Name = "comboBoxTargetDatabase";
       this.comboBoxTargetDatabase.Size = new System.Drawing.Size(276, 21);
@@ -617,7 +617,7 @@
       // comboBoxTargetSchema
       // 
       this.comboBoxTargetSchema.FormattingEnabled = true;
-      this.comboBoxTargetSchema.Location = new System.Drawing.Point(488, 273);
+      this.comboBoxTargetSchema.Location = new System.Drawing.Point(488, 368);
       this.comboBoxTargetSchema.Margin = new System.Windows.Forms.Padding(2);
       this.comboBoxTargetSchema.Name = "comboBoxTargetSchema";
       this.comboBoxTargetSchema.Size = new System.Drawing.Size(221, 21);
@@ -627,7 +627,7 @@
       // labelTargetSchema
       // 
       this.labelTargetSchema.AutoSize = true;
-      this.labelTargetSchema.Location = new System.Drawing.Point(410, 273);
+      this.labelTargetSchema.Location = new System.Drawing.Point(410, 368);
       this.labelTargetSchema.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelTargetSchema.Name = "labelTargetSchema";
       this.labelTargetSchema.Size = new System.Drawing.Size(46, 13);
@@ -668,7 +668,7 @@
       // 
       // buttonSourceCreate
       // 
-      this.buttonSourceCreate.Location = new System.Drawing.Point(45, 373);
+      this.buttonSourceCreate.Location = new System.Drawing.Point(44, 331);
       this.buttonSourceCreate.Margin = new System.Windows.Forms.Padding(2);
       this.buttonSourceCreate.Name = "buttonSourceCreate";
       this.buttonSourceCreate.Size = new System.Drawing.Size(56, 25);
@@ -678,7 +678,7 @@
       // 
       // buttonSourceRefresh
       // 
-      this.buttonSourceRefresh.Location = new System.Drawing.Point(328, 340);
+      this.buttonSourceRefresh.Location = new System.Drawing.Point(328, 293);
       this.buttonSourceRefresh.Margin = new System.Windows.Forms.Padding(2);
       this.buttonSourceRefresh.Name = "buttonSourceRefresh";
       this.buttonSourceRefresh.Size = new System.Drawing.Size(56, 25);
@@ -691,7 +691,7 @@
       // 
       this.labelSourceDatabase.AutoSize = true;
       this.labelSourceDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelSourceDatabase.Location = new System.Drawing.Point(43, 314);
+      this.labelSourceDatabase.Location = new System.Drawing.Point(43, 267);
       this.labelSourceDatabase.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelSourceDatabase.Name = "labelSourceDatabase";
       this.labelSourceDatabase.Size = new System.Drawing.Size(61, 13);
@@ -701,7 +701,7 @@
       // comboBoxSourceDatabase
       // 
       this.comboBoxSourceDatabase.FormattingEnabled = true;
-      this.comboBoxSourceDatabase.Location = new System.Drawing.Point(45, 341);
+      this.comboBoxSourceDatabase.Location = new System.Drawing.Point(45, 294);
       this.comboBoxSourceDatabase.Margin = new System.Windows.Forms.Padding(2);
       this.comboBoxSourceDatabase.Name = "comboBoxSourceDatabase";
       this.comboBoxSourceDatabase.Size = new System.Drawing.Size(276, 21);
@@ -759,7 +759,7 @@
       // comboBoxSourceSchema
       // 
       this.comboBoxSourceSchema.FormattingEnabled = true;
-      this.comboBoxSourceSchema.Location = new System.Drawing.Point(121, 273);
+      this.comboBoxSourceSchema.Location = new System.Drawing.Point(121, 376);
       this.comboBoxSourceSchema.Margin = new System.Windows.Forms.Padding(2);
       this.comboBoxSourceSchema.Name = "comboBoxSourceSchema";
       this.comboBoxSourceSchema.Size = new System.Drawing.Size(221, 21);
@@ -769,7 +769,7 @@
       // labelSourceSchema
       // 
       this.labelSourceSchema.AutoSize = true;
-      this.labelSourceSchema.Location = new System.Drawing.Point(43, 273);
+      this.labelSourceSchema.Location = new System.Drawing.Point(43, 376);
       this.labelSourceSchema.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelSourceSchema.Name = "labelSourceSchema";
       this.labelSourceSchema.Size = new System.Drawing.Size(46, 13);
