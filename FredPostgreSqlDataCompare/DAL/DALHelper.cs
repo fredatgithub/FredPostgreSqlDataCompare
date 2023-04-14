@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Npgsql;
+using NpgsqlTypes;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,10 +10,17 @@ namespace FredPostgreSqlDataCompare.DAL
 {
   public static class DALHelper
   {
-    public static string GetConnexionString(string databaseName = "master", string sqlServerName = ".")
+    public static string GetConnexionString(string databaseName = "postgres", string sqlServerName = ".")
     {
       return "SELECT datname FROM pg_database WHERE datistemplate = false;";
       //return $"Data Source={sqlServerName};Initial Catalog={databaseName};Integrated Security=True";
+    }
+
+    public static string CreateConnectionString(string host, string username, string password, string databaseName = "postgres", int port = 5432)
+    {
+      // connectionString="Host=servername;Port=5432;Username=pp_inter_ref;Database=dediref;CommandTimeout=0;" name="DEV_pp"
+
+      return $"Host={host};Port={port};Username={username};Database={databaseName};CommandTimeout=0";
     }
 
     public static bool VerifyDatabaseConnexion(string sqlQuery, string databaseName, string sqlServerName)
@@ -257,5 +266,229 @@ namespace FredPostgreSqlDataCompare.DAL
         }
       }
     }
+
+    public static long ExecuteQueryToLong(string connexionString, string sqlRequest)
+    {
+      long result = -10;
+      var connexion = new NpgsqlConnection(connexionString);
+      try
+      {
+        connexion.Open();
+        var command = new NpgsqlCommand(sqlRequest, connexion);
+        NpgsqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read())
+        {
+          result = reader.GetInt64(0);
+        }
+      }
+      catch (Exception)
+      {
+        result = -10;
+      }
+      finally
+      {
+        connexion.Close();
+      }
+
+      return result;
+    }
+
+    public static int ExecuteNonQuery(string connexionString, string sqlRequest)
+    {
+      var result = -10;
+      string connectionStringWithPassword = connexionString;
+      //if (!connexionString.Contains(Password))
+      //{
+      //  connectionStringWithPassword = AddPassword(connexionString);
+      //}
+
+      var connexion = new NpgsqlConnection(connectionStringWithPassword);
+      try
+      {
+        connexion.Open();
+        var command = new NpgsqlCommand(sqlRequest, connexion);
+        command.CommandType = CommandType.Text;
+        int returnRows = command.ExecuteNonQuery();
+        result = returnRows;
+      }
+      catch (Exception)
+      {
+        result = -10;
+      }
+      finally
+      {
+        connexion.Close();
+      }
+
+      return result;
+    }
+
+    public static string ExecuteQueryToString(string connexionString, string sqlRequest)
+    {
+      var result = string.Empty;
+      //if (!connexionString.Contains("Password"))
+      //{
+      //  connexionString += AddPassword(connexionString, false);
+      //}
+
+      var connexion = new NpgsqlConnection(connexionString);
+      try
+      {
+        connexion.Open();
+        var command = new NpgsqlCommand(sqlRequest, connexion);
+        NpgsqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read())
+        {
+          result = reader.GetString(0);
+        }
+      }
+      catch (Exception exception)
+      {
+        result = $"erreur-{exception.Message}";
+        //LOGGER.Error("Il y a eu une erreur lors de la tentative d'exécution d'une requête SQL");
+        //LOGGER.Error($"La requête SQL est : {sqlRequest}");
+        //LOGGER.Error($"L'erreur est : {exception.Message}");
+      }
+      finally
+      {
+        connexion.Close();
+      }
+
+      return result;
+    }
+
+    public static int ExecuteNonQueryStoredProcedureWithParameters(string connectionString, string sqlRequest, string parameterName, string parameterValue)
+    {
+      var result = -10;
+      //if (!connectionString.Contains("Password"))
+      //{
+      //  connectionString += AddPassword(connectionString, false);
+      //}
+
+      var connexion = new NpgsqlConnection(connectionString);
+      try
+      {
+        connexion.Open();
+        var command = new NpgsqlCommand(sqlRequest, connexion);
+        command.CommandType = CommandType.StoredProcedure;
+        command.CommandText = sqlRequest;
+        command.Parameters.Add(parameterName, NpgsqlDbType.Text).Value = parameterValue;
+        int returnRows = command.ExecuteNonQuery();
+        result = returnRows;
+      }
+      catch (Exception)
+      {
+        result = -10;
+      }
+      finally
+      {
+        connexion.Close();
+      }
+
+      return result;
+    }
+
+    public static int ExecuteNonQueryStoredProcedureWithParameters(string connectionString, string sqlRequest, string parameterName, int parameterValue)
+    {
+      var result = -10;
+      //if (!connectionString.Contains("Password"))
+      //{
+      //  connectionString += AddPassword(connectionString, false);
+      //}
+      
+      var connexion = new NpgsqlConnection(connectionString);
+      try
+      {
+        connexion.Open();
+        var command = new NpgsqlCommand(sqlRequest, connexion);
+        command.CommandType = CommandType.StoredProcedure;
+        command.CommandText = sqlRequest;
+        command.Parameters.Add(parameterName, NpgsqlDbType.Integer).Value = parameterValue;
+        int returnRows = command.ExecuteNonQuery();
+        result = returnRows;
+      }
+      catch (Exception)
+      {
+        result = -10;
+      }
+      finally
+      {
+        connexion.Close();
+      }
+
+      return result;
+    }
+
+    public static int ExecuteNonQueryStoredProcedureWithoutParameters(string connectionString, string sqlRequest)
+    {
+      var result = -10;
+      string connectionStringWithPassword = connectionString;
+      //if (!connectionString.Contains(Password))
+      //{
+      //  connectionStringWithPassword = AddPassword(connectionString);
+      //}
+
+      var connexion = new NpgsqlConnection(connectionStringWithPassword);
+      try
+      {
+        connexion.Open();
+        var command = new NpgsqlCommand(sqlRequest, connexion);
+        command.CommandType = CommandType.StoredProcedure;
+        command.CommandText = sqlRequest;
+        // mass_synchro_mass_synchro takes 9 minutes
+        // command.CommandTimeout = int.MaxValue; //1247483646;
+        // timeout in connection string and not in command
+        int returnRows = command.ExecuteNonQuery();
+        result = returnRows;
+      }
+      catch (Exception)
+      {
+        result = -10;
+      }
+      finally
+      {
+        connexion.Close();
+      }
+
+      return result;
+    }
+
+    public static string[,] ExecuteQueryToArray(string connexionString, string sqlRequest, int numberOfColumn = 3, int numberOfRow = 4)
+    {
+      var result = new string[numberOfColumn, numberOfRow];
+      var column = 0;
+      int row = 0;
+      var connexion = new NpgsqlConnection(connexionString);
+      try
+      {
+        connexion.Open();
+        var command = new NpgsqlCommand(sqlRequest, connexion);
+        NpgsqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read())
+        {
+          result[column, row] = (string)reader[0];
+          column++;
+          result[column, row] = (string)reader[1];
+          column++;
+          result[column, row] = (string)reader[2];
+          row++;
+          column = 0;
+        }
+      }
+      catch (Exception)
+      {
+        result[0, 0] = "error";
+      }
+      finally
+      {
+        connexion.Close();
+      }
+
+      return result;
+    }
+
   }
 }

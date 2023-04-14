@@ -7,23 +7,26 @@
     public string UserName { get; set; }
     public string UserPassword { get; set; }
     public int Port { get; set; }
+    public string Schema { get; set; }
 
-    public DatabaseAuthentication(string dbName, string serverName, string user, string pass, int port = 5432)
+    public DatabaseAuthentication(string dbName, string serverName, string user, string pass, int port = 5432, string schema = "public")
     {
       DatabaseName = dbName;
       ServerName = serverName;
       UserName = user;
       UserPassword = pass;
       Port = port;
+      Schema = schema;
     }
 
     public DatabaseAuthentication()
     {
-      DatabaseName = string.Empty;
+      DatabaseName = "postgres";
       ServerName = string.Empty;
-      UserName = string.Empty;
+      UserName = "postgres";
       UserPassword = string.Empty;
       Port = 5432;
+      Schema = "public";
     }
 
     public override string ToString()

@@ -16,6 +16,8 @@ namespace FredPostgreSqlDataCompare
       InitializeComponent();
     }
 
+    private bool authenticationIsOk = false;
+
     private void FormMain_Load(object sender, EventArgs e)
     {
       LoadComboboxes();
@@ -27,14 +29,16 @@ namespace FredPostgreSqlDataCompare
     {
       comboBoxServerSource.Items.Clear();
       comboBoxServerSource.Items.Add($"{Dns.GetHostName()}");
+      comboBoxServerSource.Items.Add("localhost");
       comboBoxServerTarget.Items.Clear();
       comboBoxServerTarget.Items.Add($"{Dns.GetHostName()}");
+      comboBoxServerTarget.Items.Add("localhost");
 
       comboBoxSourceSchema.Items.Clear();
-      comboBoxSourceSchema.Items.Add("Public");
+      comboBoxSourceSchema.Items.Add("public");
 
       comboBoxTargetSchema.Items.Clear();
-      comboBoxTargetSchema.Items.Add("Public");
+      comboBoxTargetSchema.Items.Add("public");
 
       comboBoxSourceSchema.SelectedIndex = Settings.Default.ComboBoxSourceAuthenticationIndex;
       comboBoxTargetSchema.SelectedIndex = Settings.Default.ComboBoxTargetAuthenticationIndex;
@@ -211,6 +215,52 @@ namespace FredPostgreSqlDataCompare
 
       Settings.Default.comboBoxSourceDatabase = oneString;
       Settings.Default.Save();
+    }
+
+    private void ButtonTestConnection_Click(object sender, EventArgs e)
+    {
+      if (comboBoxServerSource.SelectedIndex == -1)
+      {
+        MessageBox.Show("You have to choose a server", "No server selected", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        return;
+      }
+
+      if (string.IsNullOrEmpty(textBoxSourcePort.Text))
+      {
+        MessageBox.Show("You have to choose a port number", "No port number", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        return;
+      }
+
+      if (string.IsNullOrEmpty(textBoxSourceName.Text))
+      {
+        MessageBox.Show("You have to choose a username", "No username", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        return;
+      }
+
+      if (string.IsNullOrEmpty(textBoxSourcePassword.Text))
+      {
+        MessageBox.Show("You have to choose a password", "No password", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        return;
+      }
+
+      DatabaseAuthentication dbConnexion = new DatabaseAuthentication
+      {
+        UserName = textBoxSourceName.Text,
+        UserPassword = textBoxSourcePassword.Text,
+        ServerName = comboBoxServerSource.SelectedItem.ToString(),
+        Port = int.Parse(textBoxSourcePort.Text),
+        DatabaseName = "postgres"
+      };
+
+      string sqlQuery = ConnectionSqlServer.TestRequest();
+      if (DALHelper.ExecuteNonQuery(dbConnexion.ToString(), sqlQuery) == 3)
+      {
+        MessageBox.Show("Connection OK", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      }
+      else
+      {
+        MessageBox.Show($"Cannot connect to the database: {dbConnexion.DatabaseName} on the server: {dbConnexion.ServerName}", "Connection KO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+      }
     }
   }
 }

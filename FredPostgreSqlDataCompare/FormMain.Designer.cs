@@ -102,6 +102,7 @@
       this.comboBoxServerSource = new System.Windows.Forms.ComboBox();
       this.labelSourceOperation = new System.Windows.Forms.Label();
       this.tabPageTables = new System.Windows.Forms.TabPage();
+      this.buttonTestConnection = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.tabControlMain.SuspendLayout();
       this.tabPageDataSources.SuspendLayout();
@@ -356,6 +357,7 @@
       // 
       // tabPageDataSources
       // 
+      this.tabPageDataSources.Controls.Add(this.buttonTestConnection);
       this.tabPageDataSources.Controls.Add(this.textBoxTargetPort);
       this.tabPageDataSources.Controls.Add(this.textBoxSourcePort);
       this.tabPageDataSources.Controls.Add(this.labelTargetPort);
@@ -466,7 +468,7 @@
       this.buttonCompareCompareNow.BackColor = System.Drawing.Color.RoyalBlue;
       this.buttonCompareCompareNow.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.buttonCompareCompareNow.ForeColor = System.Drawing.Color.White;
-      this.buttonCompareCompareNow.Location = new System.Drawing.Point(519, 451);
+      this.buttonCompareCompareNow.Location = new System.Drawing.Point(519, 491);
       this.buttonCompareCompareNow.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareCompareNow.Name = "buttonCompareCompareNow";
       this.buttonCompareCompareNow.Size = new System.Drawing.Size(110, 30);
@@ -477,7 +479,7 @@
       // 
       // buttonCompareToLeftArrow
       // 
-      this.buttonCompareToLeftArrow.Location = new System.Drawing.Point(422, 451);
+      this.buttonCompareToLeftArrow.Location = new System.Drawing.Point(422, 491);
       this.buttonCompareToLeftArrow.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareToLeftArrow.Name = "buttonCompareToLeftArrow";
       this.buttonCompareToLeftArrow.Size = new System.Drawing.Size(40, 30);
@@ -487,7 +489,7 @@
       // 
       // buttonCompareToRightAndLeftArrow
       // 
-      this.buttonCompareToRightAndLeftArrow.Location = new System.Drawing.Point(377, 451);
+      this.buttonCompareToRightAndLeftArrow.Location = new System.Drawing.Point(377, 491);
       this.buttonCompareToRightAndLeftArrow.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareToRightAndLeftArrow.Name = "buttonCompareToRightAndLeftArrow";
       this.buttonCompareToRightAndLeftArrow.Size = new System.Drawing.Size(34, 30);
@@ -497,7 +499,7 @@
       // 
       // buttonCompareToRightArrow
       // 
-      this.buttonCompareToRightArrow.Location = new System.Drawing.Point(325, 451);
+      this.buttonCompareToRightArrow.Location = new System.Drawing.Point(325, 491);
       this.buttonCompareToRightArrow.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareToRightArrow.Name = "buttonCompareToRightArrow";
       this.buttonCompareToRightArrow.Size = new System.Drawing.Size(44, 30);
@@ -507,7 +509,7 @@
       // 
       // buttonCompareSaveAs
       // 
-      this.buttonCompareSaveAs.Location = new System.Drawing.Point(121, 451);
+      this.buttonCompareSaveAs.Location = new System.Drawing.Point(121, 491);
       this.buttonCompareSaveAs.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareSaveAs.Name = "buttonCompareSaveAs";
       this.buttonCompareSaveAs.Size = new System.Drawing.Size(71, 30);
@@ -517,7 +519,7 @@
       // 
       // buttonCompareSave
       // 
-      this.buttonCompareSave.Location = new System.Drawing.Point(44, 451);
+      this.buttonCompareSave.Location = new System.Drawing.Point(44, 491);
       this.buttonCompareSave.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCompareSave.Name = "buttonCompareSave";
       this.buttonCompareSave.Size = new System.Drawing.Size(66, 30);
@@ -527,7 +529,7 @@
       // 
       // buttonTargetCreate
       // 
-      this.buttonTargetCreate.Location = new System.Drawing.Point(410, 331);
+      this.buttonTargetCreate.Location = new System.Drawing.Point(410, 371);
       this.buttonTargetCreate.Margin = new System.Windows.Forms.Padding(2);
       this.buttonTargetCreate.Name = "buttonTargetCreate";
       this.buttonTargetCreate.Size = new System.Drawing.Size(56, 25);
@@ -537,7 +539,7 @@
       // 
       // buttonTargetRefresh
       // 
-      this.buttonTargetRefresh.Location = new System.Drawing.Point(695, 290);
+      this.buttonTargetRefresh.Location = new System.Drawing.Point(695, 330);
       this.buttonTargetRefresh.Margin = new System.Windows.Forms.Padding(2);
       this.buttonTargetRefresh.Name = "buttonTargetRefresh";
       this.buttonTargetRefresh.Size = new System.Drawing.Size(56, 25);
@@ -549,7 +551,7 @@
       // 
       this.labelTargetDatabase.AutoSize = true;
       this.labelTargetDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelTargetDatabase.Location = new System.Drawing.Point(410, 265);
+      this.labelTargetDatabase.Location = new System.Drawing.Point(410, 305);
       this.labelTargetDatabase.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelTargetDatabase.Name = "labelTargetDatabase";
       this.labelTargetDatabase.Size = new System.Drawing.Size(61, 13);
@@ -559,7 +561,7 @@
       // comboBoxTargetDatabase
       // 
       this.comboBoxTargetDatabase.FormattingEnabled = true;
-      this.comboBoxTargetDatabase.Location = new System.Drawing.Point(412, 292);
+      this.comboBoxTargetDatabase.Location = new System.Drawing.Point(412, 332);
       this.comboBoxTargetDatabase.Margin = new System.Windows.Forms.Padding(2);
       this.comboBoxTargetDatabase.Name = "comboBoxTargetDatabase";
       this.comboBoxTargetDatabase.Size = new System.Drawing.Size(276, 21);
@@ -617,7 +619,7 @@
       // comboBoxTargetSchema
       // 
       this.comboBoxTargetSchema.FormattingEnabled = true;
-      this.comboBoxTargetSchema.Location = new System.Drawing.Point(488, 368);
+      this.comboBoxTargetSchema.Location = new System.Drawing.Point(488, 408);
       this.comboBoxTargetSchema.Margin = new System.Windows.Forms.Padding(2);
       this.comboBoxTargetSchema.Name = "comboBoxTargetSchema";
       this.comboBoxTargetSchema.Size = new System.Drawing.Size(221, 21);
@@ -627,7 +629,7 @@
       // labelTargetSchema
       // 
       this.labelTargetSchema.AutoSize = true;
-      this.labelTargetSchema.Location = new System.Drawing.Point(410, 368);
+      this.labelTargetSchema.Location = new System.Drawing.Point(410, 408);
       this.labelTargetSchema.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelTargetSchema.Name = "labelTargetSchema";
       this.labelTargetSchema.Size = new System.Drawing.Size(46, 13);
@@ -668,7 +670,7 @@
       // 
       // buttonSourceCreate
       // 
-      this.buttonSourceCreate.Location = new System.Drawing.Point(44, 331);
+      this.buttonSourceCreate.Location = new System.Drawing.Point(44, 371);
       this.buttonSourceCreate.Margin = new System.Windows.Forms.Padding(2);
       this.buttonSourceCreate.Name = "buttonSourceCreate";
       this.buttonSourceCreate.Size = new System.Drawing.Size(56, 25);
@@ -678,7 +680,7 @@
       // 
       // buttonSourceRefresh
       // 
-      this.buttonSourceRefresh.Location = new System.Drawing.Point(328, 293);
+      this.buttonSourceRefresh.Location = new System.Drawing.Point(328, 333);
       this.buttonSourceRefresh.Margin = new System.Windows.Forms.Padding(2);
       this.buttonSourceRefresh.Name = "buttonSourceRefresh";
       this.buttonSourceRefresh.Size = new System.Drawing.Size(56, 25);
@@ -691,7 +693,7 @@
       // 
       this.labelSourceDatabase.AutoSize = true;
       this.labelSourceDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelSourceDatabase.Location = new System.Drawing.Point(43, 267);
+      this.labelSourceDatabase.Location = new System.Drawing.Point(43, 307);
       this.labelSourceDatabase.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelSourceDatabase.Name = "labelSourceDatabase";
       this.labelSourceDatabase.Size = new System.Drawing.Size(61, 13);
@@ -701,7 +703,7 @@
       // comboBoxSourceDatabase
       // 
       this.comboBoxSourceDatabase.FormattingEnabled = true;
-      this.comboBoxSourceDatabase.Location = new System.Drawing.Point(45, 294);
+      this.comboBoxSourceDatabase.Location = new System.Drawing.Point(45, 334);
       this.comboBoxSourceDatabase.Margin = new System.Windows.Forms.Padding(2);
       this.comboBoxSourceDatabase.Name = "comboBoxSourceDatabase";
       this.comboBoxSourceDatabase.Size = new System.Drawing.Size(276, 21);
@@ -759,7 +761,7 @@
       // comboBoxSourceSchema
       // 
       this.comboBoxSourceSchema.FormattingEnabled = true;
-      this.comboBoxSourceSchema.Location = new System.Drawing.Point(121, 376);
+      this.comboBoxSourceSchema.Location = new System.Drawing.Point(121, 416);
       this.comboBoxSourceSchema.Margin = new System.Windows.Forms.Padding(2);
       this.comboBoxSourceSchema.Name = "comboBoxSourceSchema";
       this.comboBoxSourceSchema.Size = new System.Drawing.Size(221, 21);
@@ -769,7 +771,7 @@
       // labelSourceSchema
       // 
       this.labelSourceSchema.AutoSize = true;
-      this.labelSourceSchema.Location = new System.Drawing.Point(43, 376);
+      this.labelSourceSchema.Location = new System.Drawing.Point(43, 416);
       this.labelSourceSchema.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelSourceSchema.Name = "labelSourceSchema";
       this.labelSourceSchema.Size = new System.Drawing.Size(46, 13);
@@ -817,6 +819,17 @@
       this.tabPageTables.TabIndex = 1;
       this.tabPageTables.Text = "Tables";
       this.tabPageTables.UseVisualStyleBackColor = true;
+      // 
+      // buttonTestConnection
+      // 
+      this.buttonTestConnection.Location = new System.Drawing.Point(121, 278);
+      this.buttonTestConnection.Margin = new System.Windows.Forms.Padding(2);
+      this.buttonTestConnection.Name = "buttonTestConnection";
+      this.buttonTestConnection.Size = new System.Drawing.Size(112, 25);
+      this.buttonTestConnection.TabIndex = 82;
+      this.buttonTestConnection.Text = "Test connection";
+      this.buttonTestConnection.UseVisualStyleBackColor = true;
+      this.buttonTestConnection.Click += new System.EventHandler(this.ButtonTestConnection_Click);
       // 
       // FormMain
       // 
@@ -915,6 +928,7 @@
     private System.Windows.Forms.TextBox textBoxSourcePort;
     private System.Windows.Forms.Label labelTargetPort;
     private System.Windows.Forms.Label labelSourcePort;
+    private System.Windows.Forms.Button buttonTestConnection;
   }
 }
 

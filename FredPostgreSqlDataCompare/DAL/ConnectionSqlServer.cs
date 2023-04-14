@@ -38,6 +38,11 @@ namespace FredPostgreSqlDataCompare.DAL
       return "SELECT sobjects.name FROM sysobjects sobjects WHERE sobjects.xtype = 'FN'";
     }
 
+    public static string TestRequest()
+    {
+      return "select 1+2;";
+    }
+
     public static string GetAllDatabaseNamesRequest()
     {
       // SELECT datname FROM pg_database WHERE datistemplate = false;
