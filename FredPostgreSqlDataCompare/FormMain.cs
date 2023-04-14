@@ -249,11 +249,11 @@ namespace FredPostgreSqlDataCompare
         UserPassword = textBoxSourcePassword.Text,
         ServerName = comboBoxServerSource.SelectedItem.ToString(),
         Port = int.Parse(textBoxSourcePort.Text),
-        DatabaseName = "postgres"
+        DatabaseName = "SIR"// "postgres"
       };
 
       string sqlQuery = ConnectionSqlServer.TestRequest();
-      if (DALHelper.ExecuteNonQuery(dbConnexion.ToString(), sqlQuery) == 3)
+      if (DALHelper.TestConnection(dbConnexion.ToString()))
       {
         MessageBox.Show("Connection OK", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
       }
@@ -261,6 +261,15 @@ namespace FredPostgreSqlDataCompare
       {
         MessageBox.Show($"Cannot connect to the database: {dbConnexion.DatabaseName} on the server: {dbConnexion.ServerName}", "Connection KO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
       }
+
+      //if (DALHelper.ExecuteNonQuery(dbConnexion.ToString(), sqlQuery) == 3)
+      //{
+      //  MessageBox.Show("Connection OK", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      //}
+      //else
+      //{
+      //  MessageBox.Show($"Cannot connect to the database: {dbConnexion.DatabaseName} on the server: {dbConnexion.ServerName}", "Connection KO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+      //}
     }
   }
 }

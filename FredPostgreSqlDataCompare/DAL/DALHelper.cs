@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace FredPostgreSqlDataCompare.DAL
 {
@@ -490,5 +491,42 @@ namespace FredPostgreSqlDataCompare.DAL
       return result;
     }
 
+    //public async Task<bool> TestConnection()
+    //{
+    //  await using (NpgsqlConnection conn = new NpgsqlConnection(ConnectionString))
+    //  {
+    //    await conn.OpenAsync();
+    //    if (conn.State == ConnectionState.Open)
+    //      return true;
+    //    else return false;
+    //  }
+    //}
+
+    public static bool TestConnection(string connexionString)
+    {
+      bool result = false;
+      NpgsqlConnection conn = new NpgsqlConnection(connexionString);
+      try
+      {
+        conn.Open();
+        result = true;
+      }
+      catch (Exception)
+      {
+        result = false;
+      }
+     
+      if (conn.State == ConnectionState.Open)
+      {
+        result = true;
+      }
+      else
+      {
+        result = false;
+      }
+
+      conn.Close();
+      return result;
+    }
   }
 }
