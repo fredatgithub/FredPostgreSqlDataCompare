@@ -106,6 +106,8 @@
       this.tabPageTables = new System.Windows.Forms.TabPage();
       this.labelDatabaseNameSource = new System.Windows.Forms.Label();
       this.textBoxDatabaseNameSource = new System.Windows.Forms.TextBox();
+      this.labelDatabaseNameTarget = new System.Windows.Forms.Label();
+      this.textBoxDatabaseNameTarget = new System.Windows.Forms.TextBox();
       this.menuStrip1.SuspendLayout();
       this.tabControlMain.SuspendLayout();
       this.tabPageDataSources.SuspendLayout();
@@ -373,6 +375,8 @@
       // 
       // tabPageDataSources
       // 
+      this.tabPageDataSources.Controls.Add(this.textBoxDatabaseNameTarget);
+      this.tabPageDataSources.Controls.Add(this.labelDatabaseNameTarget);
       this.tabPageDataSources.Controls.Add(this.textBoxDatabaseNameSource);
       this.tabPageDataSources.Controls.Add(this.labelDatabaseNameSource);
       this.tabPageDataSources.Controls.Add(this.buttonTestconnectionTarget);
@@ -844,6 +848,23 @@
       this.textBoxDatabaseNameSource.Size = new System.Drawing.Size(355, 35);
       this.textBoxDatabaseNameSource.TabIndex = 85;
       // 
+      // labelDatabaseNameTarget
+      // 
+      this.labelDatabaseNameTarget.AutoSize = true;
+      this.labelDatabaseNameTarget.Location = new System.Drawing.Point(733, 385);
+      this.labelDatabaseNameTarget.Name = "labelDatabaseNameTarget";
+      this.labelDatabaseNameTarget.Size = new System.Drawing.Size(186, 29);
+      this.labelDatabaseNameTarget.TabIndex = 86;
+      this.labelDatabaseNameTarget.Text = "Database Name";
+      // 
+      // textBoxDatabaseNameTarget
+      // 
+      this.textBoxDatabaseNameTarget.Location = new System.Drawing.Point(943, 385);
+      this.textBoxDatabaseNameTarget.Name = "textBoxDatabaseNameTarget";
+      this.textBoxDatabaseNameTarget.PasswordChar = '*';
+      this.textBoxDatabaseNameTarget.Size = new System.Drawing.Size(355, 35);
+      this.textBoxDatabaseNameTarget.TabIndex = 87;
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -946,6 +967,8 @@
     private System.Windows.Forms.Button buttonTestconnectionTarget;
     private System.Windows.Forms.TextBox textBoxDatabaseNameSource;
     private System.Windows.Forms.Label labelDatabaseNameSource;
+    private System.Windows.Forms.Label labelDatabaseNameTarget;
+    private System.Windows.Forms.TextBox textBoxDatabaseNameTarget;
   }
 }
 

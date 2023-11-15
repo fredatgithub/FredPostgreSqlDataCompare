@@ -71,8 +71,23 @@ namespace FredPostgreSqlDataCompare
       checkBoxTargetRememberCredentials.Checked = Settings.Default.CheckBoxTargetRememberCredentials;
       textBoxTargetName.Text = Settings.Default.textBoxTargetName;
       textBoxSourceName.Text = Settings.Default.textBoxSourceName;
-      comboBoxServerSource.SelectedIndex = Settings.Default.comboBoxServerSourceIndex;
-      comboBoxServerTarget.SelectedIndex = Settings.Default.comboBoxServerTargetIndex;
+      if (Settings.Default.comboBoxServerSourceIndex > comboBoxServerSource.Items.Count - 1)
+      {
+        comboBoxServerSource.SelectedIndex = -1;
+      }
+      else
+      {
+        comboBoxServerSource.SelectedIndex = Settings.Default.comboBoxServerSourceIndex;
+      }
+
+      if (Settings.Default.comboBoxServerSourceIndex > comboBoxServerSource.Items.Count - 1)
+      {
+        comboBoxServerTarget.SelectedIndex = -1;
+      }
+      else
+      {
+        comboBoxServerTarget.SelectedIndex = Settings.Default.comboBoxServerTargetIndex;
+      }
 
       comboBoxSourceDatabase.Items.Clear();
       foreach (string item in Settings.Default.comboBoxSourceDatabase.Split(Punctuation.SemiColon))
@@ -105,6 +120,20 @@ namespace FredPostgreSqlDataCompare
       Settings.Default.WindowTop = Top;
       Settings.Default.comboBoxServerSourceIndex = comboBoxServerSource.SelectedIndex;
       Settings.Default.comboBoxServerTargetIndex = comboBoxServerTarget.SelectedIndex;
+      var listOfServers = string.Empty;
+      foreach (var item in comboBoxServerSource.Items)
+      {
+        listOfServers += item.ToString();
+      }
+      
+      Settings.Default.comboBoxServerSourceItems = listOfServers;
+      listOfServers = string.Empty;
+      foreach (var item in comboBoxServerTarget.Items)
+      {
+        listOfServers += item.ToString();
+      }
+
+      Settings.Default.comboBoxServerTargetItems = listOfServers;
       Settings.Default.Save();
     }
 
@@ -114,8 +143,8 @@ namespace FredPostgreSqlDataCompare
       Height = Settings.Default.WindowHeight;
       Top = Settings.Default.WindowTop < 0 ? 0 : Settings.Default.WindowTop;
       Left = Settings.Default.WindowLeft < 0 ? 0 : Settings.Default.WindowLeft;
-      comboBoxServerSource.SelectedIndex = Settings.Default.comboBoxServerSourceIndex;
-      comboBoxServerTarget.SelectedIndex = Settings.Default.comboBoxServerTargetIndex;
+      //comboBoxServerSource.SelectedIndex = Settings.Default.comboBoxServerSourceIndex;
+      //comboBoxServerTarget.SelectedIndex = Settings.Default.comboBoxServerTargetIndex;
       textBoxSourcePort.Text = Settings.Default.TextBoxSourcePort;
       textBoxTargetPort.Text = Settings.Default.TextBoxTargetPort;
       Settings.Default.Save();
