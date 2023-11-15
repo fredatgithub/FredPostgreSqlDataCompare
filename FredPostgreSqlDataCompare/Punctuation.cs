@@ -24,10 +24,10 @@ namespace Tools
 {
   public static class Punctuation
   {
+    public const string OneSpace = " ";
     public const char Comma = ',';
     public const char Colon = ':';
     public const char SemiColon = ';';
-    public const string OneSpace = " ";
     public const char UnderScore = '_';
     public const char SignAt = '@';
     public const char Ampersand = '&';
