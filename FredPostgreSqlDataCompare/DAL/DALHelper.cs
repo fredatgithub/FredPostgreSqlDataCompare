@@ -18,8 +18,6 @@ namespace FredPostgreSqlDataCompare.DAL
 
     public static string CreateConnectionString(string host, string username, string password, string databaseName = "postgres", int port = 5432)
     {
-      // connectionString="Host=servername;Port=5432;Username=pp_inter_ref;Database=dediref;CommandTimeout=0;" name="DEV_pp"
-
       return $"Host={host};Port={port};Username={username};Database={databaseName};CommandTimeout=0";
     }
 
@@ -27,7 +25,6 @@ namespace FredPostgreSqlDataCompare.DAL
     {
       bool result = false;
       string connectionString = GetConnexionString(databaseName, sqlServerName);
-      // query = "SELECT TOP(1) Date FROM tableName order by date DESC";
       string query = sqlQuery;
 
       using (SqlConnection connection = new SqlConnection(connectionString))
@@ -63,7 +60,6 @@ namespace FredPostgreSqlDataCompare.DAL
     {
       string result = string.Empty;
       string connectionString = GetConnexionString(databaseName, sqlServerName);
-      // query = "SELECT TOP(1) Date FROM tableName order by date DESC";
       string query = sqlQuery;
 
       using (SqlConnection connection = new SqlConnection(connectionString))
@@ -111,7 +107,6 @@ namespace FredPostgreSqlDataCompare.DAL
     {
       SqlDataReader result = null;
       string connectionString = GetConnexionString(databaseName, sqlServerName);
-      // query = "SELECT * FROM tableName";
       string query = sqlQuery;
 
       using (SqlConnection connection = new SqlConnection(connectionString))
@@ -154,7 +149,6 @@ namespace FredPostgreSqlDataCompare.DAL
     {
       List<string> result = new List<string>();
       string connectionString = GetConnexionString(databaseName, sqlServerName);
-      // query = "SELECT * FROM tableName";
       string query = sqlQuery;
 
       using (SqlConnection connection = new SqlConnection(connectionString))
@@ -247,15 +241,13 @@ namespace FredPostgreSqlDataCompare.DAL
 
     public static IEnumerable<string> GetData(string filter, Func<IDataRecord, string> factory, string databaseName, string sqlServerName, string sqlQuery)
     {
-      //string sql = "SELECT * FROM [SomeTable] WHERE SomeColumn= @Filter";
-
-      using (SqlConnection cn = new SqlConnection(GetConnexionString(databaseName, sqlServerName)))
-      using (SqlCommand cmd = new SqlCommand(sqlQuery, cn))
+      using (SqlConnection sqlConnection = new SqlConnection(GetConnexionString(databaseName, sqlServerName)))
+      using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection))
       {
-        cmd.Parameters.Add("@Filter", SqlDbType.NVarChar, 255).Value = filter;
-        cn.Open();
+        sqlCommand.Parameters.Add("@Filter", SqlDbType.NVarChar, 255).Value = filter;
+        sqlConnection.Open();
 
-        using (IDataReader reader = cmd.ExecuteReader())
+        using (IDataReader reader = sqlCommand.ExecuteReader())
         {
           while (reader.Read())
           {
@@ -298,10 +290,6 @@ namespace FredPostgreSqlDataCompare.DAL
     {
       var result = -10;
       string connectionStringWithPassword = connexionString;
-      //if (!connexionString.Contains(Password))
-      //{
-      //  connectionStringWithPassword = AddPassword(connexionString);
-      //}
 
       var connexion = new NpgsqlConnection(connectionStringWithPassword);
       try
@@ -327,11 +315,6 @@ namespace FredPostgreSqlDataCompare.DAL
     public static string ExecuteQueryToString(string connexionString, string sqlRequest)
     {
       var result = string.Empty;
-      //if (!connexionString.Contains("Password"))
-      //{
-      //  connexionString += AddPassword(connexionString, false);
-      //}
-
       var connexion = new NpgsqlConnection(connexionString);
       try
       {
@@ -347,9 +330,6 @@ namespace FredPostgreSqlDataCompare.DAL
       catch (Exception exception)
       {
         result = $"erreur-{exception.Message}";
-        //LOGGER.Error("Il y a eu une erreur lors de la tentative d'exécution d'une requête SQL");
-        //LOGGER.Error($"La requête SQL est : {sqlRequest}");
-        //LOGGER.Error($"L'erreur est : {exception.Message}");
       }
       finally
       {
@@ -362,11 +342,6 @@ namespace FredPostgreSqlDataCompare.DAL
     public static int ExecuteNonQueryStoredProcedureWithParameters(string connectionString, string sqlRequest, string parameterName, string parameterValue)
     {
       var result = -10;
-      //if (!connectionString.Contains("Password"))
-      //{
-      //  connectionString += AddPassword(connectionString, false);
-      //}
-
       var connexion = new NpgsqlConnection(connectionString);
       try
       {
@@ -393,11 +368,6 @@ namespace FredPostgreSqlDataCompare.DAL
     public static int ExecuteNonQueryStoredProcedureWithParameters(string connectionString, string sqlRequest, string parameterName, int parameterValue)
     {
       var result = -10;
-      //if (!connectionString.Contains("Password"))
-      //{
-      //  connectionString += AddPassword(connectionString, false);
-      //}
-      
       var connexion = new NpgsqlConnection(connectionString);
       try
       {
@@ -425,10 +395,6 @@ namespace FredPostgreSqlDataCompare.DAL
     {
       var result = -10;
       string connectionStringWithPassword = connectionString;
-      //if (!connectionString.Contains(Password))
-      //{
-      //  connectionStringWithPassword = AddPassword(connectionString);
-      //}
 
       var connexion = new NpgsqlConnection(connectionStringWithPassword);
       try
@@ -437,7 +403,6 @@ namespace FredPostgreSqlDataCompare.DAL
         var command = new NpgsqlCommand(sqlRequest, connexion);
         command.CommandType = CommandType.StoredProcedure;
         command.CommandText = sqlRequest;
-        // mass_synchro_mass_synchro takes 9 minutes
         // command.CommandTimeout = int.MaxValue; //1247483646;
         // timeout in connection string and not in command
         int returnRows = command.ExecuteNonQuery();
@@ -489,17 +454,6 @@ namespace FredPostgreSqlDataCompare.DAL
 
       return result;
     }
-
-    //public async Task<bool> TestConnection()
-    //{
-    //  await using (NpgsqlConnection conn = new NpgsqlConnection(ConnectionString))
-    //  {
-    //    await conn.OpenAsync();
-    //    if (conn.State == ConnectionState.Open)
-    //      return true;
-    //    else return false;
-    //  }
-    //}
 
     public static bool TestConnection(string connexionString)
     {
