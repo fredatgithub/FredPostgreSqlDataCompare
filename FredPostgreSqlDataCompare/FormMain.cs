@@ -217,7 +217,7 @@ namespace FredPostgreSqlDataCompare
       Settings.Default.Save();
     }
 
-    private void ButtonTestConnection_Click(object sender, EventArgs e)
+    private void buttonTestConnection_Click(object sender, EventArgs e)
     {
       if (comboBoxServerSource.SelectedIndex == -1)
       {

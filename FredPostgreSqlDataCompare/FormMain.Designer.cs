@@ -829,7 +829,7 @@
       this.buttonTestConnection.TabIndex = 82;
       this.buttonTestConnection.Text = "Test connection";
       this.buttonTestConnection.UseVisualStyleBackColor = true;
-      this.buttonTestConnection.Click += new System.EventHandler(this.ButtonTestConnection_Click);
+      this.buttonTestConnection.Click += new System.EventHandler(this.buttonTestConnection_Click);
       // 
       // FormMain
       // 
