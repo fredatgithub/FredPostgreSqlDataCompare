@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace FredPostgreSqlDataCompare
 {
-  partial class AboutBox1 : Form
+  partial class AboutBoxApplication : Form
   {
-    public AboutBox1()
+    public AboutBoxApplication()
     {
       InitializeComponent();
       this.Text = String.Format("À propos de {0}", AssemblyTitle);

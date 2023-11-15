@@ -111,11 +111,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutBox1.cs">
+    <Compile Include="AboutBoxApplication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutBox1.Designer.cs">
-      <DependentUpon>AboutBox1.cs</DependentUpon>
+    <Compile Include="AboutBoxApplication.Designer.cs">
+      <DependentUpon>AboutBoxApplication.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\ConnectionSqlServer.cs" />
     <Compile Include="DAL\DALHelper.cs" />
@@ -128,8 +128,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AboutBox1.resx">
-      <DependentUpon>AboutBox1.cs</DependentUpon>
+    <Compile Include="Punctuation.cs" />
+    <EmbeddedResource Include="AboutBoxApplication.resx">
+      <DependentUpon>AboutBoxApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

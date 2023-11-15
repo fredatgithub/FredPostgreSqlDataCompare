@@ -12,7 +12,7 @@ namespace FredPostgreSqlDataCompare.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.5.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.8.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -98,24 +98,24 @@ namespace FredPostgreSqlDataCompare.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int comboBoxServerSource {
+        public int comboBoxServerSourceIndex {
             get {
-                return ((int)(this["comboBoxServerSource"]));
+                return ((int)(this["comboBoxServerSourceIndex"]));
             }
             set {
-                this["comboBoxServerSource"] = value;
+                this["comboBoxServerSourceIndex"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int comboBoxTargetSource {
+        public int comboBoxServerTargetIndex {
             get {
-                return ((int)(this["comboBoxTargetSource"]));
+                return ((int)(this["comboBoxServerTargetIndex"]));
             }
             set {
-                this["comboBoxTargetSource"] = value;
+                this["comboBoxServerTargetIndex"] = value;
             }
         }
         
@@ -212,6 +212,30 @@ namespace FredPostgreSqlDataCompare.Properties {
             }
             set {
                 this["TextBoxTargetPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string comboBoxServerSourceItems {
+            get {
+                return ((string)(this["comboBoxServerSourceItems"]));
+            }
+            set {
+                this["comboBoxServerSourceItems"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string comboBoxServerTargetItems {
+            get {
+                return ((string)(this["comboBoxServerTargetItems"]));
+            }
+            set {
+                this["comboBoxServerTargetItems"] = value;
             }
         }
     }

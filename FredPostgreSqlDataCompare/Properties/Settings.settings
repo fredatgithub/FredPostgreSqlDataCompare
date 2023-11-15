@@ -20,10 +20,10 @@
     <Setting Name="textBoxSourceName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="comboBoxServerSource" Type="System.Int32" Scope="User">
+    <Setting Name="comboBoxServerSourceIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">-1</Value>
     </Setting>
-    <Setting Name="comboBoxTargetSource" Type="System.Int32" Scope="User">
+    <Setting Name="comboBoxServerTargetIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">-1</Value>
     </Setting>
     <Setting Name="comboBoxSourceDatabase" Type="System.String" Scope="User">
@@ -49,6 +49,12 @@
     </Setting>
     <Setting Name="TextBoxTargetPort" Type="System.String" Scope="User">
       <Value Profile="(Default)">5432</Value>
+    </Setting>
+    <Setting Name="comboBoxServerSourceItems" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="comboBoxServerTargetItems" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

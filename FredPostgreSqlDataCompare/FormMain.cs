@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
+using Tools;
 
 namespace FredPostgreSqlDataCompare
 {
@@ -70,17 +71,17 @@ namespace FredPostgreSqlDataCompare
       checkBoxTargetRememberCredentials.Checked = Settings.Default.CheckBoxTargetRememberCredentials;
       textBoxTargetName.Text = Settings.Default.textBoxTargetName;
       textBoxSourceName.Text = Settings.Default.textBoxSourceName;
-      comboBoxServerSource.SelectedIndex = Settings.Default.comboBoxServerSource;
-      comboBoxServerTarget.SelectedIndex = Settings.Default.comboBoxTargetSource;
+      comboBoxServerSource.SelectedIndex = Settings.Default.comboBoxServerSourceIndex;
+      comboBoxServerTarget.SelectedIndex = Settings.Default.comboBoxServerTargetIndex;
 
       comboBoxSourceDatabase.Items.Clear();
-      foreach (string item in Settings.Default.comboBoxSourceDatabase.Split(';'))
+      foreach (string item in Settings.Default.comboBoxSourceDatabase.Split(Punctuation.SemiColon))
       {
         comboBoxSourceDatabase.Items.Add(item);
       }
 
       comboBoxTargetDatabase.Items.Clear();
-      foreach (string item in Settings.Default.comboBoxTargetDatabase.Split(';'))
+      foreach (string item in Settings.Default.comboBoxTargetDatabase.Split(Punctuation.SemiColon))
       {
         comboBoxTargetDatabase.Items.Add(item);
       }
@@ -102,8 +103,8 @@ namespace FredPostgreSqlDataCompare
       Settings.Default.WindowWidth = Width;
       Settings.Default.WindowLeft = Left;
       Settings.Default.WindowTop = Top;
-      Settings.Default.comboBoxServerSource = comboBoxServerSource.SelectedIndex;
-      Settings.Default.comboBoxTargetSource = comboBoxServerTarget.SelectedIndex;
+      Settings.Default.comboBoxServerSourceIndex = comboBoxServerSource.SelectedIndex;
+      Settings.Default.comboBoxServerTargetIndex = comboBoxServerTarget.SelectedIndex;
       Settings.Default.Save();
     }
 
@@ -113,8 +114,8 @@ namespace FredPostgreSqlDataCompare
       Height = Settings.Default.WindowHeight;
       Top = Settings.Default.WindowTop < 0 ? 0 : Settings.Default.WindowTop;
       Left = Settings.Default.WindowLeft < 0 ? 0 : Settings.Default.WindowLeft;
-      comboBoxServerSource.SelectedIndex = Settings.Default.comboBoxServerSource;
-      comboBoxServerTarget.SelectedIndex = Settings.Default.comboBoxTargetSource;
+      comboBoxServerSource.SelectedIndex = Settings.Default.comboBoxServerSourceIndex;
+      comboBoxServerTarget.SelectedIndex = Settings.Default.comboBoxServerTargetIndex;
       textBoxSourcePort.Text = Settings.Default.TextBoxSourcePort;
       textBoxTargetPort.Text = Settings.Default.TextBoxTargetPort;
       Settings.Default.Save();
@@ -190,13 +191,13 @@ namespace FredPostgreSqlDataCompare
       // comboBoxServerSource
       if (comboBoxServerSource.SelectedIndex != -1)
       {
-        Settings.Default.comboBoxServerSource = comboBoxServerSource.SelectedIndex;
+        Settings.Default.comboBoxServerSourceIndex = comboBoxServerSource.SelectedIndex;
       }
 
       // comboBoxTargetSource
       if (comboBoxServerTarget.SelectedIndex != -1)
       {
-        Settings.Default.comboBoxTargetSource = comboBoxServerTarget.SelectedIndex;
+        Settings.Default.comboBoxServerTargetIndex = comboBoxServerTarget.SelectedIndex;
       }
 
       //saving controls state
@@ -266,14 +267,20 @@ namespace FredPostgreSqlDataCompare
         MessageBox.Show("You have to choose a source password", "No password", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         return;
       }
+      
+      if (string.IsNullOrEmpty(textBoxDatabaseNameSource.Text))
+      {
+        MessageBox.Show("You have to choose a database to conenct to", "No database", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        return;
+      }
 
       DatabaseAuthentication dbConnexion = new DatabaseAuthentication
       {
         UserName = textBoxSourceName.Text,
         UserPassword = textBoxSourcePassword.Text,
-        ServerName = comboBoxServerSource.SelectedItem.ToString(),
+        ServerName = comboBoxServerSource.Text, //.SelectedItem.ToString(),
         Port = int.Parse(textBoxSourcePort.Text),
-        DatabaseName = "postgres"
+        DatabaseName = textBoxDatabaseNameSource.Text
       };
 
       string sqlQuery = ConnectionSqlServer.TestRequest();
@@ -335,8 +342,30 @@ namespace FredPostgreSqlDataCompare
 
     private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      AboutBox1 aboutBox1 = new AboutBox1();
+      AboutBoxApplication aboutBox1 = new AboutBoxApplication();
       aboutBox1.ShowDialog();
+    }
+
+    private void ComboBoxServerSource_KeyUp(object sender, KeyEventArgs e)
+    {
+      //if Enter (return) key is pressed
+      if (e.KeyCode == Keys.Enter)
+      {
+        //don't add text if it's empty
+        if (comboBoxServerSource.Text != "")
+        {
+          for (int i = 0; i < comboBoxServerSource.Items.Count; i++)
+          {
+            //exit event if text already exists
+            if (comboBoxServerSource.Text == comboBoxServerSource.Items[i].ToString())
+            {
+              return;
+            }
+          }
+          
+          comboBoxServerSource.Items.Add(comboBoxServerSource.Text);
+        }
+      }
     }
   }
 }

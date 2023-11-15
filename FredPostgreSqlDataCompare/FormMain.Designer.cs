@@ -104,6 +104,8 @@
       this.comboBoxServerSource = new System.Windows.Forms.ComboBox();
       this.labelSourceOperation = new System.Windows.Forms.Label();
       this.tabPageTables = new System.Windows.Forms.TabPage();
+      this.labelDatabaseNameSource = new System.Windows.Forms.Label();
+      this.textBoxDatabaseNameSource = new System.Windows.Forms.TextBox();
       this.menuStrip1.SuspendLayout();
       this.tabControlMain.SuspendLayout();
       this.tabPageDataSources.SuspendLayout();
@@ -353,7 +355,7 @@
       // àproposdeToolStripMenuItem
       // 
       this.àproposdeToolStripMenuItem.Name = "àproposdeToolStripMenuItem";
-      this.àproposdeToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+      this.àproposdeToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
       this.àproposdeToolStripMenuItem.Text = "À &propos de...";
       this.àproposdeToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
       // 
@@ -371,6 +373,8 @@
       // 
       // tabPageDataSources
       // 
+      this.tabPageDataSources.Controls.Add(this.textBoxDatabaseNameSource);
+      this.tabPageDataSources.Controls.Add(this.labelDatabaseNameSource);
       this.tabPageDataSources.Controls.Add(this.buttonTestconnectionTarget);
       this.tabPageDataSources.Controls.Add(this.buttonTestConnection);
       this.tabPageDataSources.Controls.Add(this.textBoxTargetPort);
@@ -425,7 +429,7 @@
       // 
       // buttonTestconnectionTarget
       // 
-      this.buttonTestconnectionTarget.Location = new System.Drawing.Point(902, 428);
+      this.buttonTestconnectionTarget.Location = new System.Drawing.Point(902, 489);
       this.buttonTestconnectionTarget.Name = "buttonTestconnectionTarget";
       this.buttonTestconnectionTarget.Size = new System.Drawing.Size(277, 38);
       this.buttonTestconnectionTarget.TabIndex = 83;
@@ -435,7 +439,7 @@
       // 
       // buttonTestConnection
       // 
-      this.buttonTestConnection.Location = new System.Drawing.Point(214, 428);
+      this.buttonTestConnection.Location = new System.Drawing.Point(214, 489);
       this.buttonTestConnection.Name = "buttonTestConnection";
       this.buttonTestConnection.Size = new System.Drawing.Size(266, 38);
       this.buttonTestConnection.TabIndex = 82;
@@ -503,7 +507,7 @@
       this.buttonCompareCompareNow.BackColor = System.Drawing.Color.RoyalBlue;
       this.buttonCompareCompareNow.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.buttonCompareCompareNow.ForeColor = System.Drawing.Color.White;
-      this.buttonCompareCompareNow.Location = new System.Drawing.Point(778, 755);
+      this.buttonCompareCompareNow.Location = new System.Drawing.Point(778, 816);
       this.buttonCompareCompareNow.Name = "buttonCompareCompareNow";
       this.buttonCompareCompareNow.Size = new System.Drawing.Size(165, 46);
       this.buttonCompareCompareNow.TabIndex = 74;
@@ -513,7 +517,7 @@
       // 
       // buttonCompareToLeftArrow
       // 
-      this.buttonCompareToLeftArrow.Location = new System.Drawing.Point(633, 755);
+      this.buttonCompareToLeftArrow.Location = new System.Drawing.Point(633, 816);
       this.buttonCompareToLeftArrow.Name = "buttonCompareToLeftArrow";
       this.buttonCompareToLeftArrow.Size = new System.Drawing.Size(60, 46);
       this.buttonCompareToLeftArrow.TabIndex = 73;
@@ -522,7 +526,7 @@
       // 
       // buttonCompareToRightAndLeftArrow
       // 
-      this.buttonCompareToRightAndLeftArrow.Location = new System.Drawing.Point(566, 755);
+      this.buttonCompareToRightAndLeftArrow.Location = new System.Drawing.Point(566, 816);
       this.buttonCompareToRightAndLeftArrow.Name = "buttonCompareToRightAndLeftArrow";
       this.buttonCompareToRightAndLeftArrow.Size = new System.Drawing.Size(51, 46);
       this.buttonCompareToRightAndLeftArrow.TabIndex = 72;
@@ -531,7 +535,7 @@
       // 
       // buttonCompareToRightArrow
       // 
-      this.buttonCompareToRightArrow.Location = new System.Drawing.Point(488, 755);
+      this.buttonCompareToRightArrow.Location = new System.Drawing.Point(488, 816);
       this.buttonCompareToRightArrow.Name = "buttonCompareToRightArrow";
       this.buttonCompareToRightArrow.Size = new System.Drawing.Size(66, 46);
       this.buttonCompareToRightArrow.TabIndex = 71;
@@ -540,7 +544,7 @@
       // 
       // buttonCompareSaveAs
       // 
-      this.buttonCompareSaveAs.Location = new System.Drawing.Point(182, 755);
+      this.buttonCompareSaveAs.Location = new System.Drawing.Point(182, 817);
       this.buttonCompareSaveAs.Name = "buttonCompareSaveAs";
       this.buttonCompareSaveAs.Size = new System.Drawing.Size(106, 46);
       this.buttonCompareSaveAs.TabIndex = 70;
@@ -549,7 +553,7 @@
       // 
       // buttonCompareSave
       // 
-      this.buttonCompareSave.Location = new System.Drawing.Point(66, 755);
+      this.buttonCompareSave.Location = new System.Drawing.Point(66, 817);
       this.buttonCompareSave.Name = "buttonCompareSave";
       this.buttonCompareSave.Size = new System.Drawing.Size(99, 46);
       this.buttonCompareSave.TabIndex = 69;
@@ -558,7 +562,7 @@
       // 
       // buttonTargetCreate
       // 
-      this.buttonTargetCreate.Location = new System.Drawing.Point(738, 571);
+      this.buttonTargetCreate.Location = new System.Drawing.Point(738, 632);
       this.buttonTargetCreate.Name = "buttonTargetCreate";
       this.buttonTargetCreate.Size = new System.Drawing.Size(101, 38);
       this.buttonTargetCreate.TabIndex = 68;
@@ -567,7 +571,7 @@
       // 
       // buttonTargetRefresh
       // 
-      this.buttonTargetRefresh.Location = new System.Drawing.Point(1185, 508);
+      this.buttonTargetRefresh.Location = new System.Drawing.Point(1185, 569);
       this.buttonTargetRefresh.Name = "buttonTargetRefresh";
       this.buttonTargetRefresh.Size = new System.Drawing.Size(113, 38);
       this.buttonTargetRefresh.TabIndex = 67;
@@ -578,7 +582,7 @@
       // 
       this.labelTargetDatabase.AutoSize = true;
       this.labelTargetDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelTargetDatabase.Location = new System.Drawing.Point(738, 469);
+      this.labelTargetDatabase.Location = new System.Drawing.Point(738, 530);
       this.labelTargetDatabase.Name = "labelTargetDatabase";
       this.labelTargetDatabase.Size = new System.Drawing.Size(123, 29);
       this.labelTargetDatabase.TabIndex = 66;
@@ -587,7 +591,7 @@
       // comboBoxTargetDatabase
       // 
       this.comboBoxTargetDatabase.FormattingEnabled = true;
-      this.comboBoxTargetDatabase.Location = new System.Drawing.Point(741, 511);
+      this.comboBoxTargetDatabase.Location = new System.Drawing.Point(741, 572);
       this.comboBoxTargetDatabase.Name = "comboBoxTargetDatabase";
       this.comboBoxTargetDatabase.Size = new System.Drawing.Size(438, 37);
       this.comboBoxTargetDatabase.TabIndex = 65;
@@ -596,7 +600,7 @@
       // checkBoxTargetRememberCredentials
       // 
       this.checkBoxTargetRememberCredentials.AutoSize = true;
-      this.checkBoxTargetRememberCredentials.Location = new System.Drawing.Point(902, 379);
+      this.checkBoxTargetRememberCredentials.Location = new System.Drawing.Point(902, 440);
       this.checkBoxTargetRememberCredentials.Name = "checkBoxTargetRememberCredentials";
       this.checkBoxTargetRememberCredentials.Size = new System.Drawing.Size(284, 33);
       this.checkBoxTargetRememberCredentials.TabIndex = 64;
@@ -639,7 +643,7 @@
       // comboBoxTargetSchema
       // 
       this.comboBoxTargetSchema.FormattingEnabled = true;
-      this.comboBoxTargetSchema.Location = new System.Drawing.Point(855, 628);
+      this.comboBoxTargetSchema.Location = new System.Drawing.Point(855, 689);
       this.comboBoxTargetSchema.Name = "comboBoxTargetSchema";
       this.comboBoxTargetSchema.Size = new System.Drawing.Size(443, 37);
       this.comboBoxTargetSchema.TabIndex = 59;
@@ -648,7 +652,7 @@
       // labelTargetSchema
       // 
       this.labelTargetSchema.AutoSize = true;
-      this.labelTargetSchema.Location = new System.Drawing.Point(738, 628);
+      this.labelTargetSchema.Location = new System.Drawing.Point(738, 689);
       this.labelTargetSchema.Name = "labelTargetSchema";
       this.labelTargetSchema.Size = new System.Drawing.Size(101, 29);
       this.labelTargetSchema.TabIndex = 58;
@@ -685,7 +689,7 @@
       // 
       // buttonSourceCreate
       // 
-      this.buttonSourceCreate.Location = new System.Drawing.Point(66, 571);
+      this.buttonSourceCreate.Location = new System.Drawing.Point(66, 633);
       this.buttonSourceCreate.Name = "buttonSourceCreate";
       this.buttonSourceCreate.Size = new System.Drawing.Size(99, 38);
       this.buttonSourceCreate.TabIndex = 53;
@@ -694,7 +698,7 @@
       // 
       // buttonSourceRefresh
       // 
-      this.buttonSourceRefresh.Location = new System.Drawing.Point(492, 512);
+      this.buttonSourceRefresh.Location = new System.Drawing.Point(492, 573);
       this.buttonSourceRefresh.Name = "buttonSourceRefresh";
       this.buttonSourceRefresh.Size = new System.Drawing.Size(118, 38);
       this.buttonSourceRefresh.TabIndex = 52;
@@ -706,7 +710,7 @@
       // 
       this.labelSourceDatabase.AutoSize = true;
       this.labelSourceDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelSourceDatabase.Location = new System.Drawing.Point(64, 472);
+      this.labelSourceDatabase.Location = new System.Drawing.Point(64, 534);
       this.labelSourceDatabase.Name = "labelSourceDatabase";
       this.labelSourceDatabase.Size = new System.Drawing.Size(123, 29);
       this.labelSourceDatabase.TabIndex = 51;
@@ -715,7 +719,7 @@
       // comboBoxSourceDatabase
       // 
       this.comboBoxSourceDatabase.FormattingEnabled = true;
-      this.comboBoxSourceDatabase.Location = new System.Drawing.Point(68, 514);
+      this.comboBoxSourceDatabase.Location = new System.Drawing.Point(68, 575);
       this.comboBoxSourceDatabase.Name = "comboBoxSourceDatabase";
       this.comboBoxSourceDatabase.Size = new System.Drawing.Size(412, 37);
       this.comboBoxSourceDatabase.TabIndex = 50;
@@ -724,7 +728,7 @@
       // checkBoxSourceRememberCredentials
       // 
       this.checkBoxSourceRememberCredentials.AutoSize = true;
-      this.checkBoxSourceRememberCredentials.Location = new System.Drawing.Point(214, 376);
+      this.checkBoxSourceRememberCredentials.Location = new System.Drawing.Point(214, 437);
       this.checkBoxSourceRememberCredentials.Name = "checkBoxSourceRememberCredentials";
       this.checkBoxSourceRememberCredentials.Size = new System.Drawing.Size(284, 33);
       this.checkBoxSourceRememberCredentials.TabIndex = 49;
@@ -767,7 +771,7 @@
       // comboBoxSourceSchema
       // 
       this.comboBoxSourceSchema.FormattingEnabled = true;
-      this.comboBoxSourceSchema.Location = new System.Drawing.Point(182, 640);
+      this.comboBoxSourceSchema.Location = new System.Drawing.Point(182, 701);
       this.comboBoxSourceSchema.Name = "comboBoxSourceSchema";
       this.comboBoxSourceSchema.Size = new System.Drawing.Size(428, 37);
       this.comboBoxSourceSchema.TabIndex = 44;
@@ -776,7 +780,7 @@
       // labelSourceSchema
       // 
       this.labelSourceSchema.AutoSize = true;
-      this.labelSourceSchema.Location = new System.Drawing.Point(64, 640);
+      this.labelSourceSchema.Location = new System.Drawing.Point(64, 702);
       this.labelSourceSchema.Name = "labelSourceSchema";
       this.labelSourceSchema.Size = new System.Drawing.Size(101, 29);
       this.labelSourceSchema.TabIndex = 43;
@@ -800,6 +804,7 @@
       this.comboBoxServerSource.Size = new System.Drawing.Size(546, 37);
       this.comboBoxServerSource.TabIndex = 41;
       this.comboBoxServerSource.Text = "Server";
+      this.comboBoxServerSource.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ComboBoxServerSource_KeyUp);
       // 
       // labelSourceOperation
       // 
@@ -817,10 +822,27 @@
       this.tabPageTables.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.tabPageTables.Name = "tabPageTables";
       this.tabPageTables.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.tabPageTables.Size = new System.Drawing.Size(1744, 1205);
+      this.tabPageTables.Size = new System.Drawing.Size(1452, 1009);
       this.tabPageTables.TabIndex = 1;
       this.tabPageTables.Text = "Tables";
       this.tabPageTables.UseVisualStyleBackColor = true;
+      // 
+      // labelDatabaseNameSource
+      // 
+      this.labelDatabaseNameSource.AutoSize = true;
+      this.labelDatabaseNameSource.Location = new System.Drawing.Point(67, 385);
+      this.labelDatabaseNameSource.Name = "labelDatabaseNameSource";
+      this.labelDatabaseNameSource.Size = new System.Drawing.Size(223, 35);
+      this.labelDatabaseNameSource.TabIndex = 84;
+      this.labelDatabaseNameSource.Text = "Database Name";
+      // 
+      // textBoxDatabaseNameSource
+      // 
+      this.textBoxDatabaseNameSource.Location = new System.Drawing.Point(255, 382);
+      this.textBoxDatabaseNameSource.Name = "textBoxDatabaseNameSource";
+      this.textBoxDatabaseNameSource.PasswordChar = '*';
+      this.textBoxDatabaseNameSource.Size = new System.Drawing.Size(355, 35);
+      this.textBoxDatabaseNameSource.TabIndex = 85;
       // 
       // FormMain
       // 
@@ -922,6 +944,8 @@
     private System.Windows.Forms.Label labelSourcePort;
     private System.Windows.Forms.Button buttonTestConnection;
     private System.Windows.Forms.Button buttonTestconnectionTarget;
+    private System.Windows.Forms.TextBox textBoxDatabaseNameSource;
+    private System.Windows.Forms.Label labelDatabaseNameSource;
   }
 }
 
