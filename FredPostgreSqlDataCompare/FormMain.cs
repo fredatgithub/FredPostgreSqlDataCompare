@@ -23,6 +23,30 @@ namespace FredPostgreSqlDataCompare
       LoadComboboxes();
       GetWindowValue();
       DisplayTitle();
+      DisableNotImplementedMenuItems();
+    }
+
+    private void DisableNotImplementedMenuItems()
+    {
+      // enable them whenever code is created
+      nouveauToolStripMenuItem.Visible = false;
+      ouvrirToolStripMenuItem.Visible = false;
+      toolStripSeparator.Visible = false;
+      enregistrerToolStripMenuItem.Visible = false;
+      enregistrersousToolStripMenuItem.Visible = false;
+      toolStripSeparator1.Visible = false;
+      imprimerToolStripMenuItem.Visible = false;
+      aperçuavantimpressionToolStripMenuItem.Visible = false;
+      toolStripSeparator2.Visible = false;
+
+      annulerToolStripMenuItem.Visible = true;
+      
+      outilsToolStripMenuItem.Visible = false;
+
+      aideToolStripMenuItem.Visible = true;
+      sommaireToolStripMenuItem.Visible = false;
+      indexToolStripMenuItem.Visible = false;
+      rechercherToolStripMenuItem.Visible = false;
     }
 
     private void LoadComboboxes()
@@ -217,29 +241,29 @@ namespace FredPostgreSqlDataCompare
       Settings.Default.Save();
     }
 
-    private void buttonTestConnection_Click(object sender, EventArgs e)
+    private void ButtonTestConnection_Click(object sender, EventArgs e)
     {
       if (comboBoxServerSource.SelectedIndex == -1)
       {
-        MessageBox.Show("You have to choose a server", "No server selected", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        MessageBox.Show("You have to choose a source server", "No server selected", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         return;
       }
 
       if (string.IsNullOrEmpty(textBoxSourcePort.Text))
       {
-        MessageBox.Show("You have to choose a port number", "No port number", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        MessageBox.Show("You have to choose a source port number", "No port number", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         return;
       }
 
       if (string.IsNullOrEmpty(textBoxSourceName.Text))
       {
-        MessageBox.Show("You have to choose a username", "No username", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        MessageBox.Show("You have to choose a source username", "No username", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         return;
       }
 
       if (string.IsNullOrEmpty(textBoxSourcePassword.Text))
       {
-        MessageBox.Show("You have to choose a password", "No password", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        MessageBox.Show("You have to choose a source password", "No password", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         return;
       }
 
@@ -249,7 +273,7 @@ namespace FredPostgreSqlDataCompare
         UserPassword = textBoxSourcePassword.Text,
         ServerName = comboBoxServerSource.SelectedItem.ToString(),
         Port = int.Parse(textBoxSourcePort.Text),
-        DatabaseName = "postgres"// "postgres"
+        DatabaseName = "postgres"
       };
 
       string sqlQuery = ConnectionSqlServer.TestRequest();
@@ -261,6 +285,58 @@ namespace FredPostgreSqlDataCompare
       {
         MessageBox.Show($"Cannot connect to the database: {dbConnexion.DatabaseName} on the server: {dbConnexion.ServerName}", "Connection KO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
       }
+    }
+
+    private void ButtonTestconnectionTarget_Click(object sender, EventArgs e)
+    {
+      if (comboBoxServerTarget.SelectedIndex == -1)
+      {
+        MessageBox.Show("You have to choose a target server", "No server selected", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        return;
+      }
+
+      if (string.IsNullOrEmpty(textBoxTargetPort.Text))
+      {
+        MessageBox.Show("You have to choose a target port number", "No port number", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        return;
+      }
+
+      if (string.IsNullOrEmpty(textBoxTargetName.Text))
+      {
+        MessageBox.Show("You have to choose a target username", "No username", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        return;
+      }
+
+      if (string.IsNullOrEmpty(textBoxTargetPassword.Text))
+      {
+        MessageBox.Show("You have to choose a source password", "No password", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        return;
+      }
+
+      DatabaseAuthentication dbConnexion = new DatabaseAuthentication
+      {
+        UserName = textBoxTargetName.Text,
+        UserPassword = textBoxTargetPassword.Text,
+        ServerName = comboBoxServerTarget.SelectedItem.ToString(),
+        Port = int.Parse(textBoxTargetPort.Text),
+        DatabaseName = "postgres"
+      };
+
+      string sqlQuery = ConnectionSqlServer.TestRequest();
+      if (DALHelper.TestConnection(dbConnexion.ToString()))
+      {
+        MessageBox.Show("Connection OK", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      }
+      else
+      {
+        MessageBox.Show($"Cannot connect to the database: {dbConnexion.DatabaseName} on the server: {dbConnexion.ServerName}", "Connection KO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+      }
+    }
+
+    private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      AboutBox1 aboutBox1 = new AboutBox1();
+      aboutBox1.ShowDialog();
     }
   }
 }
