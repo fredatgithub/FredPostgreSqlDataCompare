@@ -157,6 +157,12 @@ namespace FredPostgreSqlDataCompare
       return $"-V{fvi.FileMajorPart}.{fvi.FileMinorPart}.{fvi.FileBuildPart}";
     }
 
+    public static string GetFrameworkDescription()
+    {
+      var version = System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription;
+      return version;
+    }
+
     private void ButtonCopyServerName_Click(object sender, EventArgs e)
     {
       comboBoxServerTarget.SelectedIndex = comboBoxServerSource.SelectedIndex;
