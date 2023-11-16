@@ -17,7 +17,7 @@ namespace FredPostgreSqlDataCompare
       InitializeComponent();
     }
 
-    private bool authenticationIsOk = false;
+    private bool bothAuthenticationAreOk = false;
 
     private void FormMain_Load(object sender, EventArgs e)
     {
