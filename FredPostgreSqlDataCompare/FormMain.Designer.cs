@@ -371,6 +371,7 @@
       this.tabControlMain.SelectedIndex = 0;
       this.tabControlMain.Size = new System.Drawing.Size(973, 675);
       this.tabControlMain.TabIndex = 1;
+      this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.TabControlMain_SelectedIndexChanged);
       // 
       // tabPageDataSources
       // 
@@ -899,7 +900,7 @@
       this.tabPageTables.Location = new System.Drawing.Point(4, 22);
       this.tabPageTables.Name = "tabPageTables";
       this.tabPageTables.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-      this.tabPageTables.Size = new System.Drawing.Size(965, 651);
+      this.tabPageTables.Size = new System.Drawing.Size(965, 649);
       this.tabPageTables.TabIndex = 1;
       this.tabPageTables.Text = "Tables";
       this.tabPageTables.UseVisualStyleBackColor = true;

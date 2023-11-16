@@ -1,12 +1,11 @@
-﻿using FredPostgreSqlDataCompare.DAL;
-using FredPostgreSqlDataCompare.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Reflection;
-using System.Web;
 using System.Windows.Forms;
+using FredPostgreSqlDataCompare.DAL;
+using FredPostgreSqlDataCompare.Properties;
 using Tools;
 
 namespace FredPostgreSqlDataCompare
@@ -19,6 +18,8 @@ namespace FredPostgreSqlDataCompare
     }
 
     private bool bothAuthenticationAreOk = false;
+    private bool sourceAuthenticationIsOk = false;
+    private bool targetAuthenticationIsOk = false;
 
     private void FormMain_Load(object sender, EventArgs e)
     {
@@ -320,30 +321,35 @@ namespace FredPostgreSqlDataCompare
       if (comboBoxServerSource.SelectedIndex == -1)
       {
         MessageBox.Show("You have to choose a source server", "No server selected", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        sourceAuthenticationIsOk = false;
         return;
       }
 
       if (string.IsNullOrEmpty(textBoxSourcePort.Text))
       {
         MessageBox.Show("You have to choose a source port number", "No port number", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        sourceAuthenticationIsOk = false;
         return;
       }
 
       if (string.IsNullOrEmpty(textBoxSourceName.Text))
       {
         MessageBox.Show("You have to choose a source username", "No username", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        sourceAuthenticationIsOk = false;
         return;
       }
 
       if (string.IsNullOrEmpty(textBoxSourcePassword.Text))
       {
         MessageBox.Show("You have to choose a source password", "No password", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        sourceAuthenticationIsOk = false;
         return;
       }
       
       if (string.IsNullOrEmpty(textBoxDatabaseNameSource.Text))
       {
         MessageBox.Show("You have to choose a database to conenct to", "No database", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        sourceAuthenticationIsOk = false;
         return;
       }
 
@@ -351,7 +357,7 @@ namespace FredPostgreSqlDataCompare
       {
         UserName = textBoxSourceName.Text,
         UserPassword = textBoxSourcePassword.Text,
-        ServerName = comboBoxServerSource.Text, //.SelectedItem.ToString(),
+        ServerName = comboBoxServerSource.Text, 
         Port = int.Parse(textBoxSourcePort.Text),
         DatabaseName = textBoxDatabaseNameSource.Text
       };
@@ -360,11 +366,20 @@ namespace FredPostgreSqlDataCompare
       if (DALHelper.TestConnection(dbConnexion.ToString()))
       {
         MessageBox.Show("Connection OK", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        sourceAuthenticationIsOk = true;
       }
       else
       {
         MessageBox.Show($"Cannot connect to the database: {dbConnexion.DatabaseName} on the server: {dbConnexion.ServerName}", "Connection KO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        sourceAuthenticationIsOk = false;
       }
+
+      CheckBothAuthentication();
+    }
+
+    private void CheckBothAuthentication()
+    {
+      bothAuthenticationAreOk = sourceAuthenticationIsOk && targetAuthenticationIsOk;
     }
 
     private void ButtonTestconnectionTarget_Click(object sender, EventArgs e)
@@ -372,24 +387,28 @@ namespace FredPostgreSqlDataCompare
       if (comboBoxServerTarget.SelectedIndex == -1)
       {
         MessageBox.Show("You have to choose a target server", "No server selected", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        targetAuthenticationIsOk = false;
         return;
       }
 
       if (string.IsNullOrEmpty(textBoxTargetPort.Text))
       {
         MessageBox.Show("You have to choose a target port number", "No port number", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        targetAuthenticationIsOk = false;
         return;
       }
 
       if (string.IsNullOrEmpty(textBoxTargetName.Text))
       {
         MessageBox.Show("You have to choose a target username", "No username", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        targetAuthenticationIsOk = false;
         return;
       }
 
       if (string.IsNullOrEmpty(textBoxTargetPassword.Text))
       {
         MessageBox.Show("You have to choose a source password", "No password", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        targetAuthenticationIsOk = false;
         return;
       }
 
@@ -406,11 +425,15 @@ namespace FredPostgreSqlDataCompare
       if (DALHelper.TestConnection(dbConnexion.ToString()))
       {
         MessageBox.Show("Connection OK", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        targetAuthenticationIsOk = true;
       }
       else
       {
         MessageBox.Show($"Cannot connect to the database: {dbConnexion.DatabaseName} on the server: {dbConnexion.ServerName}", "Connection KO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        targetAuthenticationIsOk = false;
       }
+
+      CheckBothAuthentication();
     }
 
     private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -425,7 +448,7 @@ namespace FredPostgreSqlDataCompare
       if (e.KeyCode == Keys.Enter)
       {
         //don't add text if it's empty
-        if (comboBoxServerSource.Text != "")
+        if (comboBoxServerSource.Text != string.Empty)
         {
           for (int i = 0; i < comboBoxServerSource.Items.Count; i++)
           {
@@ -438,6 +461,15 @@ namespace FredPostgreSqlDataCompare
           
           comboBoxServerSource.Items.Add(comboBoxServerSource.Text);
         }
+      }
+    }
+
+    private void TabControlMain_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      if (tabControlMain.SelectedIndex == 1 && !bothAuthenticationAreOk)
+      {
+        MessageBox.Show("Both connections source and target have not been tested successfully\nYou need to test them both before entering Table tab", "Both connections not tested", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        tabControlMain.SelectedIndex = 0;
       }
     }
   }
