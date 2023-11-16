@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Reflection;
+using System.Web;
 using System.Windows.Forms;
 using Tools;
 
@@ -53,20 +54,57 @@ namespace FredPostgreSqlDataCompare
     private void LoadComboboxes()
     {
       comboBoxServerSource.Items.Clear();
-      comboBoxServerSource.Items.Add($"{Dns.GetHostName()}");
-      comboBoxServerSource.Items.Add("localhost");
+      string previousServersSource = Settings.Default.comboBoxServerSourceItems;
+      if (string.IsNullOrEmpty(previousServersSource))
+      {
+        comboBoxServerSource.Items.Add($"{Dns.GetHostName()}");
+        comboBoxServerSource.Items.Add("localhost");
+      }
+      else
+      {
+        var previousServersSourceArray = previousServersSource.Split(Punctuation.SemiColon);
+        comboBoxServerSource.Items.AddRange(previousServersSourceArray);
+      }
+
       comboBoxServerTarget.Items.Clear();
-      comboBoxServerTarget.Items.Add($"{Dns.GetHostName()}");
-      comboBoxServerTarget.Items.Add("localhost");
+      string previousServersTarget = Settings.Default.comboBoxServerTargetItems;
+      if (string.IsNullOrEmpty(previousServersTarget))
+      {
+        comboBoxServerTarget.Items.Add($"{Dns.GetHostName()}");
+        comboBoxServerTarget.Items.Add("localhost");
+      }
+      else
+      {
+        var previousServersTargetArray = previousServersTarget.Split(Punctuation.SemiColon);
+        comboBoxServerTarget.Items.AddRange(previousServersTargetArray);
+      }
 
       comboBoxSourceSchema.Items.Clear();
-      comboBoxSourceSchema.Items.Add("public");
+      string previousSchemaSource = Settings.Default.comboBoxSourceSchemaItems;
+      if (string.IsNullOrEmpty(previousSchemaSource))
+      {
+        comboBoxSourceSchema.Items.Add("public");
+      }
+      else
+      {
+        var previousSchemasSourceArray = previousSchemaSource.Split(Punctuation.SemiColon);
+        comboBoxSourceSchema.Items.AddRange(previousSchemasSourceArray);
+      }
 
       comboBoxTargetSchema.Items.Clear();
-      comboBoxTargetSchema.Items.Add("public");
+      string previousSchemaTarget = Settings.Default.comboBoxTargetSchemaItems;
+      if (string.IsNullOrEmpty(previousSchemaTarget))
+      {
+        comboBoxTargetSchema.Items.Add("public");
+      }
+      else
+      {
+        var previousSchemasTargetArray = previousSchemaTarget.Split(Punctuation.SemiColon);
+        comboBoxTargetSchema.Items.AddRange(previousSchemasTargetArray);
+      }
 
-      comboBoxSourceSchema.SelectedIndex = Settings.Default.ComboBoxSourceAuthenticationIndex;
-      comboBoxTargetSchema.SelectedIndex = Settings.Default.ComboBoxTargetAuthenticationIndex;
+      comboBoxSourceSchema.SelectedIndex = Settings.Default.comboBoxSourceSchemaIndex;
+      comboBoxTargetSchema.SelectedIndex = Settings.Default.comboBoxTargetSchemaIndex;
       checkBoxSourceRememberCredentials.Checked = Settings.Default.CheckBoxSourceRememberCredentials;
       checkBoxTargetRememberCredentials.Checked = Settings.Default.CheckBoxTargetRememberCredentials;
       textBoxTargetName.Text = Settings.Default.textBoxTargetName;

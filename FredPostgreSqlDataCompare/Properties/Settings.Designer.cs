@@ -25,30 +25,6 @@ namespace FredPostgreSqlDataCompare.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int ComboBoxSourceAuthenticationIndex {
-            get {
-                return ((int)(this["ComboBoxSourceAuthenticationIndex"]));
-            }
-            set {
-                this["ComboBoxSourceAuthenticationIndex"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int ComboBoxTargetAuthenticationIndex {
-            get {
-                return ((int)(this["ComboBoxTargetAuthenticationIndex"]));
-            }
-            set {
-                this["ComboBoxTargetAuthenticationIndex"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool CheckBoxSourceRememberCredentials {
             get {
@@ -236,6 +212,54 @@ namespace FredPostgreSqlDataCompare.Properties {
             }
             set {
                 this["comboBoxServerTargetItems"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string comboBoxSourceSchemaItems {
+            get {
+                return ((string)(this["comboBoxSourceSchemaItems"]));
+            }
+            set {
+                this["comboBoxSourceSchemaItems"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string comboBoxTargetSchemaItems {
+            get {
+                return ((string)(this["comboBoxTargetSchemaItems"]));
+            }
+            set {
+                this["comboBoxTargetSchemaItems"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int comboBoxSourceSchemaIndex {
+            get {
+                return ((int)(this["comboBoxSourceSchemaIndex"]));
+            }
+            set {
+                this["comboBoxSourceSchemaIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int comboBoxTargetSchemaIndex {
+            get {
+                return ((int)(this["comboBoxTargetSchemaIndex"]));
+            }
+            set {
+                this["comboBoxTargetSchemaIndex"] = value;
             }
         }
     }
