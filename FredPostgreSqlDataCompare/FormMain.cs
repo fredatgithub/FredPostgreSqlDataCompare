@@ -24,9 +24,34 @@ namespace FredPostgreSqlDataCompare
     private void FormMain_Load(object sender, EventArgs e)
     {
       LoadComboboxes();
+      LoadAuthentificationParameters();
       GetWindowValue();
       DisplayTitle();
       DisableNotImplementedMenuItems();
+    }
+
+    private void LoadAuthentificationParameters()
+    {
+      if (checkBoxSourceRememberCredentials.Checked)
+      {
+        var sourceUserName = "to be decrypted";
+        var sourceUserPassword = "to be decrypted";
+        var targetUserName = "to be decrypted";
+        var targetUserPassword = "to be decrypted";
+      }
+    }
+
+    private void SaveAuthentificationParameters()
+    {
+      if (checkBoxSourceRememberCredentials.Checked)
+      {
+        var sourceUserName = textBoxSourceName.Text;
+        var sourceUserPassword = textBoxSourcePassword.Text;
+        var sourceDatabaseName = textBoxDatabaseNameSource.Text;
+
+      }
+
+
     }
 
     private void DisableNotImplementedMenuItems()
@@ -56,6 +81,8 @@ namespace FredPostgreSqlDataCompare
     {
       textBoxSourceServer.Text = Settings.Default.comboBoxServerSourceItems;
       textBoxTargetServer.Text = Settings.Default.comboBoxServerTargetItems;
+      checkBoxSourceRememberCredentials.Checked = Settings.Default.CheckBoxSourceRememberCredentials;
+      checkBoxTargetRememberCredentials.Checked = Settings.Default.CheckBoxTargetRememberCredentials;
 
       comboBoxSourceSchema.Items.Clear();
       string previousSchemaSource = Settings.Default.comboBoxSourceSchemaItems;
@@ -83,8 +110,10 @@ namespace FredPostgreSqlDataCompare
 
       comboBoxSourceSchema.SelectedIndex = Settings.Default.comboBoxSourceSchemaIndex;
       comboBoxTargetSchema.SelectedIndex = Settings.Default.comboBoxTargetSchemaIndex;
+
       checkBoxSourceRememberCredentials.Checked = Settings.Default.CheckBoxSourceRememberCredentials;
       checkBoxTargetRememberCredentials.Checked = Settings.Default.CheckBoxTargetRememberCredentials;
+      
       textBoxTargetName.Text = Settings.Default.textBoxTargetName;
       textBoxSourceName.Text = Settings.Default.textBoxSourceName;
 
@@ -119,6 +148,8 @@ namespace FredPostgreSqlDataCompare
       Settings.Default.WindowTop = Top;
       Settings.Default.comboBoxServerSourceItems  = textBoxSourceServer.Text;
       Settings.Default.comboBoxServerTargetItems = textBoxTargetServer.Text;
+      Settings.Default.CheckBoxSourceRememberCredentials = checkBoxSourceRememberCredentials.Checked;
+      Settings.Default.CheckBoxTargetRememberCredentials = checkBoxTargetRememberCredentials.Checked;
       Settings.Default.Save();
     }
 
@@ -128,10 +159,9 @@ namespace FredPostgreSqlDataCompare
       Height = Settings.Default.WindowHeight;
       Top = Settings.Default.WindowTop < 0 ? 0 : Settings.Default.WindowTop;
       Left = Settings.Default.WindowLeft < 0 ? 0 : Settings.Default.WindowLeft;
-      //comboBoxServerSource.SelectedIndex = Settings.Default.comboBoxServerSourceIndex;
-      //comboBoxServerTarget.SelectedIndex = Settings.Default.comboBoxServerTargetIndex;
       textBoxSourcePort.Text = Settings.Default.TextBoxSourcePort;
       textBoxTargetPort.Text = Settings.Default.TextBoxTargetPort;
+
       Settings.Default.Save();
     }
 
@@ -386,6 +416,16 @@ namespace FredPostgreSqlDataCompare
         MessageBox.Show("Both connections source and target have not been tested successfully\nYou need to test them both before entering Table tab", "Both connections not tested", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         tabControlMain.SelectedIndex = 0;
       }
+    }
+
+    private void ButtonCopyUserName_Click(object sender, EventArgs e)
+    {
+      textBoxTargetName.Text = textBoxSourceName.Text;
+    }
+
+    private void ButtonCopyDatabaseName_Click(object sender, EventArgs e)
+    {
+      textBoxDatabaseNameTarget.Text = textBoxDatabaseNameSource.Text;
     }
   }
 }

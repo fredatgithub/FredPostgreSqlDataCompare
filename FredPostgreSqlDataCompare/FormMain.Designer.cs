@@ -61,6 +61,10 @@
       this.àproposdeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tabControlMain = new System.Windows.Forms.TabControl();
       this.tabPageDataSources = new System.Windows.Forms.TabPage();
+      this.buttonCopyDatabaseName = new System.Windows.Forms.Button();
+      this.buttonCopyUserName = new System.Windows.Forms.Button();
+      this.textBoxTargetServer = new System.Windows.Forms.TextBox();
+      this.textBoxSourceServer = new System.Windows.Forms.TextBox();
       this.textBoxDatabaseNameTarget = new System.Windows.Forms.TextBox();
       this.labelDatabaseNameTarget = new System.Windows.Forms.Label();
       this.textBoxDatabaseNameSource = new System.Windows.Forms.TextBox();
@@ -106,8 +110,6 @@
       this.labelSourceServer = new System.Windows.Forms.Label();
       this.labelSourceOperation = new System.Windows.Forms.Label();
       this.tabPageTables = new System.Windows.Forms.TabPage();
-      this.textBoxSourceServer = new System.Windows.Forms.TextBox();
-      this.textBoxTargetServer = new System.Windows.Forms.TextBox();
       this.menuStrip1.SuspendLayout();
       this.tabControlMain.SuspendLayout();
       this.tabPageDataSources.SuspendLayout();
@@ -376,6 +378,8 @@
       // 
       // tabPageDataSources
       // 
+      this.tabPageDataSources.Controls.Add(this.buttonCopyDatabaseName);
+      this.tabPageDataSources.Controls.Add(this.buttonCopyUserName);
       this.tabPageDataSources.Controls.Add(this.textBoxTargetServer);
       this.tabPageDataSources.Controls.Add(this.textBoxSourceServer);
       this.tabPageDataSources.Controls.Add(this.textBoxDatabaseNameTarget);
@@ -432,6 +436,40 @@
       this.tabPageDataSources.Text = "Data Sources";
       this.tabPageDataSources.UseVisualStyleBackColor = true;
       // 
+      // buttonCopyDatabaseName
+      // 
+      this.buttonCopyDatabaseName.Location = new System.Drawing.Point(633, 383);
+      this.buttonCopyDatabaseName.Name = "buttonCopyDatabaseName";
+      this.buttonCopyDatabaseName.Size = new System.Drawing.Size(70, 34);
+      this.buttonCopyDatabaseName.TabIndex = 91;
+      this.buttonCopyDatabaseName.Text = "-->";
+      this.buttonCopyDatabaseName.UseVisualStyleBackColor = true;
+      this.buttonCopyDatabaseName.Click += new System.EventHandler(this.ButtonCopyDatabaseName_Click);
+      // 
+      // buttonCopyUserName
+      // 
+      this.buttonCopyUserName.Location = new System.Drawing.Point(633, 281);
+      this.buttonCopyUserName.Name = "buttonCopyUserName";
+      this.buttonCopyUserName.Size = new System.Drawing.Size(70, 34);
+      this.buttonCopyUserName.TabIndex = 90;
+      this.buttonCopyUserName.Text = "-->";
+      this.buttonCopyUserName.UseVisualStyleBackColor = true;
+      this.buttonCopyUserName.Click += new System.EventHandler(this.ButtonCopyUserName_Click);
+      // 
+      // textBoxTargetServer
+      // 
+      this.textBoxTargetServer.Location = new System.Drawing.Point(739, 176);
+      this.textBoxTargetServer.Name = "textBoxTargetServer";
+      this.textBoxTargetServer.Size = new System.Drawing.Size(558, 35);
+      this.textBoxTargetServer.TabIndex = 89;
+      // 
+      // textBoxSourceServer
+      // 
+      this.textBoxSourceServer.Location = new System.Drawing.Point(73, 176);
+      this.textBoxSourceServer.Name = "textBoxSourceServer";
+      this.textBoxSourceServer.Size = new System.Drawing.Size(537, 35);
+      this.textBoxSourceServer.TabIndex = 88;
+      // 
       // textBoxDatabaseNameTarget
       // 
       this.textBoxDatabaseNameTarget.Location = new System.Drawing.Point(944, 385);
@@ -468,7 +506,7 @@
       // 
       // buttonTestconnectionTarget
       // 
-      this.buttonTestconnectionTarget.Location = new System.Drawing.Point(902, 489);
+      this.buttonTestconnectionTarget.Location = new System.Drawing.Point(944, 489);
       this.buttonTestconnectionTarget.Name = "buttonTestconnectionTarget";
       this.buttonTestconnectionTarget.Size = new System.Drawing.Size(278, 38);
       this.buttonTestconnectionTarget.TabIndex = 83;
@@ -478,7 +516,7 @@
       // 
       // buttonTestConnection
       // 
-      this.buttonTestConnection.Location = new System.Drawing.Point(214, 489);
+      this.buttonTestConnection.Location = new System.Drawing.Point(255, 489);
       this.buttonTestConnection.Name = "buttonTestConnection";
       this.buttonTestConnection.Size = new System.Drawing.Size(266, 38);
       this.buttonTestConnection.TabIndex = 82;
@@ -488,7 +526,7 @@
       // 
       // textBoxTargetPort
       // 
-      this.textBoxTargetPort.Location = new System.Drawing.Point(902, 234);
+      this.textBoxTargetPort.Location = new System.Drawing.Point(944, 234);
       this.textBoxTargetPort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.textBoxTargetPort.Name = "textBoxTargetPort";
       this.textBoxTargetPort.Size = new System.Drawing.Size(178, 35);
@@ -497,7 +535,7 @@
       // 
       // textBoxSourcePort
       // 
-      this.textBoxSourcePort.Location = new System.Drawing.Point(214, 235);
+      this.textBoxSourcePort.Location = new System.Drawing.Point(255, 235);
       this.textBoxSourcePort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.textBoxSourcePort.Name = "textBoxSourcePort";
       this.textBoxSourcePort.Size = new System.Drawing.Size(178, 35);
@@ -524,7 +562,7 @@
       // 
       // buttonCopyServerName
       // 
-      this.buttonCopyServerName.Location = new System.Drawing.Point(633, 172);
+      this.buttonCopyServerName.Location = new System.Drawing.Point(633, 177);
       this.buttonCopyServerName.Name = "buttonCopyServerName";
       this.buttonCopyServerName.Size = new System.Drawing.Size(70, 34);
       this.buttonCopyServerName.TabIndex = 77;
@@ -639,7 +677,7 @@
       // checkBoxTargetRememberCredentials
       // 
       this.checkBoxTargetRememberCredentials.AutoSize = true;
-      this.checkBoxTargetRememberCredentials.Location = new System.Drawing.Point(902, 440);
+      this.checkBoxTargetRememberCredentials.Location = new System.Drawing.Point(944, 440);
       this.checkBoxTargetRememberCredentials.Name = "checkBoxTargetRememberCredentials";
       this.checkBoxTargetRememberCredentials.Size = new System.Drawing.Size(284, 33);
       this.checkBoxTargetRememberCredentials.TabIndex = 64;
@@ -648,17 +686,17 @@
       // 
       // textBoxTargetPassword
       // 
-      this.textBoxTargetPassword.Location = new System.Drawing.Point(902, 329);
+      this.textBoxTargetPassword.Location = new System.Drawing.Point(944, 329);
       this.textBoxTargetPassword.Name = "textBoxTargetPassword";
       this.textBoxTargetPassword.PasswordChar = '*';
-      this.textBoxTargetPassword.Size = new System.Drawing.Size(396, 35);
+      this.textBoxTargetPassword.Size = new System.Drawing.Size(354, 35);
       this.textBoxTargetPassword.TabIndex = 63;
       // 
       // textBoxTargetName
       // 
-      this.textBoxTargetName.Location = new System.Drawing.Point(902, 280);
+      this.textBoxTargetName.Location = new System.Drawing.Point(944, 280);
       this.textBoxTargetName.Name = "textBoxTargetName";
-      this.textBoxTargetName.Size = new System.Drawing.Size(396, 35);
+      this.textBoxTargetName.Size = new System.Drawing.Size(354, 35);
       this.textBoxTargetName.TabIndex = 62;
       // 
       // labelTargetPassword
@@ -758,7 +796,7 @@
       // checkBoxSourceRememberCredentials
       // 
       this.checkBoxSourceRememberCredentials.AutoSize = true;
-      this.checkBoxSourceRememberCredentials.Location = new System.Drawing.Point(214, 437);
+      this.checkBoxSourceRememberCredentials.Location = new System.Drawing.Point(255, 437);
       this.checkBoxSourceRememberCredentials.Name = "checkBoxSourceRememberCredentials";
       this.checkBoxSourceRememberCredentials.Size = new System.Drawing.Size(284, 33);
       this.checkBoxSourceRememberCredentials.TabIndex = 49;
@@ -767,17 +805,17 @@
       // 
       // textBoxSourcePassword
       // 
-      this.textBoxSourcePassword.Location = new System.Drawing.Point(214, 328);
+      this.textBoxSourcePassword.Location = new System.Drawing.Point(255, 328);
       this.textBoxSourcePassword.Name = "textBoxSourcePassword";
       this.textBoxSourcePassword.PasswordChar = '*';
-      this.textBoxSourcePassword.Size = new System.Drawing.Size(396, 35);
+      this.textBoxSourcePassword.Size = new System.Drawing.Size(355, 35);
       this.textBoxSourcePassword.TabIndex = 48;
       // 
       // textBoxSourceName
       // 
-      this.textBoxSourceName.Location = new System.Drawing.Point(214, 280);
+      this.textBoxSourceName.Location = new System.Drawing.Point(255, 280);
       this.textBoxSourceName.Name = "textBoxSourceName";
-      this.textBoxSourceName.Size = new System.Drawing.Size(396, 35);
+      this.textBoxSourceName.Size = new System.Drawing.Size(355, 35);
       this.textBoxSourceName.TabIndex = 47;
       // 
       // labelSourcePassword
@@ -846,20 +884,6 @@
       this.tabPageTables.TabIndex = 1;
       this.tabPageTables.Text = "Tables";
       this.tabPageTables.UseVisualStyleBackColor = true;
-      // 
-      // textBoxSourceServer
-      // 
-      this.textBoxSourceServer.Location = new System.Drawing.Point(73, 176);
-      this.textBoxSourceServer.Name = "textBoxSourceServer";
-      this.textBoxSourceServer.Size = new System.Drawing.Size(537, 35);
-      this.textBoxSourceServer.TabIndex = 88;
-      // 
-      // textBoxTargetServer
-      // 
-      this.textBoxTargetServer.Location = new System.Drawing.Point(739, 176);
-      this.textBoxTargetServer.Name = "textBoxTargetServer";
-      this.textBoxTargetServer.Size = new System.Drawing.Size(558, 35);
-      this.textBoxTargetServer.TabIndex = 89;
       // 
       // FormMain
       // 
@@ -965,6 +989,8 @@
     private System.Windows.Forms.TextBox textBoxDatabaseNameTarget;
     private System.Windows.Forms.TextBox textBoxTargetServer;
     private System.Windows.Forms.TextBox textBoxSourceServer;
+    private System.Windows.Forms.Button buttonCopyUserName;
+    private System.Windows.Forms.Button buttonCopyDatabaseName;
   }
 }
 
