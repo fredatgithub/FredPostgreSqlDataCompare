@@ -91,7 +91,6 @@
       this.comboBoxTargetSchema = new System.Windows.Forms.ComboBox();
       this.labelTargetSchema = new System.Windows.Forms.Label();
       this.labelTargetServer = new System.Windows.Forms.Label();
-      this.comboBoxServerTarget = new System.Windows.Forms.ComboBox();
       this.labelTargetOperation = new System.Windows.Forms.Label();
       this.buttonSourceCreate = new System.Windows.Forms.Button();
       this.buttonSourceRefresh = new System.Windows.Forms.Button();
@@ -105,9 +104,10 @@
       this.comboBoxSourceSchema = new System.Windows.Forms.ComboBox();
       this.labelSourceSchema = new System.Windows.Forms.Label();
       this.labelSourceServer = new System.Windows.Forms.Label();
-      this.comboBoxServerSource = new System.Windows.Forms.ComboBox();
       this.labelSourceOperation = new System.Windows.Forms.Label();
       this.tabPageTables = new System.Windows.Forms.TabPage();
+      this.textBoxSourceServer = new System.Windows.Forms.TextBox();
+      this.textBoxTargetServer = new System.Windows.Forms.TextBox();
       this.menuStrip1.SuspendLayout();
       this.tabControlMain.SuspendLayout();
       this.tabPageDataSources.SuspendLayout();
@@ -115,6 +115,7 @@
       // 
       // menuStrip1
       // 
+      this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
       this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fichierToolStripMenuItem,
@@ -123,8 +124,7 @@
             this.aideToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-      this.menuStrip1.Size = new System.Drawing.Size(973, 24);
+      this.menuStrip1.Size = new System.Drawing.Size(1460, 33);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -142,7 +142,7 @@
             this.toolStripSeparator2,
             this.quitterToolStripMenuItem});
       this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-      this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 22);
+      this.fichierToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
       this.fichierToolStripMenuItem.Text = "&Fichier";
       // 
       // nouveauToolStripMenuItem
@@ -151,7 +151,7 @@
       this.nouveauToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.nouveauToolStripMenuItem.Name = "nouveauToolStripMenuItem";
       this.nouveauToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-      this.nouveauToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+      this.nouveauToolStripMenuItem.Size = new System.Drawing.Size(310, 34);
       this.nouveauToolStripMenuItem.Text = "&Nouveau";
       this.nouveauToolStripMenuItem.Visible = false;
       // 
@@ -161,14 +161,14 @@
       this.ouvrirToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
       this.ouvrirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-      this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+      this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(310, 34);
       this.ouvrirToolStripMenuItem.Text = "&Ouvrir";
       this.ouvrirToolStripMenuItem.Visible = false;
       // 
       // toolStripSeparator
       // 
       this.toolStripSeparator.Name = "toolStripSeparator";
-      this.toolStripSeparator.Size = new System.Drawing.Size(202, 6);
+      this.toolStripSeparator.Size = new System.Drawing.Size(307, 6);
       this.toolStripSeparator.Visible = false;
       // 
       // enregistrerToolStripMenuItem
@@ -177,21 +177,21 @@
       this.enregistrerToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.enregistrerToolStripMenuItem.Name = "enregistrerToolStripMenuItem";
       this.enregistrerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-      this.enregistrerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+      this.enregistrerToolStripMenuItem.Size = new System.Drawing.Size(310, 34);
       this.enregistrerToolStripMenuItem.Text = "&Enregistrer";
       this.enregistrerToolStripMenuItem.Visible = false;
       // 
       // enregistrersousToolStripMenuItem
       // 
       this.enregistrersousToolStripMenuItem.Name = "enregistrersousToolStripMenuItem";
-      this.enregistrersousToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+      this.enregistrersousToolStripMenuItem.Size = new System.Drawing.Size(310, 34);
       this.enregistrersousToolStripMenuItem.Text = "Enregistrer &sous";
       this.enregistrersousToolStripMenuItem.Visible = false;
       // 
       // toolStripSeparator1
       // 
       this.toolStripSeparator1.Name = "toolStripSeparator1";
-      this.toolStripSeparator1.Size = new System.Drawing.Size(202, 6);
+      this.toolStripSeparator1.Size = new System.Drawing.Size(307, 6);
       this.toolStripSeparator1.Visible = false;
       // 
       // imprimerToolStripMenuItem
@@ -200,7 +200,7 @@
       this.imprimerToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.imprimerToolStripMenuItem.Name = "imprimerToolStripMenuItem";
       this.imprimerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-      this.imprimerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+      this.imprimerToolStripMenuItem.Size = new System.Drawing.Size(310, 34);
       this.imprimerToolStripMenuItem.Text = "&Imprimer";
       this.imprimerToolStripMenuItem.Visible = false;
       // 
@@ -209,20 +209,20 @@
       this.aperçuavantimpressionToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aperçuavantimpressionToolStripMenuItem.Image")));
       this.aperçuavantimpressionToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.aperçuavantimpressionToolStripMenuItem.Name = "aperçuavantimpressionToolStripMenuItem";
-      this.aperçuavantimpressionToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+      this.aperçuavantimpressionToolStripMenuItem.Size = new System.Drawing.Size(310, 34);
       this.aperçuavantimpressionToolStripMenuItem.Text = "Aperçu a&vant impression";
       this.aperçuavantimpressionToolStripMenuItem.Visible = false;
       // 
       // toolStripSeparator2
       // 
       this.toolStripSeparator2.Name = "toolStripSeparator2";
-      this.toolStripSeparator2.Size = new System.Drawing.Size(202, 6);
+      this.toolStripSeparator2.Size = new System.Drawing.Size(307, 6);
       this.toolStripSeparator2.Visible = false;
       // 
       // quitterToolStripMenuItem
       // 
       this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-      this.quitterToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+      this.quitterToolStripMenuItem.Size = new System.Drawing.Size(310, 34);
       this.quitterToolStripMenuItem.Text = "&Quitter";
       this.quitterToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItem_Click);
       // 
@@ -238,27 +238,27 @@
             this.toolStripSeparator4,
             this.sélectionnertoutToolStripMenuItem});
       this.editionToolStripMenuItem.Name = "editionToolStripMenuItem";
-      this.editionToolStripMenuItem.Size = new System.Drawing.Size(56, 22);
+      this.editionToolStripMenuItem.Size = new System.Drawing.Size(83, 29);
       this.editionToolStripMenuItem.Text = "&Edition";
       // 
       // annulerToolStripMenuItem
       // 
       this.annulerToolStripMenuItem.Name = "annulerToolStripMenuItem";
       this.annulerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-      this.annulerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.annulerToolStripMenuItem.Size = new System.Drawing.Size(248, 34);
       this.annulerToolStripMenuItem.Text = "&Annuler";
       // 
       // rétablirToolStripMenuItem
       // 
       this.rétablirToolStripMenuItem.Name = "rétablirToolStripMenuItem";
       this.rétablirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-      this.rétablirToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.rétablirToolStripMenuItem.Size = new System.Drawing.Size(248, 34);
       this.rétablirToolStripMenuItem.Text = "&Rétablir";
       // 
       // toolStripSeparator3
       // 
       this.toolStripSeparator3.Name = "toolStripSeparator3";
-      this.toolStripSeparator3.Size = new System.Drawing.Size(161, 6);
+      this.toolStripSeparator3.Size = new System.Drawing.Size(245, 6);
       // 
       // couperToolStripMenuItem
       // 
@@ -266,7 +266,7 @@
       this.couperToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.couperToolStripMenuItem.Name = "couperToolStripMenuItem";
       this.couperToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-      this.couperToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.couperToolStripMenuItem.Size = new System.Drawing.Size(248, 34);
       this.couperToolStripMenuItem.Text = "&Couper";
       // 
       // copierToolStripMenuItem
@@ -275,7 +275,7 @@
       this.copierToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.copierToolStripMenuItem.Name = "copierToolStripMenuItem";
       this.copierToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-      this.copierToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.copierToolStripMenuItem.Size = new System.Drawing.Size(248, 34);
       this.copierToolStripMenuItem.Text = "Co&pier";
       // 
       // collerToolStripMenuItem
@@ -284,18 +284,18 @@
       this.collerToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.collerToolStripMenuItem.Name = "collerToolStripMenuItem";
       this.collerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-      this.collerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.collerToolStripMenuItem.Size = new System.Drawing.Size(248, 34);
       this.collerToolStripMenuItem.Text = "Co&ller";
       // 
       // toolStripSeparator4
       // 
       this.toolStripSeparator4.Name = "toolStripSeparator4";
-      this.toolStripSeparator4.Size = new System.Drawing.Size(161, 6);
+      this.toolStripSeparator4.Size = new System.Drawing.Size(245, 6);
       // 
       // sélectionnertoutToolStripMenuItem
       // 
       this.sélectionnertoutToolStripMenuItem.Name = "sélectionnertoutToolStripMenuItem";
-      this.sélectionnertoutToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.sélectionnertoutToolStripMenuItem.Size = new System.Drawing.Size(248, 34);
       this.sélectionnertoutToolStripMenuItem.Text = "Sélectio&nner tout";
       // 
       // outilsToolStripMenuItem
@@ -304,19 +304,19 @@
             this.personnaliserToolStripMenuItem,
             this.optionsToolStripMenuItem});
       this.outilsToolStripMenuItem.Name = "outilsToolStripMenuItem";
-      this.outilsToolStripMenuItem.Size = new System.Drawing.Size(50, 22);
+      this.outilsToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
       this.outilsToolStripMenuItem.Text = "&Outils";
       // 
       // personnaliserToolStripMenuItem
       // 
       this.personnaliserToolStripMenuItem.Name = "personnaliserToolStripMenuItem";
-      this.personnaliserToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+      this.personnaliserToolStripMenuItem.Size = new System.Drawing.Size(217, 34);
       this.personnaliserToolStripMenuItem.Text = "&Personnaliser";
       // 
       // optionsToolStripMenuItem
       // 
       this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(217, 34);
       this.optionsToolStripMenuItem.Text = "&Options";
       // 
       // aideToolStripMenuItem
@@ -328,36 +328,36 @@
             this.toolStripSeparator5,
             this.àproposdeToolStripMenuItem});
       this.aideToolStripMenuItem.Name = "aideToolStripMenuItem";
-      this.aideToolStripMenuItem.Size = new System.Drawing.Size(43, 22);
+      this.aideToolStripMenuItem.Size = new System.Drawing.Size(64, 29);
       this.aideToolStripMenuItem.Text = "&Aide";
       // 
       // sommaireToolStripMenuItem
       // 
       this.sommaireToolStripMenuItem.Name = "sommaireToolStripMenuItem";
-      this.sommaireToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+      this.sommaireToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
       this.sommaireToolStripMenuItem.Text = "&Sommaire";
       // 
       // indexToolStripMenuItem
       // 
       this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-      this.indexToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+      this.indexToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
       this.indexToolStripMenuItem.Text = "&Index";
       // 
       // rechercherToolStripMenuItem
       // 
       this.rechercherToolStripMenuItem.Name = "rechercherToolStripMenuItem";
-      this.rechercherToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+      this.rechercherToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
       this.rechercherToolStripMenuItem.Text = "&Rechercher";
       // 
       // toolStripSeparator5
       // 
       this.toolStripSeparator5.Name = "toolStripSeparator5";
-      this.toolStripSeparator5.Size = new System.Drawing.Size(144, 6);
+      this.toolStripSeparator5.Size = new System.Drawing.Size(223, 6);
       // 
       // àproposdeToolStripMenuItem
       // 
       this.àproposdeToolStripMenuItem.Name = "àproposdeToolStripMenuItem";
-      this.àproposdeToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+      this.àproposdeToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
       this.àproposdeToolStripMenuItem.Text = "À &propos de...";
       this.àproposdeToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
       // 
@@ -366,15 +366,18 @@
       this.tabControlMain.Controls.Add(this.tabPageDataSources);
       this.tabControlMain.Controls.Add(this.tabPageTables);
       this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.tabControlMain.Location = new System.Drawing.Point(0, 24);
+      this.tabControlMain.Location = new System.Drawing.Point(0, 33);
+      this.tabControlMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.tabControlMain.Name = "tabControlMain";
       this.tabControlMain.SelectedIndex = 0;
-      this.tabControlMain.Size = new System.Drawing.Size(973, 675);
+      this.tabControlMain.Size = new System.Drawing.Size(1460, 1042);
       this.tabControlMain.TabIndex = 1;
       this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.TabControlMain_SelectedIndexChanged);
       // 
       // tabPageDataSources
       // 
+      this.tabPageDataSources.Controls.Add(this.textBoxTargetServer);
+      this.tabPageDataSources.Controls.Add(this.textBoxSourceServer);
       this.tabPageDataSources.Controls.Add(this.textBoxDatabaseNameTarget);
       this.tabPageDataSources.Controls.Add(this.labelDatabaseNameTarget);
       this.tabPageDataSources.Controls.Add(this.textBoxDatabaseNameSource);
@@ -405,7 +408,6 @@
       this.tabPageDataSources.Controls.Add(this.comboBoxTargetSchema);
       this.tabPageDataSources.Controls.Add(this.labelTargetSchema);
       this.tabPageDataSources.Controls.Add(this.labelTargetServer);
-      this.tabPageDataSources.Controls.Add(this.comboBoxServerTarget);
       this.tabPageDataSources.Controls.Add(this.labelTargetOperation);
       this.tabPageDataSources.Controls.Add(this.buttonSourceCreate);
       this.tabPageDataSources.Controls.Add(this.buttonSourceRefresh);
@@ -419,61 +421,56 @@
       this.tabPageDataSources.Controls.Add(this.comboBoxSourceSchema);
       this.tabPageDataSources.Controls.Add(this.labelSourceSchema);
       this.tabPageDataSources.Controls.Add(this.labelSourceServer);
-      this.tabPageDataSources.Controls.Add(this.comboBoxServerSource);
       this.tabPageDataSources.Controls.Add(this.labelSourceOperation);
       this.tabPageDataSources.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.tabPageDataSources.Location = new System.Drawing.Point(4, 22);
+      this.tabPageDataSources.Location = new System.Drawing.Point(4, 29);
+      this.tabPageDataSources.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.tabPageDataSources.Name = "tabPageDataSources";
-      this.tabPageDataSources.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-      this.tabPageDataSources.Size = new System.Drawing.Size(965, 649);
+      this.tabPageDataSources.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.tabPageDataSources.Size = new System.Drawing.Size(1452, 1009);
       this.tabPageDataSources.TabIndex = 0;
       this.tabPageDataSources.Text = "Data Sources";
       this.tabPageDataSources.UseVisualStyleBackColor = true;
       // 
       // textBoxDatabaseNameTarget
       // 
-      this.textBoxDatabaseNameTarget.Location = new System.Drawing.Point(629, 250);
-      this.textBoxDatabaseNameTarget.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.textBoxDatabaseNameTarget.Location = new System.Drawing.Point(944, 385);
       this.textBoxDatabaseNameTarget.Name = "textBoxDatabaseNameTarget";
       this.textBoxDatabaseNameTarget.PasswordChar = '*';
-      this.textBoxDatabaseNameTarget.Size = new System.Drawing.Size(238, 26);
+      this.textBoxDatabaseNameTarget.Size = new System.Drawing.Size(355, 35);
       this.textBoxDatabaseNameTarget.TabIndex = 87;
       // 
       // labelDatabaseNameTarget
       // 
       this.labelDatabaseNameTarget.AutoSize = true;
-      this.labelDatabaseNameTarget.Location = new System.Drawing.Point(489, 250);
-      this.labelDatabaseNameTarget.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelDatabaseNameTarget.Location = new System.Drawing.Point(734, 385);
       this.labelDatabaseNameTarget.Name = "labelDatabaseNameTarget";
-      this.labelDatabaseNameTarget.Size = new System.Drawing.Size(125, 20);
+      this.labelDatabaseNameTarget.Size = new System.Drawing.Size(186, 29);
       this.labelDatabaseNameTarget.TabIndex = 86;
       this.labelDatabaseNameTarget.Text = "Database Name";
       // 
       // textBoxDatabaseNameSource
       // 
-      this.textBoxDatabaseNameSource.Location = new System.Drawing.Point(170, 248);
-      this.textBoxDatabaseNameSource.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.textBoxDatabaseNameSource.Location = new System.Drawing.Point(255, 382);
       this.textBoxDatabaseNameSource.Name = "textBoxDatabaseNameSource";
       this.textBoxDatabaseNameSource.PasswordChar = '*';
-      this.textBoxDatabaseNameSource.Size = new System.Drawing.Size(238, 26);
+      this.textBoxDatabaseNameSource.Size = new System.Drawing.Size(355, 35);
       this.textBoxDatabaseNameSource.TabIndex = 85;
       // 
       // labelDatabaseNameSource
       // 
       this.labelDatabaseNameSource.AutoSize = true;
-      this.labelDatabaseNameSource.Location = new System.Drawing.Point(45, 250);
-      this.labelDatabaseNameSource.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelDatabaseNameSource.Location = new System.Drawing.Point(68, 385);
       this.labelDatabaseNameSource.Name = "labelDatabaseNameSource";
-      this.labelDatabaseNameSource.Size = new System.Drawing.Size(125, 20);
+      this.labelDatabaseNameSource.Size = new System.Drawing.Size(186, 29);
       this.labelDatabaseNameSource.TabIndex = 84;
       this.labelDatabaseNameSource.Text = "Database Name";
       // 
       // buttonTestconnectionTarget
       // 
-      this.buttonTestconnectionTarget.Location = new System.Drawing.Point(601, 318);
-      this.buttonTestconnectionTarget.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonTestconnectionTarget.Location = new System.Drawing.Point(902, 489);
       this.buttonTestconnectionTarget.Name = "buttonTestconnectionTarget";
-      this.buttonTestconnectionTarget.Size = new System.Drawing.Size(185, 25);
+      this.buttonTestconnectionTarget.Size = new System.Drawing.Size(278, 38);
       this.buttonTestconnectionTarget.TabIndex = 83;
       this.buttonTestconnectionTarget.Text = "Test connection";
       this.buttonTestconnectionTarget.UseVisualStyleBackColor = true;
@@ -481,10 +478,9 @@
       // 
       // buttonTestConnection
       // 
-      this.buttonTestConnection.Location = new System.Drawing.Point(143, 318);
-      this.buttonTestConnection.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonTestConnection.Location = new System.Drawing.Point(214, 489);
       this.buttonTestConnection.Name = "buttonTestConnection";
-      this.buttonTestConnection.Size = new System.Drawing.Size(177, 25);
+      this.buttonTestConnection.Size = new System.Drawing.Size(266, 38);
       this.buttonTestConnection.TabIndex = 82;
       this.buttonTestConnection.Text = "Test connection";
       this.buttonTestConnection.UseVisualStyleBackColor = true;
@@ -492,46 +488,45 @@
       // 
       // textBoxTargetPort
       // 
-      this.textBoxTargetPort.Location = new System.Drawing.Point(601, 152);
+      this.textBoxTargetPort.Location = new System.Drawing.Point(902, 234);
+      this.textBoxTargetPort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.textBoxTargetPort.Name = "textBoxTargetPort";
-      this.textBoxTargetPort.Size = new System.Drawing.Size(120, 26);
+      this.textBoxTargetPort.Size = new System.Drawing.Size(178, 35);
       this.textBoxTargetPort.TabIndex = 81;
       this.textBoxTargetPort.Text = "5432";
       // 
       // textBoxSourcePort
       // 
-      this.textBoxSourcePort.Location = new System.Drawing.Point(143, 153);
+      this.textBoxSourcePort.Location = new System.Drawing.Point(214, 235);
+      this.textBoxSourcePort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.textBoxSourcePort.Name = "textBoxSourcePort";
-      this.textBoxSourcePort.Size = new System.Drawing.Size(120, 26);
+      this.textBoxSourcePort.Size = new System.Drawing.Size(178, 35);
       this.textBoxSourcePort.TabIndex = 80;
       this.textBoxSourcePort.Text = "5432";
       // 
       // labelTargetPort
       // 
       this.labelTargetPort.AutoSize = true;
-      this.labelTargetPort.Location = new System.Drawing.Point(489, 155);
-      this.labelTargetPort.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelTargetPort.Location = new System.Drawing.Point(734, 238);
       this.labelTargetPort.Name = "labelTargetPort";
-      this.labelTargetPort.Size = new System.Drawing.Size(42, 20);
+      this.labelTargetPort.Size = new System.Drawing.Size(63, 29);
       this.labelTargetPort.TabIndex = 79;
       this.labelTargetPort.Text = "Port:";
       // 
       // labelSourcePort
       // 
       this.labelSourcePort.AutoSize = true;
-      this.labelSourcePort.Location = new System.Drawing.Point(43, 155);
-      this.labelSourcePort.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelSourcePort.Location = new System.Drawing.Point(64, 238);
       this.labelSourcePort.Name = "labelSourcePort";
-      this.labelSourcePort.Size = new System.Drawing.Size(42, 20);
+      this.labelSourcePort.Size = new System.Drawing.Size(63, 29);
       this.labelSourcePort.TabIndex = 78;
       this.labelSourcePort.Text = "Port:";
       // 
       // buttonCopyServerName
       // 
-      this.buttonCopyServerName.Location = new System.Drawing.Point(422, 112);
-      this.buttonCopyServerName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonCopyServerName.Location = new System.Drawing.Point(633, 172);
       this.buttonCopyServerName.Name = "buttonCopyServerName";
-      this.buttonCopyServerName.Size = new System.Drawing.Size(47, 22);
+      this.buttonCopyServerName.Size = new System.Drawing.Size(70, 34);
       this.buttonCopyServerName.TabIndex = 77;
       this.buttonCopyServerName.Text = "-->";
       this.buttonCopyServerName.UseVisualStyleBackColor = true;
@@ -539,10 +534,9 @@
       // 
       // buttonCopyPassword
       // 
-      this.buttonCopyPassword.Location = new System.Drawing.Point(422, 214);
-      this.buttonCopyPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonCopyPassword.Location = new System.Drawing.Point(633, 329);
       this.buttonCopyPassword.Name = "buttonCopyPassword";
-      this.buttonCopyPassword.Size = new System.Drawing.Size(47, 22);
+      this.buttonCopyPassword.Size = new System.Drawing.Size(70, 34);
       this.buttonCopyPassword.TabIndex = 76;
       this.buttonCopyPassword.Text = "-->";
       this.buttonCopyPassword.UseVisualStyleBackColor = true;
@@ -552,10 +546,9 @@
       this.buttonCompareCompareNow.BackColor = System.Drawing.Color.RoyalBlue;
       this.buttonCompareCompareNow.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.buttonCompareCompareNow.ForeColor = System.Drawing.Color.White;
-      this.buttonCompareCompareNow.Location = new System.Drawing.Point(519, 530);
-      this.buttonCompareCompareNow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonCompareCompareNow.Location = new System.Drawing.Point(778, 815);
       this.buttonCompareCompareNow.Name = "buttonCompareCompareNow";
-      this.buttonCompareCompareNow.Size = new System.Drawing.Size(110, 30);
+      this.buttonCompareCompareNow.Size = new System.Drawing.Size(165, 46);
       this.buttonCompareCompareNow.TabIndex = 74;
       this.buttonCompareCompareNow.Text = "Compare now";
       this.buttonCompareCompareNow.UseVisualStyleBackColor = false;
@@ -563,70 +556,63 @@
       // 
       // buttonCompareToLeftArrow
       // 
-      this.buttonCompareToLeftArrow.Location = new System.Drawing.Point(422, 530);
-      this.buttonCompareToLeftArrow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonCompareToLeftArrow.Location = new System.Drawing.Point(633, 815);
       this.buttonCompareToLeftArrow.Name = "buttonCompareToLeftArrow";
-      this.buttonCompareToLeftArrow.Size = new System.Drawing.Size(40, 30);
+      this.buttonCompareToLeftArrow.Size = new System.Drawing.Size(60, 46);
       this.buttonCompareToLeftArrow.TabIndex = 73;
       this.buttonCompareToLeftArrow.Text = "<--";
       this.buttonCompareToLeftArrow.UseVisualStyleBackColor = true;
       // 
       // buttonCompareToRightAndLeftArrow
       // 
-      this.buttonCompareToRightAndLeftArrow.Location = new System.Drawing.Point(377, 530);
-      this.buttonCompareToRightAndLeftArrow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonCompareToRightAndLeftArrow.Location = new System.Drawing.Point(566, 815);
       this.buttonCompareToRightAndLeftArrow.Name = "buttonCompareToRightAndLeftArrow";
-      this.buttonCompareToRightAndLeftArrow.Size = new System.Drawing.Size(34, 30);
+      this.buttonCompareToRightAndLeftArrow.Size = new System.Drawing.Size(51, 46);
       this.buttonCompareToRightAndLeftArrow.TabIndex = 72;
       this.buttonCompareToRightAndLeftArrow.Text = "<-->";
       this.buttonCompareToRightAndLeftArrow.UseVisualStyleBackColor = true;
       // 
       // buttonCompareToRightArrow
       // 
-      this.buttonCompareToRightArrow.Location = new System.Drawing.Point(325, 530);
-      this.buttonCompareToRightArrow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonCompareToRightArrow.Location = new System.Drawing.Point(488, 815);
       this.buttonCompareToRightArrow.Name = "buttonCompareToRightArrow";
-      this.buttonCompareToRightArrow.Size = new System.Drawing.Size(44, 30);
+      this.buttonCompareToRightArrow.Size = new System.Drawing.Size(66, 46);
       this.buttonCompareToRightArrow.TabIndex = 71;
       this.buttonCompareToRightArrow.Text = "-->";
       this.buttonCompareToRightArrow.UseVisualStyleBackColor = true;
       // 
       // buttonCompareSaveAs
       // 
-      this.buttonCompareSaveAs.Location = new System.Drawing.Point(121, 531);
-      this.buttonCompareSaveAs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonCompareSaveAs.Location = new System.Drawing.Point(182, 817);
       this.buttonCompareSaveAs.Name = "buttonCompareSaveAs";
-      this.buttonCompareSaveAs.Size = new System.Drawing.Size(71, 30);
+      this.buttonCompareSaveAs.Size = new System.Drawing.Size(106, 46);
       this.buttonCompareSaveAs.TabIndex = 70;
       this.buttonCompareSaveAs.Text = "Save as ...";
       this.buttonCompareSaveAs.UseVisualStyleBackColor = true;
       // 
       // buttonCompareSave
       // 
-      this.buttonCompareSave.Location = new System.Drawing.Point(44, 531);
-      this.buttonCompareSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonCompareSave.Location = new System.Drawing.Point(66, 817);
       this.buttonCompareSave.Name = "buttonCompareSave";
-      this.buttonCompareSave.Size = new System.Drawing.Size(66, 30);
+      this.buttonCompareSave.Size = new System.Drawing.Size(99, 46);
       this.buttonCompareSave.TabIndex = 69;
       this.buttonCompareSave.Text = "Save";
       this.buttonCompareSave.UseVisualStyleBackColor = true;
       // 
       // buttonTargetCreate
       // 
-      this.buttonTargetCreate.Location = new System.Drawing.Point(492, 411);
-      this.buttonTargetCreate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonTargetCreate.Location = new System.Drawing.Point(738, 632);
       this.buttonTargetCreate.Name = "buttonTargetCreate";
-      this.buttonTargetCreate.Size = new System.Drawing.Size(67, 25);
+      this.buttonTargetCreate.Size = new System.Drawing.Size(100, 38);
       this.buttonTargetCreate.TabIndex = 68;
       this.buttonTargetCreate.Text = "Create";
       this.buttonTargetCreate.UseVisualStyleBackColor = true;
       // 
       // buttonTargetRefresh
       // 
-      this.buttonTargetRefresh.Location = new System.Drawing.Point(790, 370);
-      this.buttonTargetRefresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonTargetRefresh.Location = new System.Drawing.Point(1185, 569);
       this.buttonTargetRefresh.Name = "buttonTargetRefresh";
-      this.buttonTargetRefresh.Size = new System.Drawing.Size(75, 25);
+      this.buttonTargetRefresh.Size = new System.Drawing.Size(112, 38);
       this.buttonTargetRefresh.TabIndex = 67;
       this.buttonTargetRefresh.Text = "Refresh";
       this.buttonTargetRefresh.UseVisualStyleBackColor = true;
@@ -635,88 +621,79 @@
       // 
       this.labelTargetDatabase.AutoSize = true;
       this.labelTargetDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelTargetDatabase.Location = new System.Drawing.Point(492, 344);
-      this.labelTargetDatabase.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelTargetDatabase.Location = new System.Drawing.Point(738, 529);
       this.labelTargetDatabase.Name = "labelTargetDatabase";
-      this.labelTargetDatabase.Size = new System.Drawing.Size(87, 20);
+      this.labelTargetDatabase.Size = new System.Drawing.Size(123, 29);
       this.labelTargetDatabase.TabIndex = 66;
       this.labelTargetDatabase.Text = "Database";
       // 
       // comboBoxTargetDatabase
       // 
       this.comboBoxTargetDatabase.FormattingEnabled = true;
-      this.comboBoxTargetDatabase.Location = new System.Drawing.Point(494, 372);
-      this.comboBoxTargetDatabase.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.comboBoxTargetDatabase.Location = new System.Drawing.Point(741, 572);
       this.comboBoxTargetDatabase.Name = "comboBoxTargetDatabase";
-      this.comboBoxTargetDatabase.Size = new System.Drawing.Size(293, 28);
+      this.comboBoxTargetDatabase.Size = new System.Drawing.Size(438, 37);
       this.comboBoxTargetDatabase.TabIndex = 65;
       this.comboBoxTargetDatabase.Text = "Database name";
       // 
       // checkBoxTargetRememberCredentials
       // 
       this.checkBoxTargetRememberCredentials.AutoSize = true;
-      this.checkBoxTargetRememberCredentials.Location = new System.Drawing.Point(601, 286);
-      this.checkBoxTargetRememberCredentials.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.checkBoxTargetRememberCredentials.Location = new System.Drawing.Point(902, 440);
       this.checkBoxTargetRememberCredentials.Name = "checkBoxTargetRememberCredentials";
-      this.checkBoxTargetRememberCredentials.Size = new System.Drawing.Size(188, 24);
+      this.checkBoxTargetRememberCredentials.Size = new System.Drawing.Size(284, 33);
       this.checkBoxTargetRememberCredentials.TabIndex = 64;
       this.checkBoxTargetRememberCredentials.Text = "Remember credentials";
       this.checkBoxTargetRememberCredentials.UseVisualStyleBackColor = true;
       // 
       // textBoxTargetPassword
       // 
-      this.textBoxTargetPassword.Location = new System.Drawing.Point(601, 214);
-      this.textBoxTargetPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.textBoxTargetPassword.Location = new System.Drawing.Point(902, 329);
       this.textBoxTargetPassword.Name = "textBoxTargetPassword";
       this.textBoxTargetPassword.PasswordChar = '*';
-      this.textBoxTargetPassword.Size = new System.Drawing.Size(265, 26);
+      this.textBoxTargetPassword.Size = new System.Drawing.Size(396, 35);
       this.textBoxTargetPassword.TabIndex = 63;
       // 
       // textBoxTargetName
       // 
-      this.textBoxTargetName.Location = new System.Drawing.Point(601, 182);
-      this.textBoxTargetName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.textBoxTargetName.Location = new System.Drawing.Point(902, 280);
       this.textBoxTargetName.Name = "textBoxTargetName";
-      this.textBoxTargetName.Size = new System.Drawing.Size(265, 26);
+      this.textBoxTargetName.Size = new System.Drawing.Size(396, 35);
       this.textBoxTargetName.TabIndex = 62;
       // 
       // labelTargetPassword
       // 
       this.labelTargetPassword.AutoSize = true;
-      this.labelTargetPassword.Location = new System.Drawing.Point(489, 214);
-      this.labelTargetPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelTargetPassword.Location = new System.Drawing.Point(734, 329);
       this.labelTargetPassword.Name = "labelTargetPassword";
-      this.labelTargetPassword.Size = new System.Drawing.Size(78, 20);
+      this.labelTargetPassword.Size = new System.Drawing.Size(120, 29);
       this.labelTargetPassword.TabIndex = 61;
       this.labelTargetPassword.Text = "Password";
       // 
       // labelTargetUserName
       // 
       this.labelTargetUserName.AutoSize = true;
-      this.labelTargetUserName.Location = new System.Drawing.Point(489, 182);
-      this.labelTargetUserName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelTargetUserName.Location = new System.Drawing.Point(734, 280);
       this.labelTargetUserName.Name = "labelTargetUserName";
-      this.labelTargetUserName.Size = new System.Drawing.Size(89, 20);
+      this.labelTargetUserName.Size = new System.Drawing.Size(135, 29);
       this.labelTargetUserName.TabIndex = 60;
       this.labelTargetUserName.Text = "User Name";
       // 
       // comboBoxTargetSchema
       // 
       this.comboBoxTargetSchema.FormattingEnabled = true;
-      this.comboBoxTargetSchema.Location = new System.Drawing.Point(570, 448);
-      this.comboBoxTargetSchema.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.comboBoxTargetSchema.Location = new System.Drawing.Point(855, 689);
       this.comboBoxTargetSchema.Name = "comboBoxTargetSchema";
-      this.comboBoxTargetSchema.Size = new System.Drawing.Size(297, 28);
+      this.comboBoxTargetSchema.Size = new System.Drawing.Size(444, 37);
       this.comboBoxTargetSchema.TabIndex = 59;
       this.comboBoxTargetSchema.Text = "Public";
       // 
       // labelTargetSchema
       // 
       this.labelTargetSchema.AutoSize = true;
-      this.labelTargetSchema.Location = new System.Drawing.Point(492, 448);
-      this.labelTargetSchema.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelTargetSchema.Location = new System.Drawing.Point(738, 689);
       this.labelTargetSchema.Name = "labelTargetSchema";
-      this.labelTargetSchema.Size = new System.Drawing.Size(68, 20);
+      this.labelTargetSchema.Size = new System.Drawing.Size(101, 29);
       this.labelTargetSchema.TabIndex = 58;
       this.labelTargetSchema.Text = "Schema";
       // 
@@ -724,50 +701,36 @@
       // 
       this.labelTargetServer.AutoSize = true;
       this.labelTargetServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelTargetServer.Location = new System.Drawing.Point(492, 86);
-      this.labelTargetServer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelTargetServer.Location = new System.Drawing.Point(738, 132);
       this.labelTargetServer.Name = "labelTargetServer";
-      this.labelTargetServer.Size = new System.Drawing.Size(115, 13);
+      this.labelTargetServer.Size = new System.Drawing.Size(163, 20);
       this.labelTargetServer.TabIndex = 57;
       this.labelTargetServer.Text = "PostgreSQL Server";
-      // 
-      // comboBoxServerTarget
-      // 
-      this.comboBoxServerTarget.FormattingEnabled = true;
-      this.comboBoxServerTarget.Location = new System.Drawing.Point(494, 113);
-      this.comboBoxServerTarget.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-      this.comboBoxServerTarget.Name = "comboBoxServerTarget";
-      this.comboBoxServerTarget.Size = new System.Drawing.Size(373, 28);
-      this.comboBoxServerTarget.TabIndex = 56;
-      this.comboBoxServerTarget.Text = "Server";
       // 
       // labelTargetOperation
       // 
       this.labelTargetOperation.AutoSize = true;
       this.labelTargetOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelTargetOperation.Location = new System.Drawing.Point(408, 34);
-      this.labelTargetOperation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelTargetOperation.Location = new System.Drawing.Point(612, 52);
       this.labelTargetOperation.Name = "labelTargetOperation";
-      this.labelTargetOperation.Size = new System.Drawing.Size(70, 24);
+      this.labelTargetOperation.Size = new System.Drawing.Size(102, 32);
       this.labelTargetOperation.TabIndex = 55;
       this.labelTargetOperation.Text = "Target";
       // 
       // buttonSourceCreate
       // 
-      this.buttonSourceCreate.Location = new System.Drawing.Point(44, 411);
-      this.buttonSourceCreate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonSourceCreate.Location = new System.Drawing.Point(66, 632);
       this.buttonSourceCreate.Name = "buttonSourceCreate";
-      this.buttonSourceCreate.Size = new System.Drawing.Size(66, 25);
+      this.buttonSourceCreate.Size = new System.Drawing.Size(99, 38);
       this.buttonSourceCreate.TabIndex = 53;
       this.buttonSourceCreate.Text = "Create";
       this.buttonSourceCreate.UseVisualStyleBackColor = true;
       // 
       // buttonSourceRefresh
       // 
-      this.buttonSourceRefresh.Location = new System.Drawing.Point(328, 372);
-      this.buttonSourceRefresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonSourceRefresh.Location = new System.Drawing.Point(492, 572);
       this.buttonSourceRefresh.Name = "buttonSourceRefresh";
-      this.buttonSourceRefresh.Size = new System.Drawing.Size(79, 25);
+      this.buttonSourceRefresh.Size = new System.Drawing.Size(118, 38);
       this.buttonSourceRefresh.TabIndex = 52;
       this.buttonSourceRefresh.Text = "Refresh";
       this.buttonSourceRefresh.UseVisualStyleBackColor = true;
@@ -777,88 +740,79 @@
       // 
       this.labelSourceDatabase.AutoSize = true;
       this.labelSourceDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelSourceDatabase.Location = new System.Drawing.Point(43, 347);
-      this.labelSourceDatabase.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelSourceDatabase.Location = new System.Drawing.Point(64, 534);
       this.labelSourceDatabase.Name = "labelSourceDatabase";
-      this.labelSourceDatabase.Size = new System.Drawing.Size(87, 20);
+      this.labelSourceDatabase.Size = new System.Drawing.Size(123, 29);
       this.labelSourceDatabase.TabIndex = 51;
       this.labelSourceDatabase.Text = "Database";
       // 
       // comboBoxSourceDatabase
       // 
       this.comboBoxSourceDatabase.FormattingEnabled = true;
-      this.comboBoxSourceDatabase.Location = new System.Drawing.Point(45, 374);
-      this.comboBoxSourceDatabase.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.comboBoxSourceDatabase.Location = new System.Drawing.Point(68, 575);
       this.comboBoxSourceDatabase.Name = "comboBoxSourceDatabase";
-      this.comboBoxSourceDatabase.Size = new System.Drawing.Size(276, 28);
+      this.comboBoxSourceDatabase.Size = new System.Drawing.Size(412, 37);
       this.comboBoxSourceDatabase.TabIndex = 50;
       this.comboBoxSourceDatabase.Text = "Database name";
       // 
       // checkBoxSourceRememberCredentials
       // 
       this.checkBoxSourceRememberCredentials.AutoSize = true;
-      this.checkBoxSourceRememberCredentials.Location = new System.Drawing.Point(143, 284);
-      this.checkBoxSourceRememberCredentials.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.checkBoxSourceRememberCredentials.Location = new System.Drawing.Point(214, 437);
       this.checkBoxSourceRememberCredentials.Name = "checkBoxSourceRememberCredentials";
-      this.checkBoxSourceRememberCredentials.Size = new System.Drawing.Size(188, 24);
+      this.checkBoxSourceRememberCredentials.Size = new System.Drawing.Size(284, 33);
       this.checkBoxSourceRememberCredentials.TabIndex = 49;
       this.checkBoxSourceRememberCredentials.Text = "Remember credentials";
       this.checkBoxSourceRememberCredentials.UseVisualStyleBackColor = true;
       // 
       // textBoxSourcePassword
       // 
-      this.textBoxSourcePassword.Location = new System.Drawing.Point(143, 213);
-      this.textBoxSourcePassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.textBoxSourcePassword.Location = new System.Drawing.Point(214, 328);
       this.textBoxSourcePassword.Name = "textBoxSourcePassword";
       this.textBoxSourcePassword.PasswordChar = '*';
-      this.textBoxSourcePassword.Size = new System.Drawing.Size(265, 26);
+      this.textBoxSourcePassword.Size = new System.Drawing.Size(396, 35);
       this.textBoxSourcePassword.TabIndex = 48;
       // 
       // textBoxSourceName
       // 
-      this.textBoxSourceName.Location = new System.Drawing.Point(143, 182);
-      this.textBoxSourceName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.textBoxSourceName.Location = new System.Drawing.Point(214, 280);
       this.textBoxSourceName.Name = "textBoxSourceName";
-      this.textBoxSourceName.Size = new System.Drawing.Size(265, 26);
+      this.textBoxSourceName.Size = new System.Drawing.Size(396, 35);
       this.textBoxSourceName.TabIndex = 47;
       // 
       // labelSourcePassword
       // 
       this.labelSourcePassword.AutoSize = true;
-      this.labelSourcePassword.Location = new System.Drawing.Point(43, 213);
-      this.labelSourcePassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelSourcePassword.Location = new System.Drawing.Point(64, 328);
       this.labelSourcePassword.Name = "labelSourcePassword";
-      this.labelSourcePassword.Size = new System.Drawing.Size(78, 20);
+      this.labelSourcePassword.Size = new System.Drawing.Size(120, 29);
       this.labelSourcePassword.TabIndex = 46;
       this.labelSourcePassword.Text = "Password";
       // 
       // labelSourceUserName
       // 
       this.labelSourceUserName.AutoSize = true;
-      this.labelSourceUserName.Location = new System.Drawing.Point(43, 182);
-      this.labelSourceUserName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelSourceUserName.Location = new System.Drawing.Point(64, 280);
       this.labelSourceUserName.Name = "labelSourceUserName";
-      this.labelSourceUserName.Size = new System.Drawing.Size(89, 20);
+      this.labelSourceUserName.Size = new System.Drawing.Size(135, 29);
       this.labelSourceUserName.TabIndex = 45;
       this.labelSourceUserName.Text = "User Name";
       // 
       // comboBoxSourceSchema
       // 
       this.comboBoxSourceSchema.FormattingEnabled = true;
-      this.comboBoxSourceSchema.Location = new System.Drawing.Point(121, 456);
-      this.comboBoxSourceSchema.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.comboBoxSourceSchema.Location = new System.Drawing.Point(182, 702);
       this.comboBoxSourceSchema.Name = "comboBoxSourceSchema";
-      this.comboBoxSourceSchema.Size = new System.Drawing.Size(287, 28);
+      this.comboBoxSourceSchema.Size = new System.Drawing.Size(428, 37);
       this.comboBoxSourceSchema.TabIndex = 44;
       this.comboBoxSourceSchema.Text = "Public";
       // 
       // labelSourceSchema
       // 
       this.labelSourceSchema.AutoSize = true;
-      this.labelSourceSchema.Location = new System.Drawing.Point(43, 456);
-      this.labelSourceSchema.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelSourceSchema.Location = new System.Drawing.Point(64, 702);
       this.labelSourceSchema.Name = "labelSourceSchema";
-      this.labelSourceSchema.Size = new System.Drawing.Size(68, 20);
+      this.labelSourceSchema.Size = new System.Drawing.Size(101, 29);
       this.labelSourceSchema.TabIndex = 43;
       this.labelSourceSchema.Text = "Schema";
       // 
@@ -866,53 +820,56 @@
       // 
       this.labelSourceServer.AutoSize = true;
       this.labelSourceServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelSourceServer.Location = new System.Drawing.Point(41, 86);
-      this.labelSourceServer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelSourceServer.Location = new System.Drawing.Point(62, 132);
       this.labelSourceServer.Name = "labelSourceServer";
-      this.labelSourceServer.Size = new System.Drawing.Size(115, 13);
+      this.labelSourceServer.Size = new System.Drawing.Size(163, 20);
       this.labelSourceServer.TabIndex = 42;
       this.labelSourceServer.Text = "PostgreSQL Server";
-      // 
-      // comboBoxServerSource
-      // 
-      this.comboBoxServerSource.FormattingEnabled = true;
-      this.comboBoxServerSource.Location = new System.Drawing.Point(43, 113);
-      this.comboBoxServerSource.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-      this.comboBoxServerSource.Name = "comboBoxServerSource";
-      this.comboBoxServerSource.Size = new System.Drawing.Size(365, 28);
-      this.comboBoxServerSource.TabIndex = 41;
-      this.comboBoxServerSource.Text = "Server";
-      this.comboBoxServerSource.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ComboBoxServerSource_KeyUp);
       // 
       // labelSourceOperation
       // 
       this.labelSourceOperation.AutoSize = true;
       this.labelSourceOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelSourceOperation.Location = new System.Drawing.Point(41, 34);
-      this.labelSourceOperation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+      this.labelSourceOperation.Location = new System.Drawing.Point(62, 52);
       this.labelSourceOperation.Name = "labelSourceOperation";
-      this.labelSourceOperation.Size = new System.Drawing.Size(77, 24);
+      this.labelSourceOperation.Size = new System.Drawing.Size(110, 32);
       this.labelSourceOperation.TabIndex = 40;
       this.labelSourceOperation.Text = "Source";
       // 
       // tabPageTables
       // 
-      this.tabPageTables.Location = new System.Drawing.Point(4, 22);
+      this.tabPageTables.Location = new System.Drawing.Point(4, 29);
+      this.tabPageTables.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.tabPageTables.Name = "tabPageTables";
-      this.tabPageTables.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-      this.tabPageTables.Size = new System.Drawing.Size(965, 649);
+      this.tabPageTables.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.tabPageTables.Size = new System.Drawing.Size(1452, 1009);
       this.tabPageTables.TabIndex = 1;
       this.tabPageTables.Text = "Tables";
       this.tabPageTables.UseVisualStyleBackColor = true;
       // 
+      // textBoxSourceServer
+      // 
+      this.textBoxSourceServer.Location = new System.Drawing.Point(73, 176);
+      this.textBoxSourceServer.Name = "textBoxSourceServer";
+      this.textBoxSourceServer.Size = new System.Drawing.Size(537, 35);
+      this.textBoxSourceServer.TabIndex = 88;
+      // 
+      // textBoxTargetServer
+      // 
+      this.textBoxTargetServer.Location = new System.Drawing.Point(739, 176);
+      this.textBoxTargetServer.Name = "textBoxTargetServer";
+      this.textBoxTargetServer.Size = new System.Drawing.Size(558, 35);
+      this.textBoxTargetServer.TabIndex = 89;
+      // 
       // FormMain
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(973, 699);
+      this.ClientSize = new System.Drawing.Size(1460, 1075);
       this.Controls.Add(this.tabControlMain);
       this.Controls.Add(this.menuStrip1);
       this.MainMenuStrip = this.menuStrip1;
+      this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.Name = "FormMain";
       this.Text = "Fred PostgreSql Data Compare";
       this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
@@ -981,7 +938,6 @@
     private System.Windows.Forms.ComboBox comboBoxTargetSchema;
     private System.Windows.Forms.Label labelTargetSchema;
     private System.Windows.Forms.Label labelTargetServer;
-    private System.Windows.Forms.ComboBox comboBoxServerTarget;
     private System.Windows.Forms.Label labelTargetOperation;
     private System.Windows.Forms.Button buttonSourceCreate;
     private System.Windows.Forms.Button buttonSourceRefresh;
@@ -995,7 +951,6 @@
     private System.Windows.Forms.ComboBox comboBoxSourceSchema;
     private System.Windows.Forms.Label labelSourceSchema;
     private System.Windows.Forms.Label labelSourceServer;
-    private System.Windows.Forms.ComboBox comboBoxServerSource;
     private System.Windows.Forms.Label labelSourceOperation;
     private System.Windows.Forms.Button buttonCopyServerName;
     private System.Windows.Forms.TextBox textBoxTargetPort;
@@ -1008,6 +963,8 @@
     private System.Windows.Forms.Label labelDatabaseNameSource;
     private System.Windows.Forms.Label labelDatabaseNameTarget;
     private System.Windows.Forms.TextBox textBoxDatabaseNameTarget;
+    private System.Windows.Forms.TextBox textBoxTargetServer;
+    private System.Windows.Forms.TextBox textBoxSourceServer;
   }
 }
 

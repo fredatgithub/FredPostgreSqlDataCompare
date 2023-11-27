@@ -73,30 +73,6 @@ namespace FredPostgreSqlDataCompare.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int comboBoxServerSourceIndex {
-            get {
-                return ((int)(this["comboBoxServerSourceIndex"]));
-            }
-            set {
-                this["comboBoxServerSourceIndex"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int comboBoxServerTargetIndex {
-            get {
-                return ((int)(this["comboBoxServerTargetIndex"]));
-            }
-            set {
-                this["comboBoxServerTargetIndex"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
         public string comboBoxSourceDatabase {
             get {
@@ -260,6 +236,30 @@ namespace FredPostgreSqlDataCompare.Properties {
             }
             set {
                 this["comboBoxTargetSchemaIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string textBoxSourceServer {
+            get {
+                return ((string)(this["textBoxSourceServer"]));
+            }
+            set {
+                this["textBoxSourceServer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string textBoxTargetServer {
+            get {
+                return ((string)(this["textBoxTargetServer"]));
+            }
+            set {
+                this["textBoxTargetServer"] = value;
             }
         }
     }

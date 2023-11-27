@@ -14,12 +14,6 @@
     <Setting Name="textBoxSourceName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="comboBoxServerSourceIndex" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">-1</Value>
-    </Setting>
-    <Setting Name="comboBoxServerTargetIndex" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">-1</Value>
-    </Setting>
     <Setting Name="comboBoxSourceDatabase" Type="System.String" Scope="User">
       <Value Profile="(Default)">localhost</Value>
     </Setting>
@@ -61,6 +55,12 @@
     </Setting>
     <Setting Name="comboBoxTargetSchemaIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="textBoxSourceServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="textBoxTargetServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
