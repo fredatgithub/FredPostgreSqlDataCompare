@@ -37,35 +37,7 @@ namespace Tools
       return Encoding.UTF8.GetString(resultArray);
     }
 
-    public static string AESEncrypt(string password, string cle)
-    {
-      //byte[] inputArray = Encoding.UTF8.GetBytes(password);
-      //var aesDES = new AesCryptoServiceProvider();
-      //aesDES.Key = Encoding.UTF8.GetBytes(cle);
-      //aesDES.Mode = CipherMode.ECB;
-      //aesDES.Padding = PaddingMode.PKCS7;
-      //ICryptoTransform cTransform = aesDES.CreateEncryptor();
-      //byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
-      //aesDES.Clear();
-      //return Convert.ToBase64String(resultArray, 0, resultArray.Length);
-      return string.Empty; // until implemented
-    }
-
-    public static string AESDecrypt(string password, string cle)
-    {
-      //byte[] inputArray = Convert.FromBase64String(password);
-      //var tripleDES = new AesCryptoServiceProvider();
-      //tripleDES.Key = Encoding.UTF8.GetBytes(cle);
-      //tripleDES.Mode = CipherMode.ECB;
-      //tripleDES.Padding = PaddingMode.PKCS7;
-      //ICryptoTransform cTransform = tripleDES.CreateDecryptor();
-      //byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
-      //tripleDES.Clear();
-      //return Encoding.UTF8.GetString(resultArray);
-      return string.Empty; // until implemented
-    }
-
-    static byte[] EncryptStringToBytes_Aes(string plainText, byte[] key, byte[] salt)
+    public static byte[] EncryptStringToBytesWithAes(string plainText, byte[] key, byte[] salt)
     {
       // Check arguments.
       if (plainText == null || plainText.Length <= 0)
@@ -115,6 +87,12 @@ namespace Tools
       return encrypted;
     }
 
+    public static string EncryptToStringWithAes(string plainText, byte[] key, byte[] salt)
+    {
+      var encryptedString = Encoding.UTF8.GetString(EncryptStringToBytesWithAes(plainText, key, salt));
+      return encryptedString;
+    }
+
     static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] key, byte[] salt)
     {
       // Check arguments.
@@ -133,12 +111,10 @@ namespace Tools
         throw new ArgumentNullException("IV = vecteur d'initialisation");
       }
 
-      // Declare the string used to hold
-      // the decrypted text.
+      // Declare the string used to hold the decrypted text.
       string plaintext = null;
 
-      // Create an AesCryptoServiceProvider object
-      // with the specified key and IV.
+      // Create an AesCryptoServiceProvider object with the specified key and IV.
       using (AesCryptoServiceProvider aesAlgo = new AesCryptoServiceProvider())
       {
         aesAlgo.Key = key;
@@ -155,8 +131,7 @@ namespace Tools
             using (StreamReader srDecrypt = new StreamReader(csDecrypt))
             {
 
-              // Read the decrypted bytes from the decrypting stream
-              // and place them in a string.
+              // Read the decrypted bytes from the decrypting stream and place them in a string.
               plaintext = srDecrypt.ReadToEnd();
             }
           }
@@ -166,9 +141,9 @@ namespace Tools
       return plaintext;
     }
 
-    public static string[] CreateAesKey()
+    public static byte[][] CreateAesKey()
     {
-      string[] result = new [] { "", ""};
+      byte[][] result = new byte[2][];
       using (Aes aesAlgorithm = Aes.Create())
       {
         //Console.WriteLine($"Aes Cipher Mode : {aesAlgorithm.Mode}");
@@ -176,9 +151,10 @@ namespace Tools
         //Console.WriteLine($"Aes Key Size : {aesAlgorithm.KeySize}");
         //Console.WriteLine($"Aes Block Size : {aesAlgorithm.BlockSize}");
 
-        //set the parameters with out keyword
-        var keyBase64 = Convert.ToBase64String(aesAlgorithm.Key);
-        var vectorBase64 = Convert.ToBase64String(aesAlgorithm.IV);
+        //var keyBase64 = Convert.ToBase64String(aesAlgorithm.Key);
+        //var vectorBase64 = Convert.ToBase64String(aesAlgorithm.IV);
+        var keyBase64 = aesAlgorithm.Key;
+        var vectorBase64 = aesAlgorithm.IV;
         result[0] = keyBase64;
         result[1] = vectorBase64;
       }
@@ -186,16 +162,16 @@ namespace Tools
       return result;
     }
 
-    public static string[] WriteFile(string[] keys, string filename, bool append = true)
+    public static string[] WriteToFile(string[] lines, string filename, bool append = true)
     {
       var result = new[] { "ok", ""};
       try
       {
         using (StreamWriter sw = new StreamWriter(filename, append))
         {
-          for (int i = 0; i < keys.Length; i++)
+          for (int i = 0; i < lines.Length; i++)
           {
-            sw.WriteLine(keys[i]);
+            sw.WriteLine(lines[i]);
           }
         }
       }

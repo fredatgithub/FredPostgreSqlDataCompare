@@ -60,17 +60,36 @@ namespace FredPostgreSqlDataCompare
           else
           {
             // create a key file
-            var key = Helper.CreateAesKey();
-            var resultWriting = Helper.WriteFile(key, keyFilename);
+            var keys = Helper.CreateAesKey();
+            string[] keysToString = new string[keys.Length];
+            keysToString[0] = Convert.ToBase64String(keys[0]);
+            keysToString[1] = Convert.ToBase64String(keys[1]);
+
+            var resultWriting = Helper.WriteToFile(keysToString, keyFilename);
             if (resultWriting[Helper.FirstElement] == "ko")
             {
               MessageBox.Show($"Error while trying to write a file on the disk, the error is: {resultWriting[Helper.SecondElement]}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
               return;
             }
 
+            var sourceServerName = textBoxSourceServer.Text;
+            var sourcePortNumber = textBoxSourcePort.Text;
             var sourceUserName = textBoxSourceName.Text;
             var sourceUserPassword = textBoxSourcePassword.Text;
             var sourceDatabaseName = textBoxDatabaseNameSource.Text;
+            // encryption
+            var sourceServerNameEncrypted = Helper.EncryptToStringWithAes(sourceServerName, keys[Helper.FirstElement], keys[Helper.SecondElement]);
+            var sourcePortNumberEncrypted = Helper.EncryptToStringWithAes(sourcePortNumber, keys[Helper.FirstElement], keys[Helper.SecondElement]);
+            var sourceUserNameEncrypted = Helper.EncryptToStringWithAes(sourceUserName, keys[Helper.FirstElement], keys[Helper.SecondElement]);
+            var sourceUserPasswordEncrypted = Helper.EncryptToStringWithAes(sourceUserPassword, keys[Helper.FirstElement], keys[Helper.SecondElement]);
+            var sourceDatabaseNameEncrypted = Helper.EncryptToStringWithAes(sourceDatabaseName, keys[Helper.FirstElement], keys[Helper.SecondElement]);
+
+            var resultWritingToFile = Helper.WriteToFile(new string[] { sourceServerNameEncrypted, sourcePortNumberEncrypted, sourceUserNameEncrypted, sourceUserPasswordEncrypted, sourceDatabaseNameEncrypted }, valueFilename);
+            if (resultWritingToFile[Helper.FirstElement] == "ko")
+            {
+              MessageBox.Show($"Error while trying to write a file on the disk, the error is: {resultWritingToFile[Helper.SecondElement]}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+              return;
+            }
           }
         }
       }
