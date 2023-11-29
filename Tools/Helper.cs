@@ -7,6 +7,10 @@ namespace Tools
 {
   public static class Helper
   {
+    public const int FirstElement = 0;
+    public const int SecondElement = 1;
+    public const int ThirdElement = 2;
+
     public static string TripleDESEncrypt(string password, string cle)
     {
       byte[] inputArray = Encoding.UTF8.GetBytes(password);
@@ -44,6 +48,7 @@ namespace Tools
       //byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
       //aesDES.Clear();
       //return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+      return string.Empty; // until implemented
     }
 
     public static string AESDecrypt(string password, string cle)
@@ -57,6 +62,7 @@ namespace Tools
       //byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
       //tripleDES.Clear();
       //return Encoding.UTF8.GetString(resultArray);
+      return string.Empty; // until implemented
     }
 
     static byte[] EncryptStringToBytes_Aes(string plainText, byte[] key, byte[] salt)
@@ -160,5 +166,46 @@ namespace Tools
       return plaintext;
     }
 
+    public static string[] CreateAesKey()
+    {
+      string[] result = new [] { "", ""};
+      using (Aes aesAlgorithm = Aes.Create())
+      {
+        //Console.WriteLine($"Aes Cipher Mode : {aesAlgorithm.Mode}");
+        //Console.WriteLine($"Aes Padding Mode: {aesAlgorithm.Padding}");
+        //Console.WriteLine($"Aes Key Size : {aesAlgorithm.KeySize}");
+        //Console.WriteLine($"Aes Block Size : {aesAlgorithm.BlockSize}");
+
+        //set the parameters with out keyword
+        var keyBase64 = Convert.ToBase64String(aesAlgorithm.Key);
+        var vectorBase64 = Convert.ToBase64String(aesAlgorithm.IV);
+        result[0] = keyBase64;
+        result[1] = vectorBase64;
+      }
+
+      return result;
+    }
+
+    public static string[] WriteFile(string[] keys, string filename, bool append = true)
+    {
+      var result = new[] { "ok", ""};
+      try
+      {
+        using (StreamWriter sw = new StreamWriter(filename, append))
+        {
+          for (int i = 0; i < keys.Length; i++)
+          {
+            sw.WriteLine(keys[i]);
+          }
+        }
+      }
+      catch (Exception exception)
+      {
+        result[0] = "ko";
+        result[1] = exception.Message;
+      }
+
+      return result;
+    }
   }
 }

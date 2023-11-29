@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
@@ -20,6 +21,8 @@ namespace FredPostgreSqlDataCompare
     private bool bothAuthenticationAreOk = false;
     private bool sourceAuthenticationIsOk = false;
     private bool targetAuthenticationIsOk = false;
+    private const string keyFilename = "key.pidb";
+    private const string valueFilename = "value.pidb";
 
     private void FormMain_Load(object sender, EventArgs e)
     {
@@ -34,10 +37,13 @@ namespace FredPostgreSqlDataCompare
     {
       if (checkBoxSourceRememberCredentials.Checked)
       {
-        var sourceUserName = "to be decrypted";
-        var sourceUserPassword = "to be decrypted";
-        var targetUserName = "to be decrypted";
-        var targetUserPassword = "to be decrypted";
+        if (File.Exists(keyFilename) && File.Exists(valueFilename))
+        {
+          var sourceUserName = "to be decrypted";
+          var sourceUserPassword = "to be decrypted";
+          var targetUserName = "to be decrypted";
+          var targetUserPassword = "to be decrypted";
+        }
       }
     }
 
@@ -45,13 +51,29 @@ namespace FredPostgreSqlDataCompare
     {
       if (checkBoxSourceRememberCredentials.Checked)
       {
-        var sourceUserName = textBoxSourceName.Text;
-        var sourceUserPassword = textBoxSourcePassword.Text;
-        var sourceDatabaseName = textBoxDatabaseNameSource.Text;
+        if (string.IsNullOrEmpty(textBoxSourceName.Text) && string.IsNullOrEmpty(textBoxSourcePassword.Text) && string.IsNullOrEmpty(textBoxSourcePort.Text) && string.IsNullOrEmpty(textBoxSourceServer.Text))
+        {
+          if (File.Exists(keyFilename) && File.Exists(valueFilename))
+          {
 
+          }
+          else
+          {
+            // create a key file
+            var key = Helper.CreateAesKey();
+            var resultWriting = Helper.WriteFile(key, keyFilename);
+            if (resultWriting[Helper.FirstElement] == "ko")
+            {
+              MessageBox.Show($"Error while trying to write a file on the disk, the error is: {resultWriting[Helper.SecondElement]}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+              return;
+            }
+
+            var sourceUserName = textBoxSourceName.Text;
+            var sourceUserPassword = textBoxSourcePassword.Text;
+            var sourceDatabaseName = textBoxDatabaseNameSource.Text;
+          }
+        }
       }
-
-
     }
 
     private void DisableNotImplementedMenuItems()
