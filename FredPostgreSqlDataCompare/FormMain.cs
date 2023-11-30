@@ -35,14 +35,22 @@ namespace FredPostgreSqlDataCompare
 
     private void LoadAuthentificationParameters()
     {
+      // source parameters
       if (checkBoxSourceRememberCredentials.Checked)
       {
         if (File.Exists(keyFilename) && File.Exists(valueFilename))
         {
+          var sourceServerName = "to be decrypted";
+          var sourcePortNumber = "to be decrypted";
           var sourceUserName = "to be decrypted";
           var sourceUserPassword = "to be decrypted";
-          var targetUserName = "to be decrypted";
-          var targetUserPassword = "to be decrypted";
+          var sourceDatabaseName = "to be decrypted";
+
+          textBoxSourceServer.Text = sourceServerName;
+          textBoxSourcePort.Text = sourcePortNumber;
+          textBoxSourceName.Text = sourceUserName;
+          textBoxSourcePassword.Text = sourceUserPassword;
+          textBoxDatabaseNameSource.Text = sourceDatabaseName;
         }
       }
     }
