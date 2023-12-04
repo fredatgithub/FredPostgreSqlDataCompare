@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -109,9 +108,9 @@ namespace Tools
     /// <returns>A human-readable text.</returns>
     public static string DecodeToStringWithAes(string codedText, string key, string salt)
     {
-      var keyToByte = Encoding.UTF8.GetBytes(key);
-      var saltToByte = Encoding.UTF8.GetBytes(salt);
-      var encryptedText = Encoding.UTF8.GetBytes(codedText);
+      var keyToByte = Convert.FromBase64String(key); // Encoding.UTF8.GetBytes(key);
+      var saltToByte = Convert.FromBase64String(salt);
+      var encryptedText = Convert.FromBase64String(codedText);
       var plainText = DecodeFromBytes_Aes(encryptedText, keyToByte, saltToByte);
       return plainText;
     }
@@ -210,6 +209,22 @@ namespace Tools
             sw.WriteLine(lines[i]);
           }
         }
+      }
+      catch (Exception exception)
+      {
+        result[0] = "ko";
+        result[1] = exception.Message;
+      }
+
+      return result;
+    }
+
+    public static string[] WriteToFile(byte[] lines, string filename)
+    {
+      var result = new[] { "ok", string.Empty };
+      try
+      {
+        File.WriteAllBytes(filename, lines);
       }
       catch (Exception exception)
       {

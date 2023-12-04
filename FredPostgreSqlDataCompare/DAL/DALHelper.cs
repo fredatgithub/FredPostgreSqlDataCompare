@@ -469,15 +469,7 @@ namespace FredPostgreSqlDataCompare.DAL
         result = false;
       }
      
-      if (conn.State == ConnectionState.Open)
-      {
-        result = true;
-      }
-      else
-      {
-        result = false;
-      }
-
+      result = conn.State == ConnectionState.Open;
       conn.Close();
       return result;
     }

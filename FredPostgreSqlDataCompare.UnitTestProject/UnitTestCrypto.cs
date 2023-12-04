@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tools;
@@ -41,14 +40,12 @@ namespace FredPostgreSqlDataCompare.UnitTestProject
       string source5 = Convert.ToBase64String(source4);
       Assert.AreEqual(source5, source3);
     }
-    
+
     [TestMethod]
     public void TestMethod_Convert_back_and_forth()
     {
       string originalString = "Hello, World!";
-      // Encoder la chaîne en UTF-8
       byte[] utf8Bytes = Encoding.UTF8.GetBytes(originalString);
-      // Décoder les octets en une nouvelle chaîne
       string decodedString = Encoding.UTF8.GetString(utf8Bytes);
       Assert.AreEqual(originalString, decodedString);
     }
@@ -61,6 +58,5 @@ namespace FredPostgreSqlDataCompare.UnitTestProject
       byte[] source3 = Convert.FromBase64String(source2);
       CollectionAssert.AreEqual(source1, source3);
     }
-
   }
 }
