@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
@@ -21,8 +22,26 @@ namespace FredPostgreSqlDataCompare
     private bool bothAuthenticationAreOk = false;
     private bool sourceAuthenticationIsOk = false;
     private bool targetAuthenticationIsOk = false;
-    private const string keyFilename = "key.pidb";
-    private const string valueFilename = "value.pidb";
+
+    /// <summary>
+    /// Key to be used to encrypt source parameters.
+    /// </summary>
+    private const string keySourceFilename = "keySource.pidb";
+
+    /// <summary>
+    /// All the values encrypted for source parameters.
+    /// </summary>
+    private const string valueSourceFilename = "valueSource.pidb";
+
+    /// <summary>
+    /// Key to be used to encrypt target parameters.
+    /// </summary>
+    private const string keyTargetFilename = "keyTarget.pidb";
+
+    /// <summary>
+    /// All the values encrypted for source parameters.
+    /// </summary>
+    private const string valueTargetFilename = "valueTarget.pidb";
 
     private void FormMain_Load(object sender, EventArgs e)
     {
@@ -38,42 +57,80 @@ namespace FredPostgreSqlDataCompare
       // source parameters
       if (checkBoxSourceRememberCredentials.Checked)
       {
-        if (File.Exists(keyFilename) && File.Exists(valueFilename))
+        if (File.Exists(keySourceFilename) && File.Exists(valueSourceFilename))
         {
-          var sourceServerName = "to be decrypted";
-          var sourcePortNumber = "to be decrypted";
-          var sourceUserName = "to be decrypted";
-          var sourceUserPassword = "to be decrypted";
-          var sourceDatabaseName = "to be decrypted";
+          var encryptionKey = Helper.ReadFile(keySourceFilename);
+          if (!encryptionKey[Helper.FirstElement].StartsWith(Helper.OK))
+          {
+            MessageBox.Show("There was an error while trying to read the encryption key", "Error while reading file", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+          }
+
+          encryptionKey = encryptionKey.Skip(Helper.One).ToArray();
+          var values = Helper.ReadFile(valueSourceFilename);
+          if (!values[Helper.FirstElement].StartsWith(Helper.OK))
+          {
+            MessageBox.Show("There was an error while trying to read the values file", "Error while reading file", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+          }
+
+          values = values.Skip(Helper.One).ToArray();
+          var sourceServerName = Helper.DecodeToStringWithAes(values[Helper.FirstElement], encryptionKey[Helper.FirstElement], encryptionKey[Helper.SecondElement]); 
+          var sourcePortNumber = Helper.DecodeToStringWithAes(values[Helper.SecondElement], encryptionKey[Helper.FirstElement], encryptionKey[Helper.SecondElement]);
+          var sourceUserName = Helper.DecodeToStringWithAes(values[Helper.ThirdElement], encryptionKey[Helper.FirstElement], encryptionKey[Helper.SecondElement]);
+          var sourcePassword = Helper.DecodeToStringWithAes(values[Helper.FourthElement], encryptionKey[Helper.FirstElement], encryptionKey[Helper.SecondElement]);
+          var sourceDatabaseName = Helper.DecodeToStringWithAes(values[Helper.FithElement], encryptionKey[Helper.FirstElement], encryptionKey[Helper.SecondElement]);
 
           textBoxSourceServer.Text = sourceServerName;
           textBoxSourcePort.Text = sourcePortNumber;
           textBoxSourceName.Text = sourceUserName;
-          textBoxSourcePassword.Text = sourceUserPassword;
+          textBoxSourcePassword.Text = sourcePassword;
           textBoxDatabaseNameSource.Text = sourceDatabaseName;
+        }
+      }
+
+      // target parameters
+      if (checkBoxSourceRememberCredentials.Checked)
+      {
+        if (File.Exists(keyTargetFilename) && File.Exists(valueTargetFilename))
+        {
+          var targetServerName = "to be decrypted";
+          var targetPortNumber = "to be decrypted";
+          var targetUserName = "to be decrypted";
+          var targetUserPassword = "to be decrypted";
+          var targetDatabaseName = "to be decrypted";
+
+          textBoxTargetServer.Text = targetServerName;
+          textBoxTargetPort.Text = targetPortNumber;
+          textBoxTargetName.Text = targetUserName;
+          textBoxTargetPassword.Text = targetUserPassword;
+          textBoxDatabaseNameTarget.Text = targetDatabaseName;
         }
       }
     }
 
     private void SaveAuthentificationParameters()
     {
+
+      // source parameters
       if (checkBoxSourceRememberCredentials.Checked)
       {
-        if (string.IsNullOrEmpty(textBoxSourceName.Text) && string.IsNullOrEmpty(textBoxSourcePassword.Text) && string.IsNullOrEmpty(textBoxSourcePort.Text) && string.IsNullOrEmpty(textBoxSourceServer.Text))
+        if (!string.IsNullOrEmpty(textBoxSourceName.Text) && !string.IsNullOrEmpty(textBoxSourcePassword.Text) && !string.IsNullOrEmpty(textBoxSourcePort.Text) && !string.IsNullOrEmpty(textBoxSourceServer.Text))
         {
-          if (File.Exists(keyFilename) && File.Exists(valueFilename))
+          if (File.Exists(keySourceFilename) && File.Exists(valueSourceFilename))
           {
+            // if files exist then we read the key already generated
 
           }
           else
           {
             // create a key file
-            var keys = Helper.CreateAesKey();
+            var keys = Helper.CreateAesCryptoService();
             string[] keysToString = new string[keys.Length];
             keysToString[0] = Convert.ToBase64String(keys[0]);
             keysToString[1] = Convert.ToBase64String(keys[1]);
 
-            var resultWriting = Helper.WriteToFile(keysToString, keyFilename);
+            var resultWriting = Helper.WriteToFile(keysToString, keySourceFilename);
             if (resultWriting[Helper.FirstElement] == "ko")
             {
               MessageBox.Show($"Error while trying to write a file on the disk, the error is: {resultWriting[Helper.SecondElement]}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -89,10 +146,10 @@ namespace FredPostgreSqlDataCompare
             var sourceServerNameEncrypted = Helper.EncryptToStringWithAes(sourceServerName, keys[Helper.FirstElement], keys[Helper.SecondElement]);
             var sourcePortNumberEncrypted = Helper.EncryptToStringWithAes(sourcePortNumber, keys[Helper.FirstElement], keys[Helper.SecondElement]);
             var sourceUserNameEncrypted = Helper.EncryptToStringWithAes(sourceUserName, keys[Helper.FirstElement], keys[Helper.SecondElement]);
-            var sourceUserPasswordEncrypted = Helper.EncryptToStringWithAes(sourceUserPassword, keys[Helper.FirstElement], keys[Helper.SecondElement]);
+            var sourcePasswordEncrypted = Helper.EncryptToStringWithAes(sourceUserPassword, keys[Helper.FirstElement], keys[Helper.SecondElement]);
             var sourceDatabaseNameEncrypted = Helper.EncryptToStringWithAes(sourceDatabaseName, keys[Helper.FirstElement], keys[Helper.SecondElement]);
 
-            var resultWritingToFile = Helper.WriteToFile(new string[] { sourceServerNameEncrypted, sourcePortNumberEncrypted, sourceUserNameEncrypted, sourceUserPasswordEncrypted, sourceDatabaseNameEncrypted }, valueFilename);
+            var resultWritingToFile = Helper.WriteToFile(new string[] { sourceServerNameEncrypted, sourcePortNumberEncrypted, sourceUserNameEncrypted, sourcePasswordEncrypted, sourceDatabaseNameEncrypted }, valueSourceFilename);
             if (resultWritingToFile[Helper.FirstElement] == "ko")
             {
               MessageBox.Show($"Error while trying to write a file on the disk, the error is: {resultWritingToFile[Helper.SecondElement]}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -117,7 +174,7 @@ namespace FredPostgreSqlDataCompare
       toolStripSeparator2.Visible = false;
 
       annulerToolStripMenuItem.Visible = true;
-      
+
       outilsToolStripMenuItem.Visible = false;
 
       aideToolStripMenuItem.Visible = true;
@@ -162,7 +219,7 @@ namespace FredPostgreSqlDataCompare
 
       checkBoxSourceRememberCredentials.Checked = Settings.Default.CheckBoxSourceRememberCredentials;
       checkBoxTargetRememberCredentials.Checked = Settings.Default.CheckBoxTargetRememberCredentials;
-      
+
       textBoxTargetName.Text = Settings.Default.textBoxTargetName;
       textBoxSourceName.Text = Settings.Default.textBoxSourceName;
 
@@ -181,6 +238,12 @@ namespace FredPostgreSqlDataCompare
 
     private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
     {
+      if (bothAuthenticationAreOk)
+      {
+        SaveAuthentificationParameters();
+      }
+
+      SaveWindowValue();
       Application.Exit();
     }
 
@@ -195,7 +258,7 @@ namespace FredPostgreSqlDataCompare
       Settings.Default.WindowWidth = Width;
       Settings.Default.WindowLeft = Left;
       Settings.Default.WindowTop = Top;
-      Settings.Default.comboBoxServerSourceItems  = textBoxSourceServer.Text;
+      Settings.Default.comboBoxServerSourceItems = textBoxSourceServer.Text;
       Settings.Default.comboBoxServerTargetItems = textBoxTargetServer.Text;
       Settings.Default.CheckBoxSourceRememberCredentials = checkBoxSourceRememberCredentials.Checked;
       Settings.Default.CheckBoxTargetRememberCredentials = checkBoxTargetRememberCredentials.Checked;
@@ -361,7 +424,7 @@ namespace FredPostgreSqlDataCompare
         sourceAuthenticationIsOk = false;
         return;
       }
-      
+
       if (string.IsNullOrEmpty(textBoxDatabaseNameSource.Text))
       {
         MessageBox.Show("You have to choose a database to conenct to", "No database", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -373,7 +436,7 @@ namespace FredPostgreSqlDataCompare
       {
         UserName = textBoxSourceName.Text,
         UserPassword = textBoxSourcePassword.Text,
-        ServerName = textBoxSourceServer.Text, 
+        ServerName = textBoxSourceServer.Text,
         Port = int.Parse(textBoxSourcePort.Text),
         DatabaseName = textBoxDatabaseNameSource.Text
       };

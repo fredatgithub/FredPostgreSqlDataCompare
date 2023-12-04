@@ -1,4 +1,6 @@
 ﻿using System;
+using System.CodeDom;
+using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -10,6 +12,11 @@ namespace Tools
     public const int FirstElement = 0;
     public const int SecondElement = 1;
     public const int ThirdElement = 2;
+    public const int FourthElement = 3;
+    public const int FithElement = 4;
+
+    public const string OK = "ok";
+    public const int One = 1;
 
     public static string TripleDESEncrypt(string password, string cle)
     {
@@ -93,7 +100,23 @@ namespace Tools
       return encryptedString;
     }
 
-    static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] key, byte[] salt)
+    /// <summary>
+    /// Decode an encrypted text to a plain text.
+    /// </summary>
+    /// <param name="codedText">The encrypted text.</param>
+    /// <param name="key">The encryption key.</param>
+    /// <param name="salt">The salt.</param>
+    /// <returns>A human-readable text.</returns>
+    public static string DecodeToStringWithAes(string codedText, string key, string salt)
+    {
+      var keyToByte = Encoding.UTF8.GetBytes(key);
+      var saltToByte = Encoding.UTF8.GetBytes(salt);
+      var encryptedText = Encoding.UTF8.GetBytes(codedText);
+      var plainText = DecodeFromBytes_Aes(encryptedText, keyToByte, saltToByte);
+      return plainText;
+    }
+
+    static string DecodeFromBytes_Aes(byte[] cipherText, byte[] key, byte[] salt)
     {
       // Check arguments.
       if (cipherText == null || cipherText.Length <= 0)
@@ -141,6 +164,20 @@ namespace Tools
       return plaintext;
     }
 
+    public static byte[][] CreateAesCryptoService()
+    {
+      byte[][] result = new byte[2][];
+      using (var aesAlgorithm = new AesCryptoServiceProvider())
+      {
+        var keyBase64 = aesAlgorithm.Key;
+        var vectorBase64 = aesAlgorithm.IV;
+        result[0] = keyBase64;
+        result[1] = vectorBase64;
+      }
+
+      return result;
+    }
+
     public static byte[][] CreateAesKey()
     {
       byte[][] result = new byte[2][];
@@ -150,7 +187,6 @@ namespace Tools
         //Console.WriteLine($"Aes Padding Mode: {aesAlgorithm.Padding}");
         //Console.WriteLine($"Aes Key Size : {aesAlgorithm.KeySize}");
         //Console.WriteLine($"Aes Block Size : {aesAlgorithm.BlockSize}");
-
         //var keyBase64 = Convert.ToBase64String(aesAlgorithm.Key);
         //var vectorBase64 = Convert.ToBase64String(aesAlgorithm.IV);
         var keyBase64 = aesAlgorithm.Key;
@@ -164,7 +200,7 @@ namespace Tools
 
     public static string[] WriteToFile(string[] lines, string filename, bool append = true)
     {
-      var result = new[] { "ok", ""};
+      var result = new[] { "ok", string.Empty };
       try
       {
         using (StreamWriter sw = new StreamWriter(filename, append))
@@ -182,6 +218,28 @@ namespace Tools
       }
 
       return result;
+    }
+
+    public static string[] ReadFile(string filename)
+    {
+      var result = new List<string> { "ok" };
+      try
+      {
+        using (StreamReader sr = new StreamReader(filename))
+        {
+          var line = string.Empty;
+          while ((line = sr.ReadLine()) != null)
+          {
+            result.Add(line);
+          }
+        }
+      }
+      catch (Exception exception)
+      {
+        result[0] = $"ko - {exception.Message}";
+      }
+
+      return result.ToArray();
     }
   }
 }

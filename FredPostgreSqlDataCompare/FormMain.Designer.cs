@@ -474,7 +474,6 @@
       // 
       this.textBoxDatabaseNameTarget.Location = new System.Drawing.Point(944, 385);
       this.textBoxDatabaseNameTarget.Name = "textBoxDatabaseNameTarget";
-      this.textBoxDatabaseNameTarget.PasswordChar = '*';
       this.textBoxDatabaseNameTarget.Size = new System.Drawing.Size(355, 35);
       this.textBoxDatabaseNameTarget.TabIndex = 87;
       // 
@@ -491,7 +490,6 @@
       // 
       this.textBoxDatabaseNameSource.Location = new System.Drawing.Point(255, 382);
       this.textBoxDatabaseNameSource.Name = "textBoxDatabaseNameSource";
-      this.textBoxDatabaseNameSource.PasswordChar = '*';
       this.textBoxDatabaseNameSource.Size = new System.Drawing.Size(355, 35);
       this.textBoxDatabaseNameSource.TabIndex = 85;
       // 
