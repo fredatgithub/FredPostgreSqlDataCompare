@@ -169,10 +169,10 @@ namespace Tools
       byte[][] result = new byte[2][];
       using (var aesAlgorithm = new AesCryptoServiceProvider())
       {
-        var keyBase64 = aesAlgorithm.Key;
-        var vectorBase64 = aesAlgorithm.IV;
-        result[0] = keyBase64;
-        result[1] = vectorBase64;
+        var key = aesAlgorithm.Key;
+        var vector = aesAlgorithm.IV;
+        result[0] = key;
+        result[1] = vector;
       }
 
       return result;
@@ -189,10 +189,10 @@ namespace Tools
         //Console.WriteLine($"Aes Block Size : {aesAlgorithm.BlockSize}");
         //var keyBase64 = Convert.ToBase64String(aesAlgorithm.Key);
         //var vectorBase64 = Convert.ToBase64String(aesAlgorithm.IV);
-        var keyBase64 = aesAlgorithm.Key;
-        var vectorBase64 = aesAlgorithm.IV;
-        result[0] = keyBase64;
-        result[1] = vectorBase64;
+        var key = aesAlgorithm.Key;
+        var vector = aesAlgorithm.IV;
+        result[0] = key;
+        result[1] = vector;
       }
 
       return result;
