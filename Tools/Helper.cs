@@ -14,6 +14,8 @@ namespace Tools
     public const int FourthElement = 3;
     public const int FithElement = 4;
 
+    public const int TwentyFour = 24;
+
     public const string OK = "ok";
     public const int One = 1;
 
@@ -115,7 +117,7 @@ namespace Tools
       return plainText;
     }
 
-    static string DecodeFromBytes_Aes(byte[] cipherText, byte[] key, byte[] salt)
+    public static string DecodeFromBytes_Aes(byte[] cipherText, byte[] key, byte[] salt)
     {
       // Check arguments.
       if (cipherText == null || cipherText.Length <= 0)
@@ -219,12 +221,50 @@ namespace Tools
       return result;
     }
 
-    public static string[] WriteToFile(byte[] lines, string filename)
+    public static string[] WriteToFileAllBytes(byte[] lines, string filename)
     {
       var result = new[] { "ok", string.Empty };
       try
       {
         File.WriteAllBytes(filename, lines);
+      }
+      catch (Exception exception)
+      {
+        result[0] = "ko";
+        result[1] = exception.Message;
+      }
+
+      return result;
+    }
+
+    public static string[] WriteToFile(byte[] lines, string filename)
+    {
+      var result = new[] { "ok", string.Empty };
+      try
+      {
+        using (StreamWriter sw = new StreamWriter(filename))
+        {
+          foreach (var item in lines)
+          {
+            sw.WriteLine(item.ToString());
+          }
+        }
+      }
+      catch (Exception exception)
+      {
+        result[0] = "ko";
+        result[1] = exception.Message;
+      }
+
+      return result;
+    }
+
+    public static string[] WriteToFile(string lines, string filename)
+    {
+      var result = new[] { "ok", string.Empty };
+      try
+      {
+        File.WriteAllText(filename, lines);
       }
       catch (Exception exception)
       {
@@ -255,6 +295,190 @@ namespace Tools
       }
 
       return result.ToArray();
+    }
+
+    public static string DecodeWithAES(string encryptedText, string key, string vector)
+    {
+      using (Aes aesAlgo = Aes.Create())
+      {
+        aesAlgo.Key = Encoding.UTF8.GetBytes(key);
+        aesAlgo.IV = Encoding.UTF8.GetBytes(vector);
+
+        ICryptoTransform decryptor = aesAlgo.CreateDecryptor(aesAlgo.Key, aesAlgo.IV);
+
+        using (var msDecrypt = new MemoryStream(Convert.FromBase64String(encryptedText)))
+        {
+          using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+          {
+            using (var srDecrypt = new StreamReader(csDecrypt))
+            {
+              return srDecrypt.ReadToEnd();
+            }
+          }
+        }
+      }
+    }
+
+    public static string EncryptWithAES(string plainText, string key, string vector)
+    {
+      using (Aes aesAlgo = Aes.Create())
+      {
+        aesAlgo.Key = Encoding.UTF8.GetBytes(key);
+        aesAlgo.IV = Encoding.UTF8.GetBytes(vector);
+
+        ICryptoTransform encryptor = aesAlgo.CreateEncryptor(aesAlgo.Key, aesAlgo.IV);
+
+        using (var msEncrypt = new MemoryStream())
+        {
+          using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+          {
+            using (var swEncrypt = new StreamWriter(csEncrypt))
+            {
+              swEncrypt.Write(plainText);
+            }
+          }
+
+          return Convert.ToBase64String(msEncrypt.ToArray());
+        }
+      }
+    }
+
+    public static string GenerateRandomcharacters(int numberOfcharacters = 32, bool includeSymbols = true, bool includeNumbers = true, bool includeLowerCase = true, bool includeUppercase = true, bool excludeSimilarCharacters = false, bool excludeAmbiguousCharacters = false)
+    {
+      string result = string.Empty;
+      string candidateCharacters = GenerateCharacters(includeSymbols, includeNumbers, includeLowerCase, includeUppercase, excludeSimilarCharacters, excludeAmbiguousCharacters);
+
+      for (int i = 1; i <= numberOfcharacters; i++)
+      {
+        result += GenerateOneRandomCharacterWithList(candidateCharacters);
+      }
+
+      return result;
+    }
+
+    public static string GenerateOneRandomCharacterWithList(string candidateCharacters)
+    {
+      int charNumber = GenerateRandomNumber(0, candidateCharacters.Length - 1);
+      string oneCharacter = candidateCharacters[charNumber].ToString();
+      return oneCharacter;
+    }
+
+    public static string GenerateCharacters(bool includeSymbols = true, bool includeNumbers = true, bool includeLowerCase = true, bool includeUppercase = true, bool excludeSimilarCharacters = true, bool excludeAmbiguousCharacters = true)
+    {
+      string result = string.Empty;
+      if (includeSymbols)
+      {
+        result += GetAllSymbols();
+      }
+
+      if (includeNumbers)
+      {
+        result += GetAllNumbers();
+      }
+
+      if (includeLowerCase)
+      {
+        result += GetAlphabetLowerCase();
+      }
+
+      if (includeUppercase)
+      {
+        result += GetAlphabetUpperCase();
+      }
+
+      if (excludeSimilarCharacters)
+      {
+        string similarcharacters = GetSimilarCharacters();
+        for (int i = 0; i < similarcharacters.Length; i++)
+        {
+          result = result.Replace(similarcharacters[i].ToString(), string.Empty);
+        }
+      }
+
+      if (excludeAmbiguousCharacters)
+      {
+        result = RemoveCharacters(result, GetAmbiguousCharacters());
+      }
+
+      return result;
+    }
+
+    public static string RemoveCharacters(string theString, string characterstoBeRemoved)
+    {
+      string result = theString;
+      foreach (var oneCharactertoBeRemoved in characterstoBeRemoved)
+      {
+        result = result.Replace(oneCharactertoBeRemoved.ToString(), string.Empty);
+      }
+
+      return result;
+    }
+
+    public static string GetAlphabetLowerCase()
+    {
+      return "abcdefghijklmnopqrstuvwxyz";
+    }
+
+    public static string GetAlphabetUpperCase()
+    {
+      return GetAlphabetLowerCase().ToUpper();
+    }
+
+    public static string GetAllNumbers()
+    {
+      return "0123456789";
+    }
+
+    public static string GetAllSymbols()
+    {
+      return "@#$%}[]()/,;:.<>_-";
+    }
+
+    public static string GetAmbiguousCharacters()
+    {
+      return "\\'\"~";
+    }
+
+    public static string GetSimilarCharacters()
+    {
+      return "l1oO0";
+    }
+
+    public static string GenerateOneRandomCharacter(bool lowercase = true)
+    {
+      int charNumber = GenerateRandomNumber(65, 65 + 26);
+      string result = ((char)charNumber).ToString();
+      result = ToUpperOrLowercase(result, lowercase);
+      return result;
+    }
+
+    public static int GenerateRandomNumber(int min, int max)
+    {
+      if (max > 255 || min < 0)
+      {
+        return 0;
+      }
+
+      if (max == min)
+      {
+        return min;
+      }
+
+      int result;
+      var crypto = new RNGCryptoServiceProvider();
+      byte[] randomNumber = new byte[1];
+      do
+      {
+        crypto.GetBytes(randomNumber);
+        result = randomNumber[0];
+      } while (result < min || result > max);
+
+      return result;
+    }
+
+    public static string ToUpperOrLowercase(string message, bool lowercase = true)
+    {
+      return lowercase ? message.ToLower() : message.ToUpper();
     }
   }
 }

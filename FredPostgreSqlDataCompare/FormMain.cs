@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using FredPostgreSqlDataCompare.DAL;
 using FredPostgreSqlDataCompare.Properties;
@@ -88,28 +89,22 @@ namespace FredPostgreSqlDataCompare
             return;
           }
 
-          var encryptionSalt = Helper.ReadFile(SourceSaltFilename);
+          string encryptionKeyFinal = encryptionKey[Helper.SecondElement];
 
-          encryptionKey = encryptionKey.Skip(Helper.One).ToArray();
-          var values = Helper.ReadFile(SourceValue1Filename);
-          if (!values[Helper.FirstElement].StartsWith(Helper.OK))
+          var encryptionSalt = Helper.ReadFile(SourceSaltFilename);
+          if (!encryptionSalt[Helper.FirstElement].StartsWith(Helper.OK))
           {
-            MessageBox.Show("There was an error while trying to read the values file", "Error while reading file", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            MessageBox.Show("There was an error while trying to read the encryption vector", "Error while reading file", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             return;
           }
 
-          values = values.Skip(Helper.One).ToArray();
-          var sourceServerName = Helper.DecodeToStringWithAes(values[Helper.FirstElement], encryptionKey[Helper.FirstElement], encryptionKey[Helper.SecondElement]); 
-          var sourcePortNumber = Helper.DecodeToStringWithAes(values[Helper.SecondElement], encryptionKey[Helper.FirstElement], encryptionKey[Helper.SecondElement]);
-          var sourceUserName = Helper.DecodeToStringWithAes(values[Helper.ThirdElement], encryptionKey[Helper.FirstElement], encryptionKey[Helper.SecondElement]);
-          var sourcePassword = Helper.DecodeToStringWithAes(values[Helper.FourthElement], encryptionKey[Helper.FirstElement], encryptionKey[Helper.SecondElement]);
-          var sourceDatabaseName = Helper.DecodeToStringWithAes(values[Helper.FithElement], encryptionKey[Helper.FirstElement], encryptionKey[Helper.SecondElement]);
+          string encryptionSaltFinal = encryptionSalt[Helper.SecondElement];
 
-          textBoxSourceServer.Text = sourceServerName;
-          textBoxSourcePort.Text = sourcePortNumber;
-          textBoxSourceName.Text = sourceUserName;
-          textBoxSourcePassword.Text = sourcePassword;
-          textBoxDatabaseNameSource.Text = sourceDatabaseName;
+          ReadAndDecode(SourceValue1Filename, encryptionKeyFinal, encryptionSaltFinal, textBoxSourceServer);
+          ReadAndDecode(SourceValue2Filename, encryptionKeyFinal, encryptionSaltFinal, textBoxSourcePort);
+          ReadAndDecode(SourceValue3Filename, encryptionKeyFinal, encryptionSaltFinal, textBoxSourceName);
+          ReadAndDecode(SourceValue4Filename, encryptionKeyFinal, encryptionSaltFinal, textBoxSourcePassword);
+          ReadAndDecode(SourceValue5Filename, encryptionKeyFinal, encryptionSaltFinal, textBoxDatabaseNameSource);
         }
       }
 
@@ -118,19 +113,45 @@ namespace FredPostgreSqlDataCompare
       {
         if (AllFilesExist(false))
         {
-          var targetServerName = "to be decrypted";
-          var targetPortNumber = "to be decrypted";
-          var targetUserName = "to be decrypted";
-          var targetUserPassword = "to be decrypted";
-          var targetDatabaseName = "to be decrypted";
+          var encryptionKey = Helper.ReadFile(TargetKeyFilename);
+          if (!encryptionKey[Helper.FirstElement].StartsWith(Helper.OK))
+          {
+            MessageBox.Show("There was an error while trying to read the encryption key", "Error while reading file", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+          }
 
-          textBoxTargetServer.Text = targetServerName;
-          textBoxTargetPort.Text = targetPortNumber;
-          textBoxTargetName.Text = targetUserName;
-          textBoxTargetPassword.Text = targetUserPassword;
-          textBoxDatabaseNameTarget.Text = targetDatabaseName;
+          string encryptionKeyFinal = encryptionKey[Helper.SecondElement];
+
+          var encryptionSalt = Helper.ReadFile(TargetSaltFilename);
+          if (!encryptionSalt[Helper.FirstElement].StartsWith(Helper.OK))
+          {
+            MessageBox.Show("There was an error while trying to read the encryption vector", "Error while reading file", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+          }
+
+          string encryptionSaltFinal = encryptionSalt[Helper.SecondElement];
+
+          ReadAndDecode(TargetValue1Filename, encryptionKeyFinal, encryptionSaltFinal, textBoxTargetServer);
+          ReadAndDecode(TargetValue2Filename, encryptionKeyFinal, encryptionSaltFinal, textBoxTargetPort);
+          ReadAndDecode(TargetValue3Filename, encryptionKeyFinal, encryptionSaltFinal, textBoxTargetName);
+          ReadAndDecode(TargetValue4Filename, encryptionKeyFinal, encryptionSaltFinal, textBoxTargetPassword);
+          ReadAndDecode(TargetValue5Filename, encryptionKeyFinal, encryptionSaltFinal, textBoxDatabaseNameTarget);
         }
       }
+    }
+
+    private void ReadAndDecode(string sourceFilename, string encryptionKey, string encryptionSalt, TextBox textBox)
+    {
+      var values = Helper.ReadFile(sourceFilename);
+      if (!values[Helper.FirstElement].StartsWith(Helper.OK))
+      {
+        MessageBox.Show("There was an error while trying to read the values file", "Error while reading file", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        return;
+      }
+
+      string valuesFinal = values[Helper.SecondElement];
+      var plainText = Helper.DecodeWithAES(valuesFinal, encryptionKey, encryptionSalt);
+      textBox.Text = plainText;
     }
 
     private void SaveAuthentificationParameters()
@@ -142,14 +163,16 @@ namespace FredPostgreSqlDataCompare
         {
           if (File.Exists(SourceKeyFilename) && File.Exists(SourceSaltFilename))
           {
-            // if files exist then we read the key already generated
+            // if files already exist then we read the keys already generated
 
           }
           else
           {
             // create a key file
-            var keys = Helper.CreateAesCryptoService();
-            var result = Helper.WriteToFile(keys[Helper.FirstElement], SourceKeyFilename);
+            var encryptionKey = Helper.GenerateRandomcharacters(32);
+            var vector = Helper.GenerateRandomcharacters(16);
+            var result = Helper.WriteToFile(encryptionKey, SourceKeyFilename);
+
             var errorMessage = $"Error while trying to write a file on the disk, the error is: {result[Helper.SecondElement]}";
             if (result[Helper.FirstElement] == "ko")
             {
@@ -157,7 +180,7 @@ namespace FredPostgreSqlDataCompare
               return;
             }
 
-            result = Helper.WriteToFile(keys[Helper.SecondElement], SourceSaltFilename);
+            result = Helper.WriteToFile(vector, SourceSaltFilename);
             if (result[Helper.FirstElement] == "ko")
             {
               MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -170,11 +193,11 @@ namespace FredPostgreSqlDataCompare
             var sourceUserPassword = textBoxSourcePassword.Text;
             var sourceDatabaseName = textBoxDatabaseNameSource.Text;
             // encryption
-            var sourceServerNameEncrypted = Helper.EncryptStringToBytesWithAes(sourceServerName, keys[Helper.FirstElement], keys[Helper.SecondElement]);
-            var sourcePortNumberEncrypted = Helper.EncryptStringToBytesWithAes(sourcePortNumber, keys[Helper.FirstElement], keys[Helper.SecondElement]);
-            var sourceUserNameEncrypted = Helper.EncryptStringToBytesWithAes(sourceUserName, keys[Helper.FirstElement], keys[Helper.SecondElement]);
-            var sourcePasswordEncrypted = Helper.EncryptStringToBytesWithAes(sourceUserPassword, keys[Helper.FirstElement], keys[Helper.SecondElement]);
-            var sourceDatabaseNameEncrypted = Helper.EncryptStringToBytesWithAes(sourceDatabaseName, keys[Helper.FirstElement], keys[Helper.SecondElement]);
+            var sourceServerNameEncrypted = Helper.EncryptWithAES(sourceServerName, encryptionKey, vector);
+            var sourcePortNumberEncrypted = Helper.EncryptWithAES(sourcePortNumber, encryptionKey, vector);
+            var sourceUserNameEncrypted = Helper.EncryptWithAES(sourceUserName, encryptionKey, vector);
+            var sourcePasswordEncrypted = Helper.EncryptWithAES(sourceUserPassword, encryptionKey, vector);
+            var sourceDatabaseNameEncrypted = Helper.EncryptWithAES(sourceDatabaseName, encryptionKey, vector);
 
             var resultWritingToFile = Helper.WriteToFile(sourceServerNameEncrypted, SourceValue1Filename);
             if (resultWritingToFile[Helper.FirstElement] == "ko")
@@ -205,6 +228,86 @@ namespace FredPostgreSqlDataCompare
             }
 
             resultWritingToFile = Helper.WriteToFile(sourceDatabaseNameEncrypted, SourceValue5Filename);
+            if (resultWritingToFile[Helper.FirstElement] == "ko")
+            {
+              MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+              return;
+            }
+          }
+        }
+      }
+
+      if (checkBoxTargetRememberCredentials.Checked)
+      {
+        if (!string.IsNullOrEmpty(textBoxTargetName.Text) && !string.IsNullOrEmpty(textBoxTargetPassword.Text) && !string.IsNullOrEmpty(textBoxTargetPort.Text) && !string.IsNullOrEmpty(textBoxTargetServer.Text))
+        {
+          if (File.Exists(TargetKeyFilename) && File.Exists(TargetSaltFilename))
+          {
+            // if files already exist then we read the keys already generated
+
+          }
+          else
+          {
+            // create a key file
+            var encryptionKey = Helper.GenerateRandomcharacters(32);
+            var vector = Helper.GenerateRandomcharacters(16);
+            var result = Helper.WriteToFile(encryptionKey, TargetKeyFilename);
+
+            var errorMessage = $"Error while trying to write a file on the disk, the error is: {result[Helper.SecondElement]}";
+            if (result[Helper.FirstElement] == "ko")
+            {
+              MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+              return;
+            }
+
+            result = Helper.WriteToFile(vector, TargetSaltFilename);
+            if (result[Helper.FirstElement] == "ko")
+            {
+              MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+              return;
+            }
+
+            var targetServerName = textBoxTargetServer.Text;
+            var targetPortNumber = textBoxTargetPort.Text;
+            var targetUserName = textBoxTargetName.Text;
+            var targetUserPassword = textBoxTargetPassword.Text;
+            var targetDatabaseName = textBoxDatabaseNameTarget.Text;
+            // encryption
+            var targetServerNameEncrypted = Helper.EncryptWithAES(targetServerName, encryptionKey, vector);
+            var targetPortNumberEncrypted = Helper.EncryptWithAES(targetPortNumber, encryptionKey, vector);
+            var targetUserNameEncrypted = Helper.EncryptWithAES(targetUserName, encryptionKey, vector);
+            var targetPasswordEncrypted = Helper.EncryptWithAES(targetUserPassword, encryptionKey, vector);
+            var targetDatabaseNameEncrypted = Helper.EncryptWithAES(targetDatabaseName, encryptionKey, vector);
+
+            var resultWritingToFile = Helper.WriteToFile(targetServerNameEncrypted, TargetValue1Filename);
+            if (resultWritingToFile[Helper.FirstElement] == "ko")
+            {
+              MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+              return;
+            }
+
+            resultWritingToFile = Helper.WriteToFile(targetPortNumberEncrypted, TargetValue2Filename);
+            if (resultWritingToFile[Helper.FirstElement] == "ko")
+            {
+              MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+              return;
+            }
+
+            resultWritingToFile = Helper.WriteToFile(targetUserNameEncrypted, TargetValue3Filename);
+            if (resultWritingToFile[Helper.FirstElement] == "ko")
+            {
+              MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+              return;
+            }
+
+            resultWritingToFile = Helper.WriteToFile(targetPasswordEncrypted, TargetValue4Filename);
+            if (resultWritingToFile[Helper.FirstElement] == "ko")
+            {
+              MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+              return;
+            }
+
+            resultWritingToFile = Helper.WriteToFile(targetDatabaseNameEncrypted, TargetValue5Filename);
             if (resultWritingToFile[Helper.FirstElement] == "ko")
             {
               MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
