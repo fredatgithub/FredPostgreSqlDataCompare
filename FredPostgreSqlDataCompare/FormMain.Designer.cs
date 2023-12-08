@@ -621,7 +621,7 @@
       // 
       this.buttonCompareSaveAs.Location = new System.Drawing.Point(182, 817);
       this.buttonCompareSaveAs.Name = "buttonCompareSaveAs";
-      this.buttonCompareSaveAs.Size = new System.Drawing.Size(106, 46);
+      this.buttonCompareSaveAs.Size = new System.Drawing.Size(136, 46);
       this.buttonCompareSaveAs.TabIndex = 70;
       this.buttonCompareSaveAs.Text = "Save as ...";
       this.buttonCompareSaveAs.UseVisualStyleBackColor = true;
