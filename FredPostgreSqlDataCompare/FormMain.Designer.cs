@@ -117,7 +117,6 @@
       // 
       // menuStrip1
       // 
-      this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
       this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fichierToolStripMenuItem,
@@ -582,7 +581,7 @@
       this.buttonCompareCompareNow.BackColor = System.Drawing.Color.RoyalBlue;
       this.buttonCompareCompareNow.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.buttonCompareCompareNow.ForeColor = System.Drawing.Color.White;
-      this.buttonCompareCompareNow.Location = new System.Drawing.Point(778, 815);
+      this.buttonCompareCompareNow.Location = new System.Drawing.Point(778, 827);
       this.buttonCompareCompareNow.Name = "buttonCompareCompareNow";
       this.buttonCompareCompareNow.Size = new System.Drawing.Size(165, 46);
       this.buttonCompareCompareNow.TabIndex = 74;
@@ -592,7 +591,7 @@
       // 
       // buttonCompareToLeftArrow
       // 
-      this.buttonCompareToLeftArrow.Location = new System.Drawing.Point(633, 815);
+      this.buttonCompareToLeftArrow.Location = new System.Drawing.Point(633, 827);
       this.buttonCompareToLeftArrow.Name = "buttonCompareToLeftArrow";
       this.buttonCompareToLeftArrow.Size = new System.Drawing.Size(60, 46);
       this.buttonCompareToLeftArrow.TabIndex = 73;
@@ -601,7 +600,7 @@
       // 
       // buttonCompareToRightAndLeftArrow
       // 
-      this.buttonCompareToRightAndLeftArrow.Location = new System.Drawing.Point(566, 815);
+      this.buttonCompareToRightAndLeftArrow.Location = new System.Drawing.Point(566, 827);
       this.buttonCompareToRightAndLeftArrow.Name = "buttonCompareToRightAndLeftArrow";
       this.buttonCompareToRightAndLeftArrow.Size = new System.Drawing.Size(51, 46);
       this.buttonCompareToRightAndLeftArrow.TabIndex = 72;
@@ -610,7 +609,7 @@
       // 
       // buttonCompareToRightArrow
       // 
-      this.buttonCompareToRightArrow.Location = new System.Drawing.Point(488, 815);
+      this.buttonCompareToRightArrow.Location = new System.Drawing.Point(488, 827);
       this.buttonCompareToRightArrow.Name = "buttonCompareToRightArrow";
       this.buttonCompareToRightArrow.Size = new System.Drawing.Size(66, 46);
       this.buttonCompareToRightArrow.TabIndex = 71;
@@ -619,7 +618,7 @@
       // 
       // buttonCompareSaveAs
       // 
-      this.buttonCompareSaveAs.Location = new System.Drawing.Point(182, 817);
+      this.buttonCompareSaveAs.Location = new System.Drawing.Point(182, 829);
       this.buttonCompareSaveAs.Name = "buttonCompareSaveAs";
       this.buttonCompareSaveAs.Size = new System.Drawing.Size(136, 46);
       this.buttonCompareSaveAs.TabIndex = 70;
@@ -628,7 +627,7 @@
       // 
       // buttonCompareSave
       // 
-      this.buttonCompareSave.Location = new System.Drawing.Point(66, 817);
+      this.buttonCompareSave.Location = new System.Drawing.Point(66, 829);
       this.buttonCompareSave.Name = "buttonCompareSave";
       this.buttonCompareSave.Size = new System.Drawing.Size(99, 46);
       this.buttonCompareSave.TabIndex = 69;
@@ -637,7 +636,7 @@
       // 
       // buttonTargetCreate
       // 
-      this.buttonTargetCreate.Location = new System.Drawing.Point(738, 632);
+      this.buttonTargetCreate.Location = new System.Drawing.Point(738, 644);
       this.buttonTargetCreate.Name = "buttonTargetCreate";
       this.buttonTargetCreate.Size = new System.Drawing.Size(100, 38);
       this.buttonTargetCreate.TabIndex = 68;
@@ -646,18 +645,19 @@
       // 
       // buttonTargetRefresh
       // 
-      this.buttonTargetRefresh.Location = new System.Drawing.Point(1185, 569);
+      this.buttonTargetRefresh.Location = new System.Drawing.Point(1185, 581);
       this.buttonTargetRefresh.Name = "buttonTargetRefresh";
       this.buttonTargetRefresh.Size = new System.Drawing.Size(112, 38);
       this.buttonTargetRefresh.TabIndex = 67;
       this.buttonTargetRefresh.Text = "Refresh";
       this.buttonTargetRefresh.UseVisualStyleBackColor = true;
+      this.buttonTargetRefresh.Click += new System.EventHandler(this.ButtonTargetRefresh_Click);
       // 
       // labelTargetDatabase
       // 
       this.labelTargetDatabase.AutoSize = true;
       this.labelTargetDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelTargetDatabase.Location = new System.Drawing.Point(738, 529);
+      this.labelTargetDatabase.Location = new System.Drawing.Point(738, 541);
       this.labelTargetDatabase.Name = "labelTargetDatabase";
       this.labelTargetDatabase.Size = new System.Drawing.Size(123, 29);
       this.labelTargetDatabase.TabIndex = 66;
@@ -666,7 +666,7 @@
       // comboBoxTargetDatabase
       // 
       this.comboBoxTargetDatabase.FormattingEnabled = true;
-      this.comboBoxTargetDatabase.Location = new System.Drawing.Point(741, 572);
+      this.comboBoxTargetDatabase.Location = new System.Drawing.Point(741, 584);
       this.comboBoxTargetDatabase.Name = "comboBoxTargetDatabase";
       this.comboBoxTargetDatabase.Size = new System.Drawing.Size(438, 37);
       this.comboBoxTargetDatabase.TabIndex = 65;
@@ -718,7 +718,7 @@
       // comboBoxTargetSchema
       // 
       this.comboBoxTargetSchema.FormattingEnabled = true;
-      this.comboBoxTargetSchema.Location = new System.Drawing.Point(855, 689);
+      this.comboBoxTargetSchema.Location = new System.Drawing.Point(855, 701);
       this.comboBoxTargetSchema.Name = "comboBoxTargetSchema";
       this.comboBoxTargetSchema.Size = new System.Drawing.Size(444, 37);
       this.comboBoxTargetSchema.TabIndex = 59;
@@ -727,7 +727,7 @@
       // labelTargetSchema
       // 
       this.labelTargetSchema.AutoSize = true;
-      this.labelTargetSchema.Location = new System.Drawing.Point(738, 689);
+      this.labelTargetSchema.Location = new System.Drawing.Point(738, 701);
       this.labelTargetSchema.Name = "labelTargetSchema";
       this.labelTargetSchema.Size = new System.Drawing.Size(101, 29);
       this.labelTargetSchema.TabIndex = 58;
@@ -755,7 +755,7 @@
       // 
       // buttonSourceCreate
       // 
-      this.buttonSourceCreate.Location = new System.Drawing.Point(66, 632);
+      this.buttonSourceCreate.Location = new System.Drawing.Point(66, 644);
       this.buttonSourceCreate.Name = "buttonSourceCreate";
       this.buttonSourceCreate.Size = new System.Drawing.Size(99, 38);
       this.buttonSourceCreate.TabIndex = 53;
@@ -764,7 +764,7 @@
       // 
       // buttonSourceRefresh
       // 
-      this.buttonSourceRefresh.Location = new System.Drawing.Point(492, 572);
+      this.buttonSourceRefresh.Location = new System.Drawing.Point(492, 584);
       this.buttonSourceRefresh.Name = "buttonSourceRefresh";
       this.buttonSourceRefresh.Size = new System.Drawing.Size(118, 38);
       this.buttonSourceRefresh.TabIndex = 52;
@@ -776,7 +776,7 @@
       // 
       this.labelSourceDatabase.AutoSize = true;
       this.labelSourceDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelSourceDatabase.Location = new System.Drawing.Point(64, 534);
+      this.labelSourceDatabase.Location = new System.Drawing.Point(64, 546);
       this.labelSourceDatabase.Name = "labelSourceDatabase";
       this.labelSourceDatabase.Size = new System.Drawing.Size(123, 29);
       this.labelSourceDatabase.TabIndex = 51;
@@ -785,7 +785,7 @@
       // comboBoxSourceDatabase
       // 
       this.comboBoxSourceDatabase.FormattingEnabled = true;
-      this.comboBoxSourceDatabase.Location = new System.Drawing.Point(68, 575);
+      this.comboBoxSourceDatabase.Location = new System.Drawing.Point(68, 587);
       this.comboBoxSourceDatabase.Name = "comboBoxSourceDatabase";
       this.comboBoxSourceDatabase.Size = new System.Drawing.Size(412, 37);
       this.comboBoxSourceDatabase.TabIndex = 50;
@@ -837,7 +837,7 @@
       // comboBoxSourceSchema
       // 
       this.comboBoxSourceSchema.FormattingEnabled = true;
-      this.comboBoxSourceSchema.Location = new System.Drawing.Point(182, 702);
+      this.comboBoxSourceSchema.Location = new System.Drawing.Point(182, 714);
       this.comboBoxSourceSchema.Name = "comboBoxSourceSchema";
       this.comboBoxSourceSchema.Size = new System.Drawing.Size(428, 37);
       this.comboBoxSourceSchema.TabIndex = 44;
@@ -846,7 +846,7 @@
       // labelSourceSchema
       // 
       this.labelSourceSchema.AutoSize = true;
-      this.labelSourceSchema.Location = new System.Drawing.Point(64, 702);
+      this.labelSourceSchema.Location = new System.Drawing.Point(64, 714);
       this.labelSourceSchema.Name = "labelSourceSchema";
       this.labelSourceSchema.Size = new System.Drawing.Size(101, 29);
       this.labelSourceSchema.TabIndex = 43;
@@ -878,7 +878,7 @@
       this.tabPageTables.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.tabPageTables.Name = "tabPageTables";
       this.tabPageTables.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.tabPageTables.Size = new System.Drawing.Size(1452, 1009);
+      this.tabPageTables.Size = new System.Drawing.Size(1452, 1006);
       this.tabPageTables.TabIndex = 1;
       this.tabPageTables.Text = "Tables";
       this.tabPageTables.UseVisualStyleBackColor = true;

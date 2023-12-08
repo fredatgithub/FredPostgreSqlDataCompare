@@ -45,9 +45,7 @@ namespace FredPostgreSqlDataCompare.DAL
 
     public static string GetAllDatabaseNamesRequest()
     {
-      // SELECT datname FROM pg_database WHERE datistemplate = false;
       return $"SELECT datname FROM pg_database WHERE datistemplate = false;";
-      //return "use master  select name from sys.databases where name NOT IN ('master', 'model', 'msdb', 'tempdb');";
     }
 
     public static string GetAllStoredProcedureRequest()

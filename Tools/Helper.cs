@@ -18,6 +18,7 @@ namespace Tools
 
     public const string OK = "ok";
     public const int One = 1;
+    public const char SemiColon = ';';
 
     public static string TripleDESEncrypt(string password, string cle)
     {

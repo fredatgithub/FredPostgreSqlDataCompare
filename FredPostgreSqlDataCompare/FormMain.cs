@@ -430,7 +430,6 @@ namespace FredPostgreSqlDataCompare
       Left = Settings.Default.WindowLeft < 0 ? 0 : Settings.Default.WindowLeft;
       textBoxSourcePort.Text = Settings.Default.TextBoxSourcePort;
       textBoxTargetPort.Text = Settings.Default.TextBoxTargetPort;
-
       Settings.Default.Save();
     }
 
@@ -493,34 +492,10 @@ namespace FredPostgreSqlDataCompare
       Settings.Default.CheckBoxSourceRememberCredentials = checkBoxSourceRememberCredentials.Checked;
       Settings.Default.CheckBoxTargetRememberCredentials = checkBoxTargetRememberCredentials.Checked;
 
-      Settings.Default.Save();
-
-      //if (comboBoxSourceAuthentication.SelectedIndex != -1 && comboBoxSourceAuthentication.SelectedItem.ToString().ToLower().Replace(" ", "") == AuthenticationTypes.AuthenticationSQLServer.ToString().ToLower() && string.IsNullOrEmpty(textBoxSourcePassword.Text))
-      //{
-      //  MessageBox.Show("The password cannot be empty if SQL authentication is choosen");
-      //  return;
-      //}
-
-      //if (comboBoxSourceAuthentication.SelectedIndex != -1 && comboBoxSourceAuthentication.SelectedItem.ToString().ToLower().Replace(" ", "") == AuthenticationTypes.AuthenticationSQLServer.ToString().ToLower() && string.IsNullOrEmpty(textBoxSourceName.Text))
-      //{
-      //  MessageBox.Show("The user name cannot be empty if SQL authentication is choosen");
-      //  return;
-      //}
-
-      Settings.Default.textBoxSourceServer = textBoxSourceServer.Text;
-      Settings.Default.textBoxTargetServer = textBoxTargetServer.Text;
-
       //saving controls state
-      //Settings.Default.ComboBoxSourceAuthenticationIndex = comboBoxSourceAuthentication.SelectedIndex;
-      //Settings.Default.ComboBoxTargetAuthenticationIndex = comboBoxTargetAuthentication.SelectedIndex;
       Settings.Default.CheckBoxSourceRememberCredentials = checkBoxSourceRememberCredentials.Checked;
       Settings.Default.CheckBoxTargetRememberCredentials = checkBoxTargetRememberCredentials.Checked;
-
-      Settings.Default.textBoxTargetName = textBoxTargetName.Text;
-      Settings.Default.textBoxSourceName = textBoxSourceName.Text;
-
-      //Settings.Default.comboBoxSourceDatabaseSource = comboBoxSourceDatabaseSource.SelectedIndex;
-      //Settings.Default.comboBoxTargetDatabaseTarget = comboBoxTargetDatabaseTarget.SelectedIndex;
+      Settings.Default.Save();
 
       //comboBoxTargetDatabase
       string oneString = string.Empty;
@@ -531,10 +506,10 @@ namespace FredPostgreSqlDataCompare
           oneString += $"{item};";
         }
 
-        oneString = oneString.TrimEnd(';');
+        oneString = oneString.TrimEnd(Helper.SemiColon);
       }
 
-      Settings.Default.comboBoxTargetDatabase = oneString;
+      //Settings.Default.comboBoxTargetDatabase = oneString;
 
       //comboBoxTargetDatabase
       oneString = string.Empty;
@@ -549,7 +524,7 @@ namespace FredPostgreSqlDataCompare
       }
 
       Settings.Default.comboBoxSourceDatabase = oneString;
-      Settings.Default.Save();
+      //Settings.Default.Save();
     }
 
     private void ButtonTestConnection_Click(object sender, EventArgs e)
@@ -695,6 +670,15 @@ namespace FredPostgreSqlDataCompare
     private void ButtonCopyDatabaseName_Click(object sender, EventArgs e)
     {
       textBoxDatabaseNameTarget.Text = textBoxDatabaseNameSource.Text;
+    }
+
+    private void ButtonTargetRefresh_Click(object sender, EventArgs e)
+    {
+      if (targetAuthenticationIsOk)
+      {
+        var sqlRequest = ConnectionSqlServer.GetAllDatabaseNamesRequest();
+
+      }
     }
   }
 }
