@@ -103,7 +103,7 @@ namespace FredPostgreSqlDataCompare.DAL
     /// <param name="databaseName">The name of the database.</param>
     /// <param name="sqlServerName">The name of the SQL server.</param>
     /// <returns>An SQL data reader type.</returns>
-    public static SqlDataReader ExecuteSqlQueryManyResults(string sqlQuery, string databaseName, string sqlServerName)
+    public static SqlDataReader ExecuteSqlQueryToDataREader(string sqlQuery, string databaseName, string sqlServerName)
     {
       SqlDataReader result = null;
       string connectionString = GetConnexionString(databaseName, sqlServerName);
@@ -147,7 +147,7 @@ namespace FredPostgreSqlDataCompare.DAL
     /// <returns>An SQL data reader type.</returns>
     public static List<string> ExecuteSqlQueryToListOfStrings(string sqlQuery, string databaseName, string sqlServerName)
     {
-      List<string> result = new List<string>();
+      var result = new List<string>();
       string connectionString = GetConnexionString(databaseName, sqlServerName);
       string query = sqlQuery;
 
