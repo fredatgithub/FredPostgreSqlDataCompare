@@ -61,6 +61,8 @@
       this.àproposdeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tabControlMain = new System.Windows.Forms.TabControl();
       this.tabPageDataSources = new System.Windows.Forms.TabPage();
+      this.buttonRefreshTarget = new System.Windows.Forms.Button();
+      this.buttonRefreshSource = new System.Windows.Forms.Button();
       this.buttonCopyDatabaseName = new System.Windows.Forms.Button();
       this.buttonCopyUserName = new System.Windows.Forms.Button();
       this.textBoxTargetServer = new System.Windows.Forms.TextBox();
@@ -78,11 +80,6 @@
       this.buttonCopyServerName = new System.Windows.Forms.Button();
       this.buttonCopyPassword = new System.Windows.Forms.Button();
       this.buttonCompareCompareNow = new System.Windows.Forms.Button();
-      this.buttonCompareToLeftArrow = new System.Windows.Forms.Button();
-      this.buttonCompareToRightAndLeftArrow = new System.Windows.Forms.Button();
-      this.buttonCompareToRightArrow = new System.Windows.Forms.Button();
-      this.buttonCompareSaveAs = new System.Windows.Forms.Button();
-      this.buttonCompareSave = new System.Windows.Forms.Button();
       this.buttonTargetCreate = new System.Windows.Forms.Button();
       this.buttonTargetRefresh = new System.Windows.Forms.Button();
       this.labelTargetDatabase = new System.Windows.Forms.Label();
@@ -126,7 +123,7 @@
             this.aideToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(1460, 36);
+      this.menuStrip1.Size = new System.Drawing.Size(1460, 33);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -144,7 +141,7 @@
             this.toolStripSeparator2,
             this.quitterToolStripMenuItem});
       this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-      this.fichierToolStripMenuItem.Size = new System.Drawing.Size(78, 30);
+      this.fichierToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
       this.fichierToolStripMenuItem.Text = "&Fichier";
       // 
       // nouveauToolStripMenuItem
@@ -240,7 +237,7 @@
             this.toolStripSeparator4,
             this.sélectionnertoutToolStripMenuItem});
       this.editionToolStripMenuItem.Name = "editionToolStripMenuItem";
-      this.editionToolStripMenuItem.Size = new System.Drawing.Size(83, 30);
+      this.editionToolStripMenuItem.Size = new System.Drawing.Size(83, 29);
       this.editionToolStripMenuItem.Text = "&Edition";
       // 
       // annulerToolStripMenuItem
@@ -306,7 +303,7 @@
             this.personnaliserToolStripMenuItem,
             this.optionsToolStripMenuItem});
       this.outilsToolStripMenuItem.Name = "outilsToolStripMenuItem";
-      this.outilsToolStripMenuItem.Size = new System.Drawing.Size(74, 30);
+      this.outilsToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
       this.outilsToolStripMenuItem.Text = "&Outils";
       // 
       // personnaliserToolStripMenuItem
@@ -330,7 +327,7 @@
             this.toolStripSeparator5,
             this.àproposdeToolStripMenuItem});
       this.aideToolStripMenuItem.Name = "aideToolStripMenuItem";
-      this.aideToolStripMenuItem.Size = new System.Drawing.Size(64, 30);
+      this.aideToolStripMenuItem.Size = new System.Drawing.Size(64, 29);
       this.aideToolStripMenuItem.Text = "&Aide";
       // 
       // sommaireToolStripMenuItem
@@ -368,16 +365,18 @@
       this.tabControlMain.Controls.Add(this.tabPageDataSources);
       this.tabControlMain.Controls.Add(this.tabPageTables);
       this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.tabControlMain.Location = new System.Drawing.Point(0, 36);
+      this.tabControlMain.Location = new System.Drawing.Point(0, 33);
       this.tabControlMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.tabControlMain.Name = "tabControlMain";
       this.tabControlMain.SelectedIndex = 0;
-      this.tabControlMain.Size = new System.Drawing.Size(1460, 1039);
+      this.tabControlMain.Size = new System.Drawing.Size(1460, 1042);
       this.tabControlMain.TabIndex = 1;
       this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.TabControlMain_SelectedIndexChanged);
       // 
       // tabPageDataSources
       // 
+      this.tabPageDataSources.Controls.Add(this.buttonRefreshTarget);
+      this.tabPageDataSources.Controls.Add(this.buttonRefreshSource);
       this.tabPageDataSources.Controls.Add(this.buttonCopyDatabaseName);
       this.tabPageDataSources.Controls.Add(this.buttonCopyUserName);
       this.tabPageDataSources.Controls.Add(this.textBoxTargetServer);
@@ -395,11 +394,6 @@
       this.tabPageDataSources.Controls.Add(this.buttonCopyServerName);
       this.tabPageDataSources.Controls.Add(this.buttonCopyPassword);
       this.tabPageDataSources.Controls.Add(this.buttonCompareCompareNow);
-      this.tabPageDataSources.Controls.Add(this.buttonCompareToLeftArrow);
-      this.tabPageDataSources.Controls.Add(this.buttonCompareToRightAndLeftArrow);
-      this.tabPageDataSources.Controls.Add(this.buttonCompareToRightArrow);
-      this.tabPageDataSources.Controls.Add(this.buttonCompareSaveAs);
-      this.tabPageDataSources.Controls.Add(this.buttonCompareSave);
       this.tabPageDataSources.Controls.Add(this.buttonTargetCreate);
       this.tabPageDataSources.Controls.Add(this.buttonTargetRefresh);
       this.tabPageDataSources.Controls.Add(this.labelTargetDatabase);
@@ -431,10 +425,30 @@
       this.tabPageDataSources.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.tabPageDataSources.Name = "tabPageDataSources";
       this.tabPageDataSources.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.tabPageDataSources.Size = new System.Drawing.Size(1452, 1006);
+      this.tabPageDataSources.Size = new System.Drawing.Size(1452, 1009);
       this.tabPageDataSources.TabIndex = 0;
       this.tabPageDataSources.Text = "Data Sources";
       this.tabPageDataSources.UseVisualStyleBackColor = true;
+      // 
+      // buttonRefreshTarget
+      // 
+      this.buttonRefreshTarget.Location = new System.Drawing.Point(1180, 708);
+      this.buttonRefreshTarget.Name = "buttonRefreshTarget";
+      this.buttonRefreshTarget.Size = new System.Drawing.Size(118, 38);
+      this.buttonRefreshTarget.TabIndex = 93;
+      this.buttonRefreshTarget.Text = "Refresh";
+      this.buttonRefreshTarget.UseVisualStyleBackColor = true;
+      this.buttonRefreshTarget.Click += new System.EventHandler(this.ButtonRefreshTarget_Click);
+      // 
+      // buttonRefreshSource
+      // 
+      this.buttonRefreshSource.Location = new System.Drawing.Point(499, 712);
+      this.buttonRefreshSource.Name = "buttonRefreshSource";
+      this.buttonRefreshSource.Size = new System.Drawing.Size(118, 38);
+      this.buttonRefreshSource.TabIndex = 92;
+      this.buttonRefreshSource.Text = "Refresh";
+      this.buttonRefreshSource.UseVisualStyleBackColor = true;
+      this.buttonRefreshSource.Click += new System.EventHandler(this.ButtonRefreshSource_Click);
       // 
       // buttonCopyDatabaseName
       // 
@@ -582,58 +596,13 @@
       this.buttonCompareCompareNow.BackColor = System.Drawing.Color.RoyalBlue;
       this.buttonCompareCompareNow.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.buttonCompareCompareNow.ForeColor = System.Drawing.Color.White;
-      this.buttonCompareCompareNow.Location = new System.Drawing.Point(778, 827);
+      this.buttonCompareCompareNow.Location = new System.Drawing.Point(618, 829);
       this.buttonCompareCompareNow.Name = "buttonCompareCompareNow";
       this.buttonCompareCompareNow.Size = new System.Drawing.Size(165, 46);
       this.buttonCompareCompareNow.TabIndex = 74;
       this.buttonCompareCompareNow.Text = "Compare now";
       this.buttonCompareCompareNow.UseVisualStyleBackColor = false;
       this.buttonCompareCompareNow.Click += new System.EventHandler(this.ButtonCompareCompareNow_Click);
-      // 
-      // buttonCompareToLeftArrow
-      // 
-      this.buttonCompareToLeftArrow.Location = new System.Drawing.Point(633, 827);
-      this.buttonCompareToLeftArrow.Name = "buttonCompareToLeftArrow";
-      this.buttonCompareToLeftArrow.Size = new System.Drawing.Size(60, 46);
-      this.buttonCompareToLeftArrow.TabIndex = 73;
-      this.buttonCompareToLeftArrow.Text = "<--";
-      this.buttonCompareToLeftArrow.UseVisualStyleBackColor = true;
-      // 
-      // buttonCompareToRightAndLeftArrow
-      // 
-      this.buttonCompareToRightAndLeftArrow.Location = new System.Drawing.Point(566, 827);
-      this.buttonCompareToRightAndLeftArrow.Name = "buttonCompareToRightAndLeftArrow";
-      this.buttonCompareToRightAndLeftArrow.Size = new System.Drawing.Size(51, 46);
-      this.buttonCompareToRightAndLeftArrow.TabIndex = 72;
-      this.buttonCompareToRightAndLeftArrow.Text = "<-->";
-      this.buttonCompareToRightAndLeftArrow.UseVisualStyleBackColor = true;
-      // 
-      // buttonCompareToRightArrow
-      // 
-      this.buttonCompareToRightArrow.Location = new System.Drawing.Point(488, 827);
-      this.buttonCompareToRightArrow.Name = "buttonCompareToRightArrow";
-      this.buttonCompareToRightArrow.Size = new System.Drawing.Size(66, 46);
-      this.buttonCompareToRightArrow.TabIndex = 71;
-      this.buttonCompareToRightArrow.Text = "-->";
-      this.buttonCompareToRightArrow.UseVisualStyleBackColor = true;
-      // 
-      // buttonCompareSaveAs
-      // 
-      this.buttonCompareSaveAs.Location = new System.Drawing.Point(182, 829);
-      this.buttonCompareSaveAs.Name = "buttonCompareSaveAs";
-      this.buttonCompareSaveAs.Size = new System.Drawing.Size(136, 46);
-      this.buttonCompareSaveAs.TabIndex = 70;
-      this.buttonCompareSaveAs.Text = "Save as ...";
-      this.buttonCompareSaveAs.UseVisualStyleBackColor = true;
-      // 
-      // buttonCompareSave
-      // 
-      this.buttonCompareSave.Location = new System.Drawing.Point(66, 829);
-      this.buttonCompareSave.Name = "buttonCompareSave";
-      this.buttonCompareSave.Size = new System.Drawing.Size(99, 46);
-      this.buttonCompareSave.TabIndex = 69;
-      this.buttonCompareSave.Text = "Save";
-      this.buttonCompareSave.UseVisualStyleBackColor = true;
       // 
       // buttonTargetCreate
       // 
@@ -646,7 +615,7 @@
       // 
       // buttonTargetRefresh
       // 
-      this.buttonTargetRefresh.Location = new System.Drawing.Point(1185, 581);
+      this.buttonTargetRefresh.Location = new System.Drawing.Point(1185, 582);
       this.buttonTargetRefresh.Name = "buttonTargetRefresh";
       this.buttonTargetRefresh.Size = new System.Drawing.Size(112, 38);
       this.buttonTargetRefresh.TabIndex = 67;
@@ -719,16 +688,15 @@
       // comboBoxTargetSchema
       // 
       this.comboBoxTargetSchema.FormattingEnabled = true;
-      this.comboBoxTargetSchema.Location = new System.Drawing.Point(855, 701);
+      this.comboBoxTargetSchema.Location = new System.Drawing.Point(855, 711);
       this.comboBoxTargetSchema.Name = "comboBoxTargetSchema";
-      this.comboBoxTargetSchema.Size = new System.Drawing.Size(444, 37);
+      this.comboBoxTargetSchema.Size = new System.Drawing.Size(319, 37);
       this.comboBoxTargetSchema.TabIndex = 59;
-      this.comboBoxTargetSchema.Text = "Public";
       // 
       // labelTargetSchema
       // 
       this.labelTargetSchema.AutoSize = true;
-      this.labelTargetSchema.Location = new System.Drawing.Point(738, 701);
+      this.labelTargetSchema.Location = new System.Drawing.Point(738, 717);
       this.labelTargetSchema.Name = "labelTargetSchema";
       this.labelTargetSchema.Size = new System.Drawing.Size(101, 29);
       this.labelTargetSchema.TabIndex = 58;
@@ -765,7 +733,7 @@
       // 
       // buttonSourceRefresh
       // 
-      this.buttonSourceRefresh.Location = new System.Drawing.Point(492, 584);
+      this.buttonSourceRefresh.Location = new System.Drawing.Point(492, 585);
       this.buttonSourceRefresh.Name = "buttonSourceRefresh";
       this.buttonSourceRefresh.Size = new System.Drawing.Size(118, 38);
       this.buttonSourceRefresh.TabIndex = 52;
@@ -840,9 +808,8 @@
       this.comboBoxSourceSchema.FormattingEnabled = true;
       this.comboBoxSourceSchema.Location = new System.Drawing.Point(182, 714);
       this.comboBoxSourceSchema.Name = "comboBoxSourceSchema";
-      this.comboBoxSourceSchema.Size = new System.Drawing.Size(428, 37);
+      this.comboBoxSourceSchema.Size = new System.Drawing.Size(298, 37);
       this.comboBoxSourceSchema.TabIndex = 44;
-      this.comboBoxSourceSchema.Text = "Public";
       // 
       // labelSourceSchema
       // 
@@ -879,7 +846,7 @@
       this.tabPageTables.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.tabPageTables.Name = "tabPageTables";
       this.tabPageTables.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.tabPageTables.Size = new System.Drawing.Size(1452, 1009);
+      this.tabPageTables.Size = new System.Drawing.Size(1452, 1006);
       this.tabPageTables.TabIndex = 1;
       this.tabPageTables.Text = "Tables";
       this.tabPageTables.UseVisualStyleBackColor = true;
@@ -944,11 +911,6 @@
     private System.Windows.Forms.TabPage tabPageTables;
     private System.Windows.Forms.Button buttonCopyPassword;
     private System.Windows.Forms.Button buttonCompareCompareNow;
-    private System.Windows.Forms.Button buttonCompareToLeftArrow;
-    private System.Windows.Forms.Button buttonCompareToRightAndLeftArrow;
-    private System.Windows.Forms.Button buttonCompareToRightArrow;
-    private System.Windows.Forms.Button buttonCompareSaveAs;
-    private System.Windows.Forms.Button buttonCompareSave;
     private System.Windows.Forms.Button buttonTargetCreate;
     private System.Windows.Forms.Button buttonTargetRefresh;
     private System.Windows.Forms.Label labelTargetDatabase;
@@ -990,6 +952,8 @@
     private System.Windows.Forms.TextBox textBoxSourceServer;
     private System.Windows.Forms.Button buttonCopyUserName;
     private System.Windows.Forms.Button buttonCopyDatabaseName;
+    private System.Windows.Forms.Button buttonRefreshSource;
+    private System.Windows.Forms.Button buttonRefreshTarget;
   }
 }
 

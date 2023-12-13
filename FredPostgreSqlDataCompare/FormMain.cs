@@ -458,7 +458,6 @@ namespace FredPostgreSqlDataCompare
 
     private void ButtonSourceRefresh_Click(object sender, EventArgs e)
     {
-      // refresh the list of source database combobox
       DatabaseAuthentication dbConnexion = new DatabaseAuthentication
       {
         UserName = textBoxSourceName.Text,
@@ -470,7 +469,7 @@ namespace FredPostgreSqlDataCompare
       string sqlQuery = ConnectionSqlServer.GetAllDatabaseNamesRequest();
       if (!sourceAuthenticationIsOk)
       {
-        MessageBox.Show("You have to verify the connection to the database first");
+        MessageBox.Show("You have to verify the source connection to the database first");
         return;
       }
 
@@ -480,6 +479,11 @@ namespace FredPostgreSqlDataCompare
       foreach (string name in listOfDatabaseName)
       {
         comboBoxSourceDatabase.Items.Add(name);
+      }
+
+      if (comboBoxSourceDatabase.Items.Count > 0)
+      {
+        comboBoxSourceDatabase.SelectedIndex = 0;
       }
     }
 
@@ -638,10 +642,94 @@ namespace FredPostgreSqlDataCompare
 
     private void ButtonTargetRefresh_Click(object sender, EventArgs e)
     {
-      if (targetAuthenticationIsOk)
+      DatabaseAuthentication dbConnexion = new DatabaseAuthentication
       {
-        var sqlRequest = ConnectionSqlServer.GetAllDatabaseNamesRequest();
+        UserName = textBoxTargetName.Text,
+        UserPassword = textBoxTargetPassword.Text,
+        ServerName = textBoxTargetServer.Text,
+        Port = int.Parse(textBoxTargetPort.Text)
+      };
 
+      string sqlQuery = ConnectionSqlServer.GetAllDatabaseNamesRequest();
+      if (!targetAuthenticationIsOk)
+      {
+        MessageBox.Show("You have to verify the target connection to the database first");
+        return;
+      }
+
+      List<string> listOfDatabaseName = DALHelper.ExecuteSqlQueryToListOfStrings(dbConnexion.ToString(), sqlQuery);
+
+      comboBoxTargetDatabase.Items.Clear();
+      foreach (string name in listOfDatabaseName)
+      {
+        comboBoxTargetDatabase.Items.Add(name);
+      }
+
+      if (comboBoxTargetDatabase.Items.Count > 0)
+      {
+        comboBoxTargetDatabase.SelectedIndex = 0;
+      }
+    }
+
+    private void ButtonRefreshSource_Click(object sender, EventArgs e)
+    {
+      DatabaseAuthentication dbConnexion = new DatabaseAuthentication
+      {
+        UserName = textBoxSourceName.Text,
+        UserPassword = textBoxSourcePassword.Text,
+        ServerName = textBoxSourceServer.Text,
+        Port = int.Parse(textBoxSourcePort.Text)
+      };
+
+      string sqlQuery = ConnectionSqlServer.GetAllSchemasRequest();
+      if (!sourceAuthenticationIsOk)
+      {
+        MessageBox.Show("You have to verify the source connection to the database first");
+        return;
+      }
+
+      List<string> listOfDatabaseName = DALHelper.ExecuteSqlQueryToListOfStrings(dbConnexion.ToString(), sqlQuery);
+
+      comboBoxSourceSchema.Items.Clear();
+      foreach (string name in listOfDatabaseName)
+      {
+        comboBoxSourceSchema.Items.Add(name);
+      }
+
+      if (comboBoxSourceSchema.Items.Count > 0)
+      {
+        comboBoxSourceSchema.SelectedIndex = 0;
+      }
+    }
+
+    private void ButtonRefreshTarget_Click(object sender, EventArgs e)
+    {
+      DatabaseAuthentication dbConnexion = new DatabaseAuthentication
+      {
+        UserName = textBoxTargetName.Text,
+        UserPassword = textBoxTargetPassword.Text,
+        ServerName = textBoxTargetServer.Text,
+        Port = int.Parse(textBoxTargetPort.Text)
+      };
+
+      string sqlQuery = ConnectionSqlServer.GetAllSchemasRequest();
+      if (!targetAuthenticationIsOk)
+      {
+        MessageBox.Show("You have to verify the target connection to the database first");
+        return;
+      }
+
+      List<string> listOfDatabaseName = DALHelper.ExecuteSqlQueryToListOfStrings(dbConnexion.ToString(), sqlQuery);
+
+      comboBoxTargetSchema.Items.Clear();
+      foreach (string name in listOfDatabaseName)
+      {
+        comboBoxTargetSchema.Items.Add(name);
+      }
+
+      if (comboBoxTargetSchema.Items.Count > 0)
+      {
+        comboBoxTargetSchema.SelectedIndex = 0;
       }
     }
   }

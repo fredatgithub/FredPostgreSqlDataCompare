@@ -1,4 +1,6 @@
-﻿namespace FredPostgreSqlDataCompare.DAL
+﻿using System;
+
+namespace FredPostgreSqlDataCompare.DAL
 {
   public static class ConnectionSqlServer
   {
@@ -43,7 +45,7 @@
 
     public static string GetAllDatabaseNamesRequest()
     {
-      return $"SELECT datname FROM pg_database WHERE datistemplate = false;";
+      return $"SELECT datname FROM pg_database WHERE datistemplate = false AND datname != 'postgres';";
     }
 
     public static string GetAllStoredProcedureRequest()
@@ -75,6 +77,12 @@
     {
       //SELECT table_catalog, table_schema, table_name, column_name, data_type FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'facture'
       return $"SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'{tableName}'";
+    }
+
+    public static string GetAllSchemasRequest()
+    {
+      //return "SELECT schema_name FROM information_schema.schemata where schema_name not in ('pg_catalog', 'information_schema', 'public');";
+      return "SELECT schema_name FROM information_schema.schemata;";
     }
   }
 }
