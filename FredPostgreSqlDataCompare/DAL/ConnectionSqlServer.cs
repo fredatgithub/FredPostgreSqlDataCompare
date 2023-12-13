@@ -1,6 +1,4 @@
-﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-
-namespace FredPostgreSqlDataCompare.DAL
+﻿namespace FredPostgreSqlDataCompare.DAL
 {
   public static class ConnectionSqlServer
   {

@@ -465,19 +465,16 @@ namespace FredPostgreSqlDataCompare
         UserPassword = textBoxSourcePassword.Text,
         ServerName = textBoxSourceServer.Text,
         Port = int.Parse(textBoxSourcePort.Text)
-        //DatabaseName = "master"
       };
 
-      RecordParameters();
       string sqlQuery = ConnectionSqlServer.GetAllDatabaseNamesRequest();
-      //string sqlQuery = "select name from sys.databases";
-      if (!DALHelper.VerifyDatabaseConnexion(sqlQuery, dbConnexion.DatabaseName, dbConnexion.ServerName))
+      if (!sourceAuthenticationIsOk)
       {
-        MessageBox.Show($"Cannot connect to the database: {dbConnexion.DatabaseName} on the server: {dbConnexion.ServerName}");
+        MessageBox.Show("You have to verify the connection to the database first");
         return;
       }
 
-      List<string> listOfDatabaseName = DALHelper.ExecuteSqlQueryToListOfStrings(sqlQuery, "master", Dns.GetHostName());
+      List<string> listOfDatabaseName = DALHelper.ExecuteSqlQueryToListOfStrings(dbConnexion.ToString(), sqlQuery);
 
       comboBoxSourceDatabase.Items.Clear();
       foreach (string name in listOfDatabaseName)
@@ -491,40 +488,7 @@ namespace FredPostgreSqlDataCompare
       // recording controls states
       Settings.Default.CheckBoxSourceRememberCredentials = checkBoxSourceRememberCredentials.Checked;
       Settings.Default.CheckBoxTargetRememberCredentials = checkBoxTargetRememberCredentials.Checked;
-
-      //saving controls state
-      Settings.Default.CheckBoxSourceRememberCredentials = checkBoxSourceRememberCredentials.Checked;
-      Settings.Default.CheckBoxTargetRememberCredentials = checkBoxTargetRememberCredentials.Checked;
       Settings.Default.Save();
-
-      //comboBoxTargetDatabase
-      string oneString = string.Empty;
-      if (comboBoxTargetDatabase.Items.Count > 0)
-      {
-        foreach (var item in comboBoxTargetDatabase.Items)
-        {
-          oneString += $"{item};";
-        }
-
-        oneString = oneString.TrimEnd(Helper.SemiColon);
-      }
-
-      //Settings.Default.comboBoxTargetDatabase = oneString;
-
-      //comboBoxTargetDatabase
-      oneString = string.Empty;
-      if (comboBoxSourceDatabase.Items.Count > 0)
-      {
-        foreach (var item in comboBoxSourceDatabase.Items)
-        {
-          oneString += $"{item};";
-        }
-
-        oneString = oneString.TrimEnd(';');
-      }
-
-      Settings.Default.comboBoxSourceDatabase = oneString;
-      //Settings.Default.Save();
     }
 
     private void ButtonTestConnection_Click(object sender, EventArgs e)

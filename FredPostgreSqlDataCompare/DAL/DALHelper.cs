@@ -139,48 +139,43 @@ namespace FredPostgreSqlDataCompare.DAL
     }
 
     /// <summary>
-    /// Execute an SQL query.
+    /// Execute a SQL query.
     /// </summary>
     /// <param name="sqlQuery">The SQL query to be run.</param>
     /// <param name="databaseName">The name of the database.</param>
     /// <param name="sqlServerName">The name of the SQL server.</param>
     /// <returns>An SQL data reader type.</returns>
-    public static List<string> ExecuteSqlQueryToListOfStrings(string sqlQuery, string databaseName, string sqlServerName)
+    public static List<string> ExecuteSqlQueryToListOfStrings(string connectionString, string query)
     {
       var result = new List<string>();
-      string connectionString = GetConnexionString(databaseName, sqlServerName);
-      string query = sqlQuery;
-
-      using (SqlConnection connection = new SqlConnection(connectionString))
+      var connexion = new NpgsqlConnection(connectionString);
+      try
       {
-        SqlCommand command = new SqlCommand(query, connection);
-        try
-        {
-          connection.Open();
-          SqlDataReader queryResult = command.ExecuteReader();
-          if (queryResult == null)
-          {
-            result = new List<string>();
-          }
-          else
-          {
-            if (queryResult.HasRows)
-            {
-              while (queryResult.Read())
-              {
-                result.Add($"{queryResult.GetString(0)}");
-              }
-            }
-          }
-        }
-        catch (Exception)
+        connexion.Open();
+        var command = new NpgsqlCommand(query, connexion);
+        NpgsqlDataReader reader = command.ExecuteReader();
+        if (reader == null)
         {
           result = new List<string>();
         }
-        finally
+        else
         {
-          connection.Close();
+          if (reader.HasRows)
+          {
+            while (reader.Read())
+            {
+              result.Add($"{reader.GetString(0)}");
+            }
+          }
         }
+      }
+      catch (Exception)
+      {
+        result = new List<string>();
+      }
+      finally
+      {
+        connexion.Close();
       }
 
       return result;
@@ -468,7 +463,7 @@ namespace FredPostgreSqlDataCompare.DAL
       {
         result = false;
       }
-     
+
       result = conn.State == ConnectionState.Open;
       conn.Close();
       return result;
