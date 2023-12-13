@@ -84,5 +84,11 @@ namespace FredPostgreSqlDataCompare.DAL
       //return "SELECT schema_name FROM information_schema.schemata where schema_name not in ('pg_catalog', 'information_schema', 'public');";
       return "SELECT schema_name FROM information_schema.schemata;";
     }
+
+    public static string GetAllOwnerUsers()
+    {
+      //return "SELECT nspname FROM pg_catalog.pg_namespace;";
+      return "select distinct schema_owner FROM information_schema.schemata;";
+    }
   }
 }

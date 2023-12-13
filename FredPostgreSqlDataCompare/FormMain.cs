@@ -453,7 +453,9 @@ namespace FredPostgreSqlDataCompare
 
     private void ButtonCompareCompareNow_Click(object sender, EventArgs e)
     {
-      //tabPageDataSources.SendToBack();
+      tabControlMain.SelectedIndex = 1;
+      tabPageTables.Refresh();
+      
     }
 
     private void ButtonSourceRefresh_Click(object sender, EventArgs e)

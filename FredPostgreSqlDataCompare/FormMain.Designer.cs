@@ -123,7 +123,7 @@
             this.aideToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(1460, 33);
+      this.menuStrip1.Size = new System.Drawing.Size(1752, 43);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -365,11 +365,11 @@
       this.tabControlMain.Controls.Add(this.tabPageDataSources);
       this.tabControlMain.Controls.Add(this.tabPageTables);
       this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.tabControlMain.Location = new System.Drawing.Point(0, 33);
+      this.tabControlMain.Location = new System.Drawing.Point(0, 52);
       this.tabControlMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.tabControlMain.Name = "tabControlMain";
       this.tabControlMain.SelectedIndex = 0;
-      this.tabControlMain.Size = new System.Drawing.Size(1460, 1042);
+      this.tabControlMain.Size = new System.Drawing.Size(1752, 1238);
       this.tabControlMain.TabIndex = 1;
       this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.TabControlMain_SelectedIndexChanged);
       // 
@@ -425,7 +425,7 @@
       this.tabPageDataSources.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.tabPageDataSources.Name = "tabPageDataSources";
       this.tabPageDataSources.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.tabPageDataSources.Size = new System.Drawing.Size(1452, 1009);
+      this.tabPageDataSources.Size = new System.Drawing.Size(1744, 1205);
       this.tabPageDataSources.TabIndex = 0;
       this.tabPageDataSources.Text = "Data Sources";
       this.tabPageDataSources.UseVisualStyleBackColor = true;
