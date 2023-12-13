@@ -103,7 +103,7 @@ namespace FredPostgreSqlDataCompare.DAL
     /// <param name="databaseName">The name of the database.</param>
     /// <param name="sqlServerName">The name of the SQL server.</param>
     /// <returns>An SQL data reader type.</returns>
-    public static SqlDataReader ExecuteSqlQueryToDataREader(string sqlQuery, string databaseName, string sqlServerName)
+    public static SqlDataReader ExecuteSqlQueryToDataReader(string sqlQuery, string databaseName, string sqlServerName)
     {
       SqlDataReader result = null;
       string connectionString = GetConnexionString(databaseName, sqlServerName);
@@ -218,18 +218,18 @@ namespace FredPostgreSqlDataCompare.DAL
       return result;
     }
 
-    public static List<T> DataReaderMapToList<T>(IDataReader dr)
+    public static List<T> DataReaderMapToList<T>(IDataReader dataReader)
     {
       List<T> list = new List<T>();
       T obj = default(T);
-      while (dr.Read())
+      while (dataReader.Read())
       {
         obj = Activator.CreateInstance<T>();
-        foreach (PropertyInfo prop in obj.GetType().GetProperties())
+        foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties())
         {
-          if (!object.Equals(dr[prop.Name], DBNull.Value))
+          if (!object.Equals(dataReader[propertyInfo.Name], DBNull.Value))
           {
-            prop.SetValue(obj, dr[prop.Name], null);
+            propertyInfo.SetValue(obj, dataReader[propertyInfo.Name], null);
           }
         }
 
