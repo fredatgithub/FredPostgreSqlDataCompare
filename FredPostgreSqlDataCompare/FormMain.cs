@@ -1,14 +1,11 @@
-﻿using System;
+﻿using FredPostgreSqlDataCompare.DAL;
+using FredPostgreSqlDataCompare.Properties;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
-using FredPostgreSqlDataCompare.DAL;
-using FredPostgreSqlDataCompare.Properties;
 using Tools;
 
 namespace FredPostgreSqlDataCompare
@@ -455,7 +452,7 @@ namespace FredPostgreSqlDataCompare
     {
       tabControlMain.SelectedIndex = 1;
       tabPageTables.Refresh();
-      
+
     }
 
     private void ButtonSourceRefresh_Click(object sender, EventArgs e)
