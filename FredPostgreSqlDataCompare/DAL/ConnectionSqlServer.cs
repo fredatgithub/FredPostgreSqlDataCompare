@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FredPostgreSqlDataCompare.DAL
+﻿namespace FredPostgreSqlDataCompare.DAL
 {
   public static class ConnectionSqlServer
   {
